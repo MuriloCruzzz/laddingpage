@@ -3,8 +3,8 @@
 *{box-sizing:border-box}
 html,body,#root{height:100%}
 body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,'Helvetica Neue',Arial,'Noto Sans',sans-serif}
-.page{position:relative;min-height:100%}
-.bg{position:fixed;inset:0;background-image:url('img/ai-natu3.jpg');background-size:cover;background-position:center;background-attachment:fixed;opacity:1;z-index:-1}
+.page{position:relative;min-height:100vh;width:100%}
+.bg{position:fixed;top:0;left:0;right:0;bottom:0;width:100%;height:100%;background-image:url('/img/ai-natu3.jpg');background-size:cover;background-position:center;background-repeat:no-repeat;background-attachment:fixed;opacity:1;z-index:-1}
 .content{position:relative;z-index:1}
 .section{padding:64px 8px;max-width:1440px;margin:0 auto}
 .section.banner{padding:48px 8px;max-width:1440px}
@@ -73,4 +73,9 @@ button:hover{filter:brightness(0.95)}
   .section{padding:48px 12px}
   .benefits-grid{grid-template-columns:1fr}
   .hero{grid-template-columns:1fr}
+  .bg{background-attachment:scroll;background-size:cover;background-position:center;position:fixed}
+}
+@media (max-width:480px){
+  .bg{background-size:cover;background-position:center center;background-attachment:scroll}
+  .page{min-height:100vh}
 }
