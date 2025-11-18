@@ -15,8 +15,8 @@ export default function Banner() {
     <section className="section banner">
       <div className="hero">
         <div className="hero-left">
-          <img src="/img/logo.png" alt="Logo da campanha" className="hero-logo" />
-          <img src="/img/ai-natu2.jpg" alt="Imagem da campanha" className="hero-image" />
+          <img src="img/logo.png" alt="Logo da campanha" className="hero-logo" />
+          <img src="img/ai-natu2.jpg" alt="Imagem da campanha" className="hero-image" />
         </div>
         <div className="hero-right">
           {!submitted ? (
