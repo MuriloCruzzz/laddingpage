@@ -17,6 +17,9 @@ export default function App() {
       <Banner submitted={leadSubmitted} onSubmit={() => setLeadSubmitted(true)} />
       <InfoBlocks />
       <Banner submitted={leadSubmitted} onSubmit={() => setLeadSubmitted(true)} />
+      <footer className="site-footer">
+        Cemaden Educação — Desenvolvido por Murilo Cruz • #AprenderParaPrevenir
+      </footer>
     </ParallaxBackground>
   )
 }
