@@ -25,7 +25,7 @@ export default function Banner({ submitted, onSubmit }) {
               <form onSubmit={handleSubmit} className="form form-pill">
                 <input name="instituicao" placeholder="🏫 Nome da Instituição" value={form.instituicao} onChange={handleChange} required />
                 <input name="nome" placeholder="👤 Seu nome" value={form.nome} onChange={handleChange} required />
-                <input name="email" type="tel" placeholder="📞 E-mail para contato" value={form.email} onChange={handleChange} required />
+                <input name="email" type="tel" placeholder="📩 E-mail para contato" value={form.email} onChange={handleChange} required />
                 <button type="submit" className="cta-button">✨ Queremos participar</button>
               </form>
             </>
