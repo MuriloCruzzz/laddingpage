@@ -15,7 +15,7 @@ export default function Banner({ submitted, onSubmit }) {
       <div className="hero">
         <div className="hero-left">
           <img src="/img/logo.png" alt="Logo da campanha" className="hero-logo" />
-          <img src="/img/teste-2.png" alt="Imagem da campanha" className="hero-image" />
+          <img src="/img/teste-3.png" alt="Imagem da campanha" className="hero-image" />
         </div>
         <div className="hero-right">
           {!submitted ? (
