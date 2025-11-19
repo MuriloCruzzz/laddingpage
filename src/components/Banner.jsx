@@ -1,22 +1,21 @@
 import React, { useState } from 'react'
 
-export default function Banner() {
-  const [form, setForm] = useState({ nome: '', instituicao: '' })
-  const [submitted, setSubmitted] = useState(false)
+export default function Banner({ submitted, onSubmit }) {
+  const [form, setForm] = useState({ nome: '', instituicao: '', telefone: '' })
   function handleChange(e) {
     setForm({ ...form, [e.target.name]: e.target.value })
   }
   function handleSubmit(e) {
     e.preventDefault()
-    if (!form.nome || !form.instituicao) return
-    setSubmitted(true)
+    if (!form.nome || !form.instituicao || !form.telefone) return
+    onSubmit?.()
   }
   return (
     <section className="section banner">
       <div className="hero">
         <div className="hero-left">
           <img src="/img/logo.png" alt="Logo da campanha" className="hero-logo" />
-          <img src="/img/ai-natu2.jpg" alt="Imagem da campanha" className="hero-image" />
+          <img src="/img/teste-2.png" alt="Imagem da campanha" className="hero-image" />
         </div>
         <div className="hero-right">
           {!submitted ? (
@@ -26,14 +25,23 @@ export default function Banner() {
               <form onSubmit={handleSubmit} className="form form-pill">
                 <input name="instituicao" placeholder="🏫 Nome da Instituição" value={form.instituicao} onChange={handleChange} required />
                 <input name="nome" placeholder="👤 Seu nome" value={form.nome} onChange={handleChange} required />
+                <input name="telefone" type="tel" placeholder="📞 Telefone para contato" value={form.telefone} onChange={handleChange} required />
                 <button type="submit" className="cta-button">✨ Queremos participar</button>
               </form>
             </>
           ) : (
             <div className="thanks">
-              <p>Obrigada pelo seu interesse! Acesse seu e-mail e confira mais detalhes sobre como sua instituição pode participar!</p>
+              <div className="thanks-header">
+                <img src="/img/logo.png" alt="Logo da campanha" />
+                <div>
+                  <h3>Parabéns por querer participar!</h3>
+                  <p>Sua instituição foi registrada. Em breve você receberá orientações personalizadas da equipe do Cemaden Educação.  Confira seu e-mail para acessar o material da campanha!</p>
+                </div>
+              </div>
               <div className="email-preview">
-                <p>Olá! Que bom que você se interessou pela campanha. Em breve enviaremos orientações para sua instituição participar.</p>
+                <a className="btn-secondary" href="https://educacao.cemaden.gov.br/" target="_blank" rel="noopener noreferrer">
+                  Voltar para o site do Cemaden Educação
+                </a>
               </div>
             </div>
           )}
