@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
 
 export default function Banner({ submitted, onSubmit }) {
-  const [form, setForm] = useState({ nome: '', instituicao: '', telefone: '' })
+  const [form, setForm] = useState({ nome: '', instituicao: '', email: '' })
   function handleChange(e) {
     setForm({ ...form, [e.target.name]: e.target.value })
   }
   function handleSubmit(e) {
     e.preventDefault()
-    if (!form.nome || !form.instituicao || !form.telefone) return
+    if (!form.nome || !form.instituicao || !form.email) return
     onSubmit?.()
   }
   return (
@@ -25,7 +25,7 @@ export default function Banner({ submitted, onSubmit }) {
               <form onSubmit={handleSubmit} className="form form-pill">
                 <input name="instituicao" placeholder="🏫 Nome da Instituição" value={form.instituicao} onChange={handleChange} required />
                 <input name="nome" placeholder="👤 Seu nome" value={form.nome} onChange={handleChange} required />
-                <input name="telefone" type="tel" placeholder="📞 Telefone para contato" value={form.telefone} onChange={handleChange} required />
+                <input name="email" type="tel" placeholder="📞 E-mail para contato" value={form.email} onChange={handleChange} required />
                 <button type="submit" className="cta-button">✨ Queremos participar</button>
               </form>
             </>
