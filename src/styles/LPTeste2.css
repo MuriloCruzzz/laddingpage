@@ -1,0 +1,534 @@
+.lp2-page {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  overflow-x: hidden;
+  background: #f8f9ff;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+.lp2-hero {
+  position: relative;
+  min-height: 70vh;
+  height: auto;
+  width: 100%;
+  display: flex;
+  align-items: stretch; 
+  justify-content: flex-end;
+  margin: 0;
+  padding: 0;
+  gap: 0;
+}
+
+/* Background Image Layer (Left Side / Full Background) */
+.lp2-hero-bg-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 68%; 
+  height: 100%;
+  z-index: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  align-self: stretch;
+}
+
+.lp2-hero-bg {
+  width: 100%;
+  flex: 1;
+  min-height: 0;
+  object-fit: cover;
+  object-position: center center;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  display: block;
+  vertical-align: bottom;
+}
+
+.lp2-hero-footer-img {
+  width: 93%;
+  height: auto;
+  max-height: 150px;
+  min-height: 100px;
+  object-fit: contain;
+  object-position: left bottom;
+  background-color: transparent;
+  flex-shrink: 0;
+  display: block !important;
+  margin: 0;
+  margin-top: auto;
+  z-index: 4;
+  position: relative;
+  padding: 0;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* Yellow Filter on Image */
+.lp2-hero-bg-container::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: calc(100% - 150px); /* Não cobre o rodapé */
+  mix-blend-mode: color-burn; 
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Logo on the left */
+.lp2-logo-container {
+  position: absolute;
+  top: 40%; /* Moved up from 50% */
+  left: 8%;
+  transform: translateY(-50%);
+  z-index: 1;
+  width: 35%; 
+  max-width: 380px; 
+}
+
+.lp2-hero-logo {
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 4px 10px rgba(0,0,0,0.3));
+}
+
+/* Right Side - Yellow Block */
+.lp2-hero-right {
+  position: relative;
+  width: 38%; /* Adjusted per user image */
+  background-color: #FFD000; 
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem 2.5rem 1.5rem 7rem;
+  margin: 0;
+  /* Diagonal Cut */
+  clip-path: polygon(16% 0, 100% 0, 100% 100%, 0% 100%);
+  align-self: stretch;
+}
+
+.lp2-form-card {
+  background: white;
+  padding: 1rem 1.5rem; /* Increased inner padding */
+  border-radius: 20px; 
+  box-shadow: 0 15px 40px rgba(0,0,0,0.1); /* Softer shadow */
+  width: 100%;
+  max-width: 355px; 
+  border: 2px solid #000;
+  margin-bottom: 0.5rem;
+  position: relative;
+}
+
+.lp2-form-title {
+  font-family: 'Segoe UI', sans-serif;
+  text-transform: uppercase;
+  font-weight: 900;
+  font-size: 1.1rem; 
+  text-align: center;
+  margin-bottom: 0.8rem;
+  color: #000;
+  line-height: 1.1;
+}
+
+.lp2-form {
+  display: flex;
+  flex-direction: column;
+  gap: 4px; /* Increased gap */
+}
+
+.lp2-input input {
+  width: 100%;
+  height: 46px;
+  padding: 0 14px; 
+  border: 2px solid #000;
+  border-radius: 999px;
+  background-color: #fff; 
+  font-size: 0.95rem; 
+  color: #000;
+  font-weight: 700;
+}
+
+.lp2-input input:focus {
+  outline: none;
+  border-color: #DD0000; /* Red focus border */
+  box-shadow: 0 0 0 3px rgba(221, 0, 0, 0.2);
+}
+
+.lp2-check {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.75rem; 
+}
+
+.lp2-button {
+  background-color: #DD0000; 
+  color: white;
+  border: 1px solid #b30000;
+  padding: 12px; 
+  border-radius: 44px;
+  font-weight: 800;
+  text-transform: uppercase;
+  cursor: pointer;
+  margin-top: -14px; /* Pull button up */
+  font-size: 0.95rem; 
+  box-shadow: 0 6px 10px rgba(221, 0, 0, 0.3);
+  transition: transform 0.2s;
+}
+
+.lp2-footer-text {
+  font-weight: 700;
+  color: #1f2937;
+  text-align: right;
+  font-size: 0.85rem; 
+  max-width: 340px;
+  line-height: 1.25;
+}
+
+@media (max-width: 900px) {
+  .lp2-hero {
+    flex-direction: column;
+    justify-content: flex-start;
+    height: auto;
+    min-height: auto;
+  }
+  
+  .lp2-hero-bg-container {
+    position: relative;
+    width: 100%;
+    min-height: 320px;
+    display: flex;
+    flex-direction: column;
+    gap: 0 !important;
+    margin: 0;
+    padding: 0;
+    align-items: flex-start;
+  }
+
+  .lp2-hero-bg-container::after {
+    height: calc(100% - 100px); /* Ajuste para mobile - não cobre o rodapé */
+  }
+
+  .lp2-hero-bg {
+    flex: 1;
+    min-height: 260px;
+    width: 100%;
+    object-fit: cover;
+    margin: 0 !important;
+    padding: 0;
+    display: block;
+    margin-bottom: 0 !important;
+    vertical-align: bottom;
+  }
+
+  .lp2-hero-footer-img {
+    width: 97%;
+    max-height: 100px;
+    min-height: 70px;
+    margin: 0 !important;
+    margin-top: 0 !important;
+    padding: 0;
+    background-color: transparent;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    z-index: 5;
+    object-fit: contain;
+    object-position: left bottom;
+    flex-shrink: 0;
+    vertical-align: top;
+  }
+
+  .lp2-logo-container {
+    width: 45%;
+    left: 8%;
+    top: 18%;
+    transform: translateY(0);
+    z-index: 2;
+  }
+  
+  .lp2-hero-right {
+    width: 100%;
+    clip-path: none; 
+    padding: 1.5rem 1rem;
+    align-items: center;
+  }
+  
+  .lp2-form-card {
+    margin-top: -1.5rem; 
+    max-width: 100%;
+    width: 90%;
+  }
+  
+  .lp2-footer-text {
+      text-align: center;
+      margin-top: 1rem;
+  }
+}
+/* =========================================
+   MOBILIZATION SECTION
+   ========================================= */
+.lp2-mobilization {
+  display: flex;
+  min-height: 400px;
+  position: relative;
+  overflow: hidden;
+  max-width: 1440px; /* Centering helper */
+  margin: 0 auto;    /* Centering helper */
+}
+
+.lp2-mobilization-left {
+  width: 50%;
+  position: relative;
+  /* The image should cover this area */
+  background: #f0f0f0; /* fallback */
+}
+
+.lp2-mobilization-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+.lp2-mobilization-right {
+  width: 50%;
+  background-color: #FFD000; /* Yellow */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 3rem 4rem;
+  position: relative;
+  
+  /* Diagonal cut effect similar to hero but inverted or consistent */
+  /* Let's match the reference: looks like a diagonal border */
+  clip-path: polygon(10% 0, 100% 0, 100% 100%, 0% 100%);
+  margin-left: -5%; /* Overlap slightly */
+  padding-left: 8%; /* Compensate for the cut */
+  z-index: 2;
+}
+
+.lp2-mobilization-title {
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 1.8rem;
+  line-height: 1.3;
+  color: #000;
+  margin-bottom: 1.5rem;
+  font-weight: 500;
+}
+
+.lp2-mobilization-subtitle {
+  font-size: 1.4rem;
+  color: #000;
+  font-weight: 400;
+}
+
+@media (max-width: 900px) {
+  .lp2-mobilization {
+    flex-direction: column;
+  }
+  .lp2-mobilization-left, .lp2-mobilization-right {
+    width: 100%;
+    margin-left: 0;
+    clip-path: none;
+    padding: 2rem;
+  }
+  .lp2-mobilization-left {
+    height: 300px;
+  }
+}
+
+
+/* =========================================
+   STATISTICS SECTION
+   ========================================= */
+.lp2-stats-new {
+  background: #ffffff;
+  padding: 4rem 2rem;
+  display: flex;
+  justify-content: center;
+  gap: 4rem;
+  text-align: center;
+  flex-wrap: wrap;
+  border-top: 2px solid #000;
+  border-bottom: 2px solid #000;
+}
+
+.lp2-stat-item {
+  flex: 1;
+  min-width: 250px;
+  max-width: 350px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.lp2-stat-icon {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  margin-bottom: 1.2rem;
+  border: 3px solid #000;
+  box-shadow: 0 10px 24px rgba(0,0,0,0.18);
+  background-size: 70%;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.lp2-stat-icon--world {
+  background-color: #e0f2fe;
+}
+
+.lp2-stat-icon--schools {
+  background-color: #fef3c7;
+}
+
+.lp2-stat-icon--students {
+  background-color: #fee2e2;
+}
+
+.lp2-stat-number {
+  font-size: 2.5rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  margin: 0;
+  color: #000;
+  line-height: 1;
+}
+
+.lp2-stat-desc {
+  font-size: 1.1rem;
+  color: #333;
+  line-height: 1.4;
+  margin: 0.5rem 0;
+}
+
+.lp2-stat-source {
+  font-size: 0.8rem;
+  color: #666;
+  margin-top: auto; /* Push to bottom if needed */
+}
+
+@media (max-width: 768px) {
+  .lp2-stats-new {
+    flex-direction: column;
+    align-items: center;
+    gap: 3rem;
+  }
+}
+
+/* =========================================
+   INVITE SECTION
+   ========================================= */
+.lp2-invite {
+  display: flex;
+  align-items: stretch;
+  min-height: 420px;
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+.lp2-invite-left {
+  width: 35%;
+  position: relative;
+  background: transparent;
+  overflow: hidden;
+}
+
+.lp2-invite-wedge {
+  position: absolute;
+  inset: 0;
+  background: var(--brand-yellow);
+  clip-path: polygon(0 0, 100% 0, 0 100%);
+}
+
+.lp2-icon-circle {
+  position: absolute;
+  bottom: 12%;
+  left: 18%;
+  width: 120px;
+  height: 120px;
+  background: var(--brand-blue);
+  border-radius: 50%;
+  box-shadow: 0 12px 32px rgba(0,0,0,.2);
+  border: 4px solid #0b1020;
+}
+
+.lp2-invite-right {
+  width: 65%;
+  background: #eef2f7;
+  border-left: 2px solid #000;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 3rem 4rem;
+}
+
+.lp2-invite-text {
+  font-size: 1.1rem;
+  color: #1f2937;
+  line-height: 1.6;
+  margin: 0 0 1rem;
+}
+
+.lp2-invite-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 14px;
+  margin-top: 1rem;
+}
+
+.lp2-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 16px;
+  border-radius: 999px;
+  border: 2px solid #000;
+  background: #fff;
+  font-weight: 800;
+  font-size: 0.95rem;
+  color: #0b1020;
+}
+
+@media (max-width: 900px) {
+  .lp2-invite {
+    flex-direction: column;
+  }
+  .lp2-invite-left, .lp2-invite-right {
+    width: 100%;
+  }
+  .lp2-invite-left {
+    min-height: 160px;
+  }
+  .lp2-icon-circle {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+/* ilustração no topo do bloco de convite */
+.lp2-invite-illustration-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.lp2-invite-illustration {
+  max-width: 420px;
+  width: 100%;
+  border-radius: 16px;
+  border: 2px solid #000;
+  box-shadow: 0 12px 32px rgba(0,0,0,0.18);
+}
