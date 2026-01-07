@@ -47,7 +47,6 @@
   margin: 0;
   padding: 0;
   display: block;
-  vertical-align: bottom;
 }
 
 .lp2-hero-footer-img {
@@ -205,38 +204,40 @@
   .lp2-hero-bg-container {
     position: relative;
     width: 100%;
-    min-height: 320px;
+    min-height: auto;
     display: flex;
     flex-direction: column;
     gap: 0 !important;
     margin: 0;
     padding: 0;
     align-items: flex-start;
+    line-height: 0;
+    font-size: 0;
   }
 
   .lp2-hero-bg-container::after {
-    height: calc(100% - 100px); /* Ajuste para mobile - não cobre o rodapé */
+    height: calc(100% - 130px); /* Ajuste para mobile - não cobre o rodapé maior */
   }
 
   .lp2-hero-bg {
-    flex: 1;
-    min-height: 260px;
     width: 100%;
+    height: auto;
+    min-height: 260px;
     object-fit: cover;
     margin: 0 !important;
-    padding: 0;
+    padding: 0 !important;
     display: block;
-    margin-bottom: 0 !important;
-    vertical-align: bottom;
+    line-height: 0;
+    font-size: 0;
   }
 
   .lp2-hero-footer-img {
-    width: 97%;
-    max-height: 100px;
-    min-height: 70px;
+    width: 93%;
+    max-height: 130px;
+    min-height: 90px;
     margin: 0 !important;
-    margin-top: 0 !important;
-    padding: 0;
+    margin-top: -8px !important;
+    padding: 0 !important;
     background-color: transparent;
     display: block !important;
     visibility: visible !important;
@@ -245,11 +246,14 @@
     object-fit: contain;
     object-position: left bottom;
     flex-shrink: 0;
-    vertical-align: top;
+    line-height: 0;
+    font-size: 0;
+    position: relative;
+    top: -8px;
   }
 
   .lp2-logo-container {
-    width: 45%;
+    width: 55%;
     left: 8%;
     top: 18%;
     transform: translateY(0);
@@ -259,12 +263,13 @@
   .lp2-hero-right {
     width: 100%;
     clip-path: none; 
-    padding: 1.5rem 1rem;
+    padding: 1rem;
     align-items: center;
+    margin-top: 0;
   }
   
   .lp2-form-card {
-    margin-top: -1.5rem; 
+    margin-top: 0; 
     max-width: 100%;
     width: 90%;
   }
