@@ -170,9 +170,9 @@
 }
 
 .lp2-button {
-  background-color: #DD0000; 
+  background-color: #00DD0D; 
   color: white;
-  border: 1px solid #b30000;
+  border: 1px solid #00b30a;
   padding: 12px; 
   border-radius: 44px;
   font-weight: 800;
@@ -180,7 +180,7 @@
   cursor: pointer;
   margin-top: -14px; /* Pull button up */
   font-size: 0.95rem; 
-  box-shadow: 0 6px 10px rgba(221, 0, 0, 0.3);
+  box-shadow: 0 6px 10px rgba(0, 221, 13, 0.3);
   transition: transform 0.2s;
 }
 
