@@ -5,6 +5,7 @@
   margin: 0;
   padding: 0;
   width: 100%;
+  max-width: 100vw;
 }
 
 .lp2-hero {
@@ -162,6 +163,35 @@
   box-shadow: 0 0 0 3px rgba(221, 0, 0, 0.2);
 }
 
+.lp2-select {
+  width: 100%;
+  height: 46px;
+  padding: 0 14px; 
+  border: 2px solid #000;
+  border-radius: 999px;
+  background-color: #fff; 
+  font-size: 0.95rem; 
+  color: #000;
+  font-weight: 700;
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23000' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  padding-right: 40px;
+}
+
+.lp2-select:focus {
+  outline: none;
+  border-color: #DD0000;
+  box-shadow: 0 0 0 3px rgba(221, 0, 0, 0.2);
+}
+
+.lp2-select option {
+  font-weight: 700;
+  padding: 8px;
+}
+
 .lp2-check {
   display: flex;
   align-items: center;
@@ -170,9 +200,9 @@
 }
 
 .lp2-button {
-  background-color: #00DD0D; 
+  background-color: #DD0000; 
   color: white;
-  border: 1px solid #00b30a;
+  border: 1px solid #b30000;
   padding: 12px; 
   border-radius: 44px;
   font-weight: 800;
@@ -180,8 +210,22 @@
   cursor: pointer;
   margin-top: -14px; /* Pull button up */
   font-size: 0.95rem; 
-  box-shadow: 0 6px 10px rgba(0, 221, 13, 0.3);
+  box-shadow: 0 6px 10px rgba(221, 0, 0, 0.3);
   transition: transform 0.2s;
+}
+
+.lp2-thank-you {
+  margin-top: -14px;
+  text-align: center;
+  padding: 1rem;
+}
+
+.lp2-thank-you-message {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #00DD0D;
+  line-height: 1.5;
+  margin: 0;
 }
 
 .lp2-footer-text {
@@ -232,24 +276,24 @@
   }
 
   .lp2-hero-footer-img {
-    width: 93%;
+    width: 100%;
     max-height: 130px;
     min-height: 90px;
     margin: 0 !important;
-    margin-top: -8px !important;
+    margin-top: -15px !important;
     padding: 0 !important;
     background-color: transparent;
     display: block !important;
     visibility: visible !important;
     opacity: 1 !important;
     z-index: 5;
-    object-fit: contain;
-    object-position: left bottom;
+    object-fit: cover;
+    object-position: center bottom;
     flex-shrink: 0;
     line-height: 0;
     font-size: 0;
     position: relative;
-    top: -8px;
+    top: -15px;
   }
 
   .lp2-logo-container {
@@ -284,43 +328,47 @@
    ========================================= */
 .lp2-mobilization {
   display: flex;
-  min-height: 400px;
+  min-height: 120px;
   position: relative;
   overflow: hidden;
-  max-width: 1440px; /* Centering helper */
-  margin: 0 auto;    /* Centering helper */
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+  max-width: 100%;
 }
 
 .lp2-mobilization-left {
-  width: 50%;
+  width: 40%;
   position: relative;
   /* The image should cover this area */
   background: #f0f0f0; /* fallback */
 }
 
 .lp2-mobilization-img {
-  width: 100%;
+  width: 108%;
   height: 100%;
+  min-height: 120px;
   object-fit: cover;
   object-position: center;
   display: block;
 }
 
 .lp2-mobilization-right {
-  width: 50%;
-  background-color: #FFD000; /* Yellow */
+  width: calc(67% + 5vw);
+  background-color: #FFD000;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 3rem 4rem;
+  align-items: flex-start;
+  text-align: left;
+  padding: 0rem 8rem 1rem 15%;
   position: relative;
-  
-  /* Diagonal cut effect similar to hero but inverted or consistent */
-  /* Let's match the reference: looks like a diagonal border */
   clip-path: polygon(10% 0, 100% 0, 100% 100%, 0% 100%);
-  margin-left: -5%; /* Overlap slightly */
-  padding-left: 8%; /* Compensate for the cut */
+  margin-left: -5%;
+  margin-right: 0;
+  padding-right: 0;
   z-index: 2;
+  flex-shrink: 0;
 }
 
 .lp2-mobilization-title {
@@ -330,26 +378,48 @@
   color: #000;
   margin-bottom: 1.5rem;
   font-weight: 500;
+  text-align: left;
+  width: 100%;
 }
 
 .lp2-mobilization-subtitle {
   font-size: 1.4rem;
   color: #000;
   font-weight: 400;
+  text-align: left;
+  width: 100%;
 }
 
 @media (max-width: 900px) {
   .lp2-mobilization {
     flex-direction: column;
+    gap: 0 !important;
+    margin: 0;
+    padding: 0;
   }
   .lp2-mobilization-left, .lp2-mobilization-right {
     width: 100%;
+    margin: 0;
     margin-left: 0;
     clip-path: none;
-    padding: 2rem;
+    padding: 0;
   }
   .lp2-mobilization-left {
-    height: 300px;
+    height: 100px;
+    margin-bottom: 0 !important;
+  }
+  .lp2-mobilization-img {
+    width: 100%;
+    height: 100%;
+    margin: 0 !important;
+    padding: 0 !important;
+    display: block;
+    line-height: 0;
+    font-size: 0;
+  }
+  .lp2-mobilization-right {
+    padding: 2rem;
+    margin-top: 0 !important;
   }
 }
 
@@ -401,6 +471,14 @@
 
 .lp2-stat-icon--students {
   background-color: #fee2e2;
+}
+
+.lp2-stat-icon-img {
+  width: 72px;
+  height: 72px;
+  object-fit: contain;
+  margin-bottom: 1.2rem;
+  display: block;
 }
 
 .lp2-stat-number {
@@ -464,10 +542,20 @@
   left: 18%;
   width: 120px;
   height: 120px;
-  background: var(--brand-blue);
+  background: #1F6BFF;
   border-radius: 50%;
   box-shadow: 0 12px 32px rgba(0,0,0,.2);
   border: 4px solid #0b1020;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lp2-icon-circle-img {
+  width: 60%;
+  height: 60%;
+  object-fit: contain;
+  display: block;
 }
 
 .lp2-invite-right {
@@ -536,4 +624,61 @@
   border-radius: 16px;
   border: 2px solid #000;
   box-shadow: 0 12px 32px rgba(0,0,0,0.18);
+}
+
+/* Alerta customizado */
+.lp2-alert-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 1rem;
+}
+
+.lp2-alert-box {
+  background: white;
+  border: 3px solid #000;
+  border-radius: 20px;
+  padding: 2rem;
+  max-width: 400px;
+  width: 100%;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+  text-align: center;
+}
+
+.lp2-alert-message {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #000;
+  margin: 0 0 1.5rem 0;
+  line-height: 1.5;
+}
+
+.lp2-alert-button {
+  background-color: #DD0000;
+  color: white;
+  border: 2px solid #b30000;
+  padding: 12px 32px;
+  border-radius: 44px;
+  font-weight: 800;
+  text-transform: uppercase;
+  cursor: pointer;
+  font-size: 0.95rem;
+  box-shadow: 0 6px 10px rgba(221, 0, 0, 0.3);
+  transition: transform 0.2s;
+}
+
+.lp2-alert-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 15px rgba(221, 0, 0, 0.4);
+}
+
+.lp2-alert-button:active {
+  transform: translateY(0);
 }
