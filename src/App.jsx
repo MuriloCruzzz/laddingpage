@@ -7,11 +7,16 @@ import LPTeste2 from './components/LPTeste2.jsx'
 
 export default function App() {
   const [leadSubmitted, setLeadSubmitted] = useState(false)
-  const isTimelinePage = window.location.pathname.includes('passo-a-passo')
-  const isOldPage = window.location.pathname.includes('lpteste2') || window.location.pathname.includes('home')
+  
+  // Remove o base path para verificar rotas corretamente
+  const basePath = import.meta.env.BASE_URL || '/'
+  const pathname = window.location.pathname.replace(basePath, '/') || '/'
+  
+  const isTimelinePage = pathname.includes('passo-a-passo')
+  const isOldPage = pathname.includes('lpteste2') || pathname.includes('home')
 
   // Rota raiz (/) agora mostra LPTeste2
-  const isRoot = window.location.pathname === '/' || window.location.pathname === ''
+  const isRoot = pathname === '/' || pathname === ''
 
   if (isTimelinePage) {
     return <TimelinePage />
