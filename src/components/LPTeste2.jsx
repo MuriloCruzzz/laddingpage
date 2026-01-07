@@ -1,6 +1,14 @@
 import React, { useState } from 'react'
 import '../styles/LPTeste2.css'
 
+// Helper para caminhos de imagens que funcionam tanto no Vercel quanto via WordPress
+// Usa import.meta.env.BASE_URL do Vite para garantir compatibilidade
+const getImagePath = (path) => {
+  const baseUrl = import.meta.env.BASE_URL || '/'
+  const cleanPath = path.startsWith('/') ? path.slice(1) : path
+  return `${baseUrl}${cleanPath}`
+}
+
 export default function LPTeste2() {
   const [form, setForm] = useState({
     nome: '',
@@ -26,12 +34,12 @@ export default function LPTeste2() {
       <section className="lp2-hero">
         {/* Lado esquerdo: foto grande + logo e foto de apoio embaixo */}
         <div className="lp2-hero-bg-container">
-          <img src="/img/teste-2.png" alt="Cidades sem risco" className="lp2-hero-bg" />
+          <img src={getImagePath('/img/teste-2.png')} alt="Cidades sem risco" className="lp2-hero-bg" />
           <div className="lp2-logo-container">
-            <img src="/img/logo.png" alt="Cidades sem Risco" className="lp2-hero-logo" />
+            <img src={getImagePath('/img/logo.png')} alt="Cidades sem Risco" className="lp2-hero-logo" />
           </div>
           <img
-            src="/img/rodape.png"
+            src={getImagePath('/img/rodape.png')}
             alt="Parcerias e apoiadores da campanha"
             className="lp2-hero-footer-img"
           />
@@ -102,7 +110,7 @@ export default function LPTeste2() {
       <section className="lp2-mobilization">
         <div className="lp2-mobilization-left">
           <img
-            src="/img/teste-3.png"
+            src={getImagePath('/img/teste-3.png')}
             alt="Material da campanha #AprenderParaPrevenir"
             className="lp2-mobilization-img"
           />
@@ -154,7 +162,7 @@ export default function LPTeste2() {
         <div className="lp2-invite-right">
           <div className="lp2-invite-illustration-wrapper">
             <img
-              src="/img/teste-1.png"
+              src={getImagePath('/img/teste-1.png')}
               alt="Ilustração de ações da campanha"
               className="lp2-invite-illustration"
             />
