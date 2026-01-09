@@ -19,6 +19,9 @@
   margin: 0;
   padding: 0;
   gap: 0;
+  border-top: 4px solid #000;
+  border-bottom: 4px solid #000;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
 }
 
 /* Background Image Layer (Left Side / Full Background) */
@@ -111,19 +114,22 @@
   align-items: center;
   padding: 1rem 2.5rem 1.5rem 7rem;
   margin: 0;
+  border-left: 4px solid #000;
+  border-right: 4px solid #000;
   /* Diagonal Cut */
   clip-path: polygon(16% 0, 100% 0, 100% 100%, 0% 100%);
   align-self: stretch;
+  box-shadow: -8px 0 24px rgba(0,0,0,0.2);
 }
 
 .lp2-form-card {
   background: white;
-  padding: 1rem 1.5rem; /* Increased inner padding */
+  padding: 1.5rem 2rem; /* Increased inner padding */
   border-radius: 20px; 
-  box-shadow: 0 15px 40px rgba(0,0,0,0.1); /* Softer shadow */
+  box-shadow: 0 20px 50px rgba(0,0,0,0.25), 0 8px 16px rgba(0,0,0,0.15); /* Stronger shadow */
   width: 100%;
   max-width: 355px; 
-  border: 2px solid #000;
+  border: 4px solid #000;
   margin-bottom: 0.5rem;
   position: relative;
 }
@@ -132,11 +138,13 @@
   font-family: 'Segoe UI', sans-serif;
   text-transform: uppercase;
   font-weight: 900;
-  font-size: 1.1rem; 
+  font-size: 1.2rem; 
   text-align: center;
-  margin-bottom: 0.8rem;
+  margin-bottom: 1rem;
   color: #000;
-  line-height: 1.1;
+  line-height: 1.2;
+  letter-spacing: 0.5px;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
 }
 
 .lp2-form {
@@ -149,12 +157,14 @@
   width: 100%;
   height: 46px;
   padding: 0 14px; 
-  border: 2px solid #000;
+  border: 3px solid #000;
   border-radius: 999px;
   background-color: #fff; 
   font-size: 0.95rem; 
   color: #000;
   font-weight: 700;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  transition: all 0.2s ease;
 }
 
 .lp2-input input:focus {
@@ -167,7 +177,7 @@
   width: 100%;
   height: 46px;
   padding: 0 14px; 
-  border: 2px solid #000;
+  border: 3px solid #000;
   border-radius: 999px;
   background-color: #fff; 
   font-size: 0.95rem; 
@@ -179,6 +189,8 @@
   background-repeat: no-repeat;
   background-position: right 14px center;
   padding-right: 40px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  transition: all 0.2s ease;
 }
 
 .lp2-select:focus {
@@ -202,16 +214,23 @@
 .lp2-button {
   background-color: #DD0000; 
   color: white;
-  border: 1px solid #b30000;
-  padding: 12px; 
+  border: 3px solid #000;
+  padding: 14px; 
   border-radius: 44px;
-  font-weight: 800;
+  font-weight: 900;
   text-transform: uppercase;
   cursor: pointer;
   margin-top: -14px; /* Pull button up */
-  font-size: 0.95rem; 
-  box-shadow: 0 6px 10px rgba(221, 0, 0, 0.3);
-  transition: transform 0.2s;
+  font-size: 1rem; 
+  box-shadow: 0 8px 16px rgba(221, 0, 0, 0.4), 0 4px 8px rgba(0,0,0,0.2);
+  transition: all 0.2s ease;
+  letter-spacing: 0.5px;
+}
+
+.lp2-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px rgba(221, 0, 0, 0.5), 0 6px 12px rgba(0,0,0,0.3);
+  background-color: #C00000;
 }
 
 .lp2-thank-you {
@@ -335,6 +354,9 @@
   margin: 0;
   padding: 0;
   max-width: 100%;
+  border-top: 4px solid #000;
+  border-bottom: 4px solid #000;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
 }
 
 .lp2-mobilization-left {
@@ -369,25 +391,30 @@
   padding-right: 0;
   z-index: 2;
   flex-shrink: 0;
+  border-right: 4px solid #000;
+  box-shadow: -8px 0 24px rgba(0,0,0,0.2);
 }
 
 .lp2-mobilization-title {
   font-family: 'Segoe UI', sans-serif;
-  font-size: 1.8rem;
+  font-size: 2rem;
   line-height: 1.3;
   color: #000;
   margin-bottom: 1.5rem;
-  font-weight: 500;
+  font-weight: 700;
   text-align: left;
   width: 100%;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+  letter-spacing: -0.5px;
 }
 
 .lp2-mobilization-subtitle {
-  font-size: 1.4rem;
+  font-size: 1.5rem;
   color: #000;
-  font-weight: 400;
+  font-weight: 600;
   text-align: left;
   width: 100%;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
 }
 
 @media (max-width: 900px) {
@@ -429,14 +456,29 @@
    ========================================= */
 .lp2-stats-new {
   background: #ffffff;
-  padding: 4rem 2rem;
+  padding: 5rem 2rem;
   display: flex;
   justify-content: center;
   gap: 4rem;
   text-align: center;
   flex-wrap: wrap;
-  border-top: 2px solid #000;
-  border-bottom: 2px solid #000;
+  border-top: 4px solid #000;
+  border-bottom: 4px solid #000;
+  border-left: 4px solid #000;
+  border-right: 4px solid #000;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+  position: relative;
+}
+
+.lp2-stats-new::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(31, 107, 255, 0.02) 0%, rgba(255, 208, 0, 0.02) 100%);
+  pointer-events: none;
 }
 
 .lp2-stat-item {
@@ -447,6 +489,20 @@
   flex-direction: column;
   align-items: center;
   gap: 0.5rem;
+  position: relative;
+  z-index: 1;
+  padding: 1.5rem;
+  border-radius: 16px;
+  background: rgba(255,255,255,0.8);
+  border: 2px solid rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+}
+
+.lp2-stat-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.15);
+  border-color: #000;
+  background: #fff;
 }
 
 .lp2-stat-icon {
@@ -474,17 +530,25 @@
 }
 
 .lp2-stat-icon-img {
-  width: 72px;
-  height: 72px;
+  width: 80px;
+  height: 80px;
   object-fit: contain;
   margin-bottom: 1.2rem;
   display: block;
+  filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
+  transition: transform 0.3s ease;
+}
+
+.lp2-stat-item:hover .lp2-stat-icon-img {
+  transform: scale(1.1);
 }
 
 .lp2-stat-number {
-  font-size: 2.5rem;
+  font-size: 2.8rem;
   font-weight: 900;
   text-transform: uppercase;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+  letter-spacing: -1px;
   margin: 0;
   color: #000;
   line-height: 1;
@@ -518,8 +582,12 @@
   display: flex;
   align-items: stretch;
   min-height: 420px;
-  max-width: 1440px;
-  margin: 0 auto;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border-top: 4px solid #000;
+  border-bottom: 4px solid #000;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
 }
 
 .lp2-invite-left {
@@ -527,6 +595,7 @@
   position: relative;
   background: transparent;
   overflow: hidden;
+  border-left: 4px solid #000;
 }
 
 .lp2-invite-wedge {
@@ -544,8 +613,8 @@
   height: 120px;
   background: #1F6BFF;
   border-radius: 50%;
-  box-shadow: 0 12px 32px rgba(0,0,0,.2);
-  border: 4px solid #0b1020;
+  box-shadow: 0 16px 40px rgba(0,0,0,.3), 0 8px 16px rgba(31, 107, 255, 0.3);
+  border: 5px solid #0b1020;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -558,21 +627,92 @@
   display: block;
 }
 
+/* =========================================
+   EDITION INFO SECTION
+   ========================================= */
+.lp2-edition-info {
+  width: 100%;
+  background: #ffffff;
+  padding: 4rem 2rem;
+  border-top: 4px solid #000;
+  border-bottom: 4px solid #000;
+  border-left: 4px solid #000;
+  border-right: 4px solid #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+  position: relative;
+}
+
+.lp2-edition-info::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(31, 107, 255, 0.03) 0%, rgba(255, 208, 0, 0.03) 100%);
+  pointer-events: none;
+}
+
+.lp2-edition-info-content {
+  max-width: 1200px;
+  width: 100%;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.lp2-edition-info-text {
+  font-size: 1.3rem;
+  line-height: 1.9;
+  color: #1f2937;
+  margin: 0;
+  font-weight: 500;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+
+.lp2-edition-info-text strong {
+  color: #1F6BFF;
+  font-weight: 700;
+}
+
+@media (max-width: 900px) {
+  .lp2-edition-info {
+    padding: 3rem 1.5rem;
+  }
+  
+  .lp2-edition-info-text {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+}
+
 .lp2-invite-right {
   width: 65%;
   background: #eef2f7;
-  border-left: 2px solid #000;
+  border-left: 4px solid #000;
+  border-right: 4px solid #000;
   display: flex;
   flex-direction: column;
   justify-content: center;
   padding: 3rem 4rem;
+  box-shadow: inset 0 0 20px rgba(0,0,0,0.05);
 }
 
 .lp2-invite-text {
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   color: #1f2937;
-  line-height: 1.6;
-  margin: 0 0 1rem;
+  line-height: 1.7;
+  margin: 0 0 1.5rem;
+  font-weight: 500;
+}
+
+.lp2-invite-text strong {
+  color: #1F6BFF;
+  font-weight: 700;
+  font-size: 1.3rem;
 }
 
 .lp2-invite-tags {
@@ -585,13 +725,21 @@
 .lp2-tag {
   display: inline-flex;
   align-items: center;
-  padding: 8px 16px;
+  padding: 10px 18px;
   border-radius: 999px;
-  border: 2px solid #000;
+  border: 3px solid #000;
   background: #fff;
-  font-weight: 800;
+  font-weight: 900;
   font-size: 0.95rem;
   color: #0b1020;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+  transition: all 0.2s ease;
+}
+
+.lp2-tag:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+  background: #f8f9ff;
 }
 
 @media (max-width: 900px) {
@@ -611,19 +759,18 @@
 }
 
 /* ilustração no topo do bloco de convite */
-.lp2-invite-illustration-wrapper {
+.lp2-invite-bolacha {
   width: 100%;
-  display: flex;
-  justify-content: center;
-  margin-bottom: 1.5rem;
-}
-
-.lp2-invite-illustration {
   max-width: 420px;
-  width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto 1.5rem auto;
+  object-fit: contain;
+  border: 3px solid #000;
   border-radius: 16px;
-  border: 2px solid #000;
-  box-shadow: 0 12px 32px rgba(0,0,0,0.18);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.2);
+  background: #fff;
+  padding: 8px;
 }
 
 /* Alerta customizado */

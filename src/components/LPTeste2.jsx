@@ -223,13 +223,11 @@ export default function LPTeste2() {
           </div>
         </div>
         <div className="lp2-invite-right">
-          <div className="lp2-invite-illustration-wrapper">
-            <img
-              src={getImagePath('/img/teste-1.png')}
-              alt="Ilustração de ações da campanha"
-              className="lp2-invite-illustration"
-            />
-          </div>
+          <img
+            src={getImagePath('/img/bolacha.png')}
+            alt="Ilustração de ações da campanha"
+            className="lp2-invite-bolacha"
+          />
           <p className="lp2-invite-text">
             A campanha <strong>#AprenderParaPrevenir: Cidades Sem Risco</strong> convida escolas,
             universidades, defesas civis, coletivos, instituições religiosas, a agir por:
@@ -242,6 +240,15 @@ export default function LPTeste2() {
             <span className="lp2-tag">prevenção de desastres</span>
             <span className="lp2-tag">cidadania</span>
           </div>
+        </div>
+      </section>
+
+      {/* BLOCO DE INFORMAÇÃO SOBRE A 9ª EDIÇÃO */}
+      <section className="lp2-edition-info">
+        <div className="lp2-edition-info-content">
+          <p className="lp2-edition-info-text">
+            A 9ª edição é uma iniciativa do <strong>Ministério da Ciência, Tecnologia e Inovação (MCTI)</strong> e o <strong>Ministério das Cidades (MCID)</strong>, em parceria com o <strong>Ministério da Educação (MEC)</strong>, resultado da colaboração entre o <strong>Programa Cemaden Educação</strong> e a <strong>Secretaria Nacional de Periferias</strong>.
+          </p>
         </div>
       </section>
 
