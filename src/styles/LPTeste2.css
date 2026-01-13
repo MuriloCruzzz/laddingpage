@@ -1294,7 +1294,7 @@
   right: 0;
   top: 50%;
   transform: translateY(-50%);
-  width: 600px;
+  width: 560px;
   height: auto;
   max-height: 80vh;
   opacity: 0.15;
@@ -1437,7 +1437,7 @@
 }
 
 .lp2-recognition-item:nth-child(1) {
-  border-top: 8px solid #FF0000;
+  border-top: 8px solid #FFD000;
 }
 
 .lp2-recognition-item:nth-child(2) {
@@ -1449,7 +1449,7 @@
 }
 
 .lp2-recognition-item:nth-child(4) {
-  border-top: 8px solid #FFD000;
+  border-top: 8px solid #FF0000;
 }
 
 .lp2-recognition-icon {
