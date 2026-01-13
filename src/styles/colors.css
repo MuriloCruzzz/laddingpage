@@ -1,0 +1,47 @@
+/* =========================================
+   PALETA DE CORES OFICIAL
+   ========================================= */
+
+:root {
+  /* Verde-Amazônia */
+  --color-green-amazon: #00D000;
+  --color-green-amazon-rgb: 0, 208, 0;
+  --color-green-amazon-cmyk: 88, 0, 100, 0;
+  --color-green-amazon-pantone: 354C;
+
+  /* Amarelo-Sol */
+  --color-yellow-sun: #FFD000;
+  --color-yellow-sun-rgb: 255, 208, 0;
+  --color-yellow-sun-cmyk: 0, 13, 100, 0;
+  --color-yellow-sun-pantone: 109C;
+
+  /* Azul-Atlântico */
+  --color-blue-atlantic: #183EFF;
+  --color-blue-atlantic-rgb: 24, 62, 255;
+  --color-blue-atlantic-cmyk: 85, 70, 0, 0;
+  --color-blue-atlantic-pantone: 2935C;
+
+  /* Preto-Ébano */
+  --color-black-ebony: #000000;
+  --color-black-ebony-rgb: 0, 0, 0;
+  --color-black-ebony-cmyk: 60, 40, 40, 100;
+  --color-black-ebony-pantone: BLACK C;
+
+  /* Cinza-Harpia */
+  --color-gray-harpy: #3C3C3C;
+  --color-gray-harpy-rgb: 60, 60, 60;
+  --color-gray-harpy-cmyk: 10, 0, 10, 87;
+  --color-gray-harpy-pantone: 447C;
+
+  /* Branco-Paz */
+  --color-white-peace: #FFFFFF;
+  --color-white-peace-rgb: 255, 255, 255;
+  --color-white-peace-cmyk: 0, 0, 0, 0;
+
+  /* Vermelho-Urucum */
+  --color-red-urucum: #FF0000;
+  --color-red-urucum-rgb: 255, 0, 0;
+  --color-red-urucum-cmyk: 0, 100, 100, 0;
+  --color-red-urucum-pantone: 485C;
+}
+

@@ -39,7 +39,7 @@ export default function Banner({ submitted, onSubmit }) {
                 </div>
               </div>
               <div className="email-preview">
-                <a className="btn-secondary" href="https://educacao.cemaden.gov.br/" target="_blank" rel="noopener noreferrer">
+                <a className="btn-secondary" href="https://educacao.cemaden.gov.br/campanhacidades/" target="_blank" rel="noopener noreferrer">
                   Voltar para o site do Cemaden Educação
                 </a>
               </div>

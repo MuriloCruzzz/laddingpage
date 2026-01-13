@@ -1,0 +1,37 @@
+/* =========================================
+   FONTES PERSONALIZADAS
+   ========================================= */
+
+/* Chinese Rocks */
+@font-face {
+  font-family: 'Chinese Rocks';
+  src: url('/fonts/chinese-rocks/chinese rocks rg.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Mighty Souly';
+  src: url('/fonts/mighty-souly/Mighty Souly.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+
+/* Variáveis CSS para facilitar o uso */
+:root {
+  --font-chinese-rocks: 'Chinese Rocks', 'Arial Black', sans-serif;
+  --font-mighty-souly: 'Mighty Souly', 'Arial Black', sans-serif;
+}
+
+/* Classes utilitárias */
+.font-chinese-rocks {
+  font-family: var(--font-chinese-rocks);
+}
+
+.font-mighty-souly {
+  font-family: var(--font-mighty-souly);
+}
+
