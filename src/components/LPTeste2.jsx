@@ -2,6 +2,16 @@ import React, { useState, useEffect, useRef } from 'react'
 import '../styles/fonts.css'
 import '../styles/colors.css'
 import '../styles/LPTeste2.css'
+import {
+  initMetaPixel,
+  trackPageView,
+  trackViewContent,
+  trackLeadStart,
+  trackButtonClick,
+  trackCompleteRegistration,
+  trackScrollComplete,
+  trackSectionView,
+} from '../utils/metaPixel'
 
 // Helper para caminhos de imagens que funcionam tanto no Vercel quanto via WordPress
 // Usa import.meta.env.BASE_URL do Vite para garantir compatibilidade
@@ -56,6 +66,8 @@ export default function LPTeste2() {
   const [showAlert, setShowAlert] = useState(false)
   const [alertMessage, setAlertMessage] = useState('')
   const statsSectionRef = useRef(null)
+  const videoContainerRef = useRef(null)
+  const recognitionSectionRef = useRef(null)
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -64,11 +76,21 @@ export default function LPTeste2() {
           if (entry.isIntersecting) {
             const statItems = entry.target.querySelectorAll('.lp2-stat-item')
             statItems.forEach((item, index) => {
+              // Remove a classe primeiro para resetar a animação
+              item.classList.remove('lp2-stat-visible')
+              // Adiciona um pequeno delay para garantir que a remoção foi processada
               setTimeout(() => {
-                item.classList.add('lp2-stat-visible')
-              }, index * 200)
+                setTimeout(() => {
+                  item.classList.add('lp2-stat-visible')
+                }, index * 200)
+              }, 10)
             })
-            observer.unobserve(entry.target)
+          } else {
+            // Remove a classe quando sai da viewport para permitir reanimação
+            const statItems = entry.target.querySelectorAll('.lp2-stat-item')
+            statItems.forEach((item) => {
+              item.classList.remove('lp2-stat-visible')
+            })
           }
         })
       },
@@ -86,6 +108,172 @@ export default function LPTeste2() {
     }
   }, [])
 
+  // Animação de scroll para a seção de reconhecimento
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const recognitionItems = entry.target.querySelectorAll('.lp2-recognition-item')
+            recognitionItems.forEach((item, index) => {
+              // Remove a classe primeiro para resetar a animação
+              item.classList.remove('lp2-recognition-visible')
+              // Adiciona um pequeno delay para garantir que a remoção foi processada
+              setTimeout(() => {
+                setTimeout(() => {
+                  item.classList.add('lp2-recognition-visible')
+                }, index * 200)
+              }, 10)
+            })
+          } else {
+            // Remove a classe quando sai da viewport para permitir reanimação
+            const recognitionItems = entry.target.querySelectorAll('.lp2-recognition-item')
+            recognitionItems.forEach((item) => {
+              item.classList.remove('lp2-recognition-visible')
+            })
+          }
+        })
+      },
+      { threshold: 0.2 }
+    )
+
+    if (recognitionSectionRef.current) {
+      observer.observe(recognitionSectionRef.current)
+    }
+
+    return () => {
+      if (recognitionSectionRef.current) {
+        observer.unobserve(recognitionSectionRef.current)
+      }
+    }
+  }, [])
+
+  // Previne scroll automático quando o vídeo recebe foco
+  useEffect(() => {
+    const container = videoContainerRef.current
+    if (!container) return
+
+    const iframe = container.querySelector('iframe')
+    if (!iframe) return
+
+    let savedScrollPosition = window.scrollY || window.pageYOffset || document.documentElement.scrollTop
+    let scrollLocked = false
+    let lockTimeout = null
+
+    // Salva a posição do scroll
+    const saveScrollPosition = () => {
+      savedScrollPosition = window.scrollY || window.pageYOffset || document.documentElement.scrollTop
+    }
+
+    // Bloqueia scroll por um período curto
+    const lockScroll = (duration = 500) => {
+      scrollLocked = true
+      saveScrollPosition()
+      
+      if (lockTimeout) clearTimeout(lockTimeout)
+      lockTimeout = setTimeout(() => {
+        scrollLocked = false
+      }, duration)
+    }
+
+    // Previne scroll quando o iframe recebe foco
+    const handleFocus = (e) => {
+      e.preventDefault()
+      e.stopPropagation()
+      lockScroll(1000)
+      
+      // Força a restauração múltiplas vezes para garantir
+      const restoreScroll = () => {
+        const currentPos = window.scrollY || window.pageYOffset || document.documentElement.scrollTop
+        if (Math.abs(currentPos - savedScrollPosition) > 1) {
+          window.scrollTo({
+            top: savedScrollPosition,
+            left: 0,
+            behavior: 'auto'
+          })
+        }
+      }
+      
+      restoreScroll()
+      requestAnimationFrame(restoreScroll)
+      setTimeout(restoreScroll, 0)
+      setTimeout(restoreScroll, 10)
+      setTimeout(restoreScroll, 50)
+      setTimeout(restoreScroll, 100)
+      setTimeout(restoreScroll, 200)
+    }
+
+    // Previne scroll quando o iframe é clicado
+    const handleClick = (e) => {
+      saveScrollPosition()
+      lockScroll(1000)
+      
+      const restoreScroll = () => {
+        const currentPos = window.scrollY || window.pageYOffset || document.documentElement.scrollTop
+        if (Math.abs(currentPos - savedScrollPosition) > 1) {
+          window.scrollTo({
+            top: savedScrollPosition,
+            left: 0,
+            behavior: 'auto'
+          })
+        }
+      }
+      
+      restoreScroll()
+      requestAnimationFrame(restoreScroll)
+      setTimeout(restoreScroll, 0)
+      setTimeout(restoreScroll, 10)
+      setTimeout(restoreScroll, 50)
+      setTimeout(restoreScroll, 100)
+      setTimeout(restoreScroll, 200)
+    }
+
+    // Previne scroll no mousedown (antes do click)
+    const handleMouseDown = (e) => {
+      saveScrollPosition()
+      lockScroll(1000)
+    }
+
+    // Monitora e previne scroll durante o período de bloqueio
+    const handleScroll = (e) => {
+      if (scrollLocked) {
+        e.preventDefault()
+        e.stopImmediatePropagation()
+        window.scrollTo({
+          top: savedScrollPosition,
+          left: 0,
+          behavior: 'auto'
+        })
+        return false
+      }
+    }
+
+    // Previne scroll quando o mouse entra no container
+    const handleMouseEnter = () => {
+      saveScrollPosition()
+    }
+
+    // Adiciona listeners com capture phase para interceptar antes
+    container.addEventListener('focusin', handleFocus, { capture: true, passive: false })
+    container.addEventListener('click', handleClick, { capture: true, passive: false })
+    container.addEventListener('mouseenter', handleMouseEnter, { capture: true })
+    iframe.addEventListener('focus', handleFocus, { capture: true, passive: false })
+    iframe.addEventListener('click', handleClick, { capture: true, passive: false })
+    window.addEventListener('scroll', handleScroll, { capture: true, passive: false })
+
+    return () => {
+      if (lockTimeout) clearTimeout(lockTimeout)
+      container.removeEventListener('mousedown', handleMouseDown, { capture: true })
+      container.removeEventListener('focusin', handleFocus, { capture: true })
+      container.removeEventListener('click', handleClick, { capture: true })
+      container.removeEventListener('mouseenter', handleMouseEnter, { capture: true })
+      iframe.removeEventListener('mousedown', handleMouseDown, { capture: true })
+      iframe.removeEventListener('focus', handleFocus, { capture: true })
+      iframe.removeEventListener('click', handleClick, { capture: true })
+      window.removeEventListener('scroll', handleScroll, { capture: true })
+    }
+  }, [])
+
   function handleChange(e) {
     const { name, value, type, checked } = e.target
     setForm(prev => ({ ...prev, [name]: type === 'checkbox' ? checked : value }))
@@ -93,6 +281,9 @@ export default function LPTeste2() {
 
   function handleSubmit(e) {
     e.preventDefault()
+    
+    // Rastreia clique no botão
+    trackButtonClick()
     
     // Validação dos campos obrigatórios
     if (!form.nomeInstituicao || !form.nomeResponsavel || !form.email || !form.cidadeEstado || !form.autorizo) {
@@ -108,6 +299,9 @@ export default function LPTeste2() {
       setShowAlert(true)
       return
     }
+
+    // Rastreia registro completo antes de redirecionar
+    trackCompleteRegistration(form)
 
     // Se tudo estiver ok, mostra mensagem de agradecimento e redireciona imediatamente
     setSubmitted(true)
@@ -275,8 +469,16 @@ export default function LPTeste2() {
               </p>
             </div>
 
-            {/* Lado direito: Imagem */}
-            <div className="lp2-what-is-image">
+            {/* Lado direito: Imagem (vídeo comentado para uso futuro) */}
+            <div className="lp2-what-is-image" ref={videoContainerRef}>
+              {/* <iframe
+                className="lp2-what-is-video"
+                src="https://www.youtube.com/embed/8mCpsohesNQ"
+                title="Campanha Aprender para Prevenir - Prevenção de desastres"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+                loading="lazy"
+              ></iframe> */}
               <img
                 src={getImagePath('/img/cidade-15.png')}
                 alt="Campanha Aprender para Prevenir - Prevenção de desastres"
@@ -455,12 +657,12 @@ export default function LPTeste2() {
       </section>
 
       {/* SEÇÃO: Reconhecimento e incentivos */}
-      <section className="lp2-recognition">
+      <section className="lp2-recognition" ref={recognitionSectionRef}>
         <div className="lp2-recognition-content">
           <h2 className="lp2-recognition-title">Reconhecimento e incentivos</h2>
           
           <div className="lp2-recognition-grid">
-            <div className="lp2-recognition-item">
+            <div className="lp2-recognition-item lp2-recognition-item-1">
               <div className="lp2-recognition-icon">
                 <svg viewBox="0 0 24 24" fill="none" stroke="#FFD000" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M12 2L2 7l10 5 10-5-10-5z"/>
@@ -471,7 +673,7 @@ export default function LPTeste2() {
               <p className="lp2-recognition-item-desc">Instituições participantes concorrem a prêmios</p>
             </div>
 
-            <div className="lp2-recognition-item">
+            <div className="lp2-recognition-item lp2-recognition-item-2">
               <div className="lp2-recognition-icon">
                 <svg viewBox="0 0 24 24" fill="none" stroke="#183EFF" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                   <circle cx="12" cy="12" r="10"/>
@@ -482,7 +684,7 @@ export default function LPTeste2() {
               <p className="lp2-recognition-item-desc">Professores podem receber incentivos financeiros</p>
             </div>
 
-            <div className="lp2-recognition-item">
+            <div className="lp2-recognition-item lp2-recognition-item-3">
               <div className="lp2-recognition-icon">
                 <svg viewBox="0 0 24 24" fill="none" stroke="#00D000" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
@@ -493,7 +695,7 @@ export default function LPTeste2() {
               <p className="lp2-recognition-item-desc">Ações ganham visibilidade nacional</p>
             </div>
 
-            <div className="lp2-recognition-item">
+            <div className="lp2-recognition-item lp2-recognition-item-4">
               <div className="lp2-recognition-icon">
                 <svg viewBox="0 0 24 24" fill="none" stroke="#FF0000" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
@@ -505,6 +707,8 @@ export default function LPTeste2() {
               <p className="lp2-recognition-item-desc">A instituição passa a integrar uma rede nacional de prevenção dos riscos de desastres socioambientais</p>
             </div>
           </div>
+          
+          <p className="lp2-recognition-cta">Venha Fazer Parte Dessa Campanha!</p>
         </div>
       </section>
 
