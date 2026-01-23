@@ -58,13 +58,14 @@ export default function LPTeste2() {
     nomeInstituicao: '',
     nomeResponsavel: '',
     email: '',
+    municipio: '',
     cidadeEstado: '',
     tipoInstituicao: '',
     autorizo: false,
   })
-  const [submitted, setSubmitted] = useState(false)
   const [showAlert, setShowAlert] = useState(false)
   const [alertMessage, setAlertMessage] = useState('')
+  const [showSidebar, setShowSidebar] = useState(false)
   const statsSectionRef = useRef(null)
   const videoContainerRef = useRef(null)
   const recognitionSectionRef = useRef(null)
@@ -286,7 +287,7 @@ export default function LPTeste2() {
     trackButtonClick()
     
     // Validação dos campos obrigatórios
-    if (!form.nomeInstituicao || !form.nomeResponsavel || !form.email || !form.cidadeEstado || !form.autorizo) {
+    if (!form.nomeInstituicao || !form.nomeResponsavel || !form.email || !form.municipio || !form.cidadeEstado || !form.autorizo) {
       setAlertMessage('Por favor, preencha todos os campos obrigatórios e autorize o uso dos dados.')
       setShowAlert(true)
       return
@@ -300,13 +301,16 @@ export default function LPTeste2() {
       return
     }
 
-    // Rastreia registro completo antes de redirecionar
+    // Rastreia registro completo antes de abrir o sidebar
     trackCompleteRegistration(form)
+    setShowSidebar(true)
+  }
 
-    // Se tudo estiver ok, mostra mensagem de agradecimento e redireciona imediatamente
-    setSubmitted(true)
+  function handleWhatsAppClick() {
+    window.open('https://educacao.cemaden.gov.br/login-na-rede/', '_blank')
+  }
 
-    // Redireciona imediatamente após mostrar a mensagem
+  function handleSairClick() {
     window.location.href = 'https://educacao.cemaden.gov.br/campanhacidades/'
   }
 
@@ -325,17 +329,24 @@ export default function LPTeste2() {
           <div className="lp2-logo-container">
             <img src={getImagePath('/img/logo.png')} alt="Cidades sem Risco" className="lp2-hero-logo" />
           </div>
-          <img
-            src={getImagePath('/img/rodape.png')}
-            alt="Parcerias e apoiadores da campanha"
-            className="lp2-hero-footer-img"
-          />
+            <div className="lp2-footer-images-row">
+              <img
+                src={getImagePath('/img/rodape_2.png')}
+                alt="Parcerias e apoiadores da campanha"
+                className="lp2-hero-footer-img2"
+              />
+              <img
+                src={getImagePath('/img/rodape_1.png')}
+                alt="Parcerias e apoiadores da campanha"
+                className="lp2-hero-footer-img"
+              />
+          </div>
         </div>
 
         {/* Lado direito: bloco amarelo com formulário */}
         <div className="lp2-hero-right">
           <div className="lp2-form-card">
-            <h2 className="lp2-form-title">Inscreva sua instituição</h2>
+            <h2 className="lp2-form-title">Participe da Campanha</h2>
             <form className="lp2-form" onSubmit={handleSubmit}>
               <div className="lp2-input">
                 <input
@@ -362,6 +373,15 @@ export default function LPTeste2() {
                   value={form.email}
                   onChange={handleChange}
                   placeholder="E-mail*"
+                  required
+                />
+              </div>
+              <div className="lp2-input">
+                <input
+                  name="municipio"
+                  value={form.municipio}
+                  onChange={handleChange}
+                  placeholder="Município*"
                   required
                 />
               </div>
@@ -393,7 +413,6 @@ export default function LPTeste2() {
                   <option value="Religiosa">Religiosa</option>
                   <option value="Sociedade Civil">Sociedade Civil</option>
                   <option value="Governamental">Governamental</option>
-                  <option value="Iniciativa Privada">Iniciativa Privada</option>
                 </select>
               </div>
               <label className="lp2-check">
@@ -405,18 +424,11 @@ export default function LPTeste2() {
                 />
                 <span>Autorizo o uso dos dados para contato</span>
               </label>
-              {submitted ? (
-                <div className="lp2-thank-you">
-                  <p className="lp2-thank-you-message">
-                    Obrigado pelo seu interesse!<br />
-                    Você será redirecionado em instantes...
-                  </p>
-                </div>
-              ) : (
-                <button className="lp2-button" type="submit">
-                  PARTICIPAR DA CAMPANHA!
+              <div className="lp2-buttons-container">
+                <button className="lp2-button lp2-button-sidebar" type="submit">
+                  ENVIAR!
                 </button>
-              )}
+              </div>
             </form>
           </div>
 
@@ -430,7 +442,7 @@ export default function LPTeste2() {
           <div className="lp2-what-is-banner-wrapper">
             <div className="lp2-what-is-yellow-banner">
               <h2 className="lp2-what-is-banner-text">
-                O que é a campanha Aprender para Prevenir?
+              Organize uma Campanha com a sua comunidade
               </h2>
             </div>
           </div>
@@ -442,14 +454,14 @@ export default function LPTeste2() {
                 A campanha <strong>#Aprender para Prevenir</strong> é uma iniciativa nacional de educação voltada à prevenção dos riscos de desastres socioambientais.
               </p>
               <p className="lp2-what-is-description">
-                A campanha convida escolas, universidades e outras instituições a desenvolver ações educativas para preparar pessoas e comunidades, ajudando a reconhecer riscos e saber como agir diante de situações de emergência.
+                A campanha convida escolas, universidades e outras instituições a desenvolver ações educativas para preparar pessoas e comunidades, ajudando a reconhecer riscos e saber como agir diante de situações de risco, fortalecendo a atuação nos territórios e a cultura de proteção à vida.
               </p>
 
               <div className="lp2-what-is-divider"></div>
 
               <h3 className="lp2-what-is-subtitle">O que são desastres socioambientais?</h3>
               <p className="lp2-what-is-description">
-                Desastres socioambientais são eventos que impactam diretamente a vida das pessoas, das cidades e dos territórios, muitas vezes intensificados pelas mudanças climáticas e pelas condições locais.
+              Desastres socioambientais afetam vidas, cidades e territórios e são agravados pelas mudanças climáticas e pelas condições locais.
               </p>
 
               <div className="lp2-what-is-examples">
@@ -483,8 +495,8 @@ export default function LPTeste2() {
                 src={getImagePath('/img/cidade-15.png')}
                 alt="Campanha Aprender para Prevenir - Prevenção de desastres"
                 className="lp2-what-is-img"
-              />
-            </div>
+          />
+        </div>
           </div>
         </div>
       </section>
@@ -499,8 +511,7 @@ export default function LPTeste2() {
           />
           <h3 className="lp2-stat-number">3,3 BILHÕES</h3>
           <p className="lp2-stat-desc">
-            de <strong>pessoas</strong> vivem em locais altamente vulneráveis à crise climática
-            no mundo
+            de <strong>pessoas</strong> vivem a crise climática
           </p>
           <small className="lp2-stat-source">fonte: IPCC AR6</small>
         </div>
@@ -512,7 +523,7 @@ export default function LPTeste2() {
           />
           <h3 className="lp2-stat-number">+2,4 MIL</h3>
           <p className="lp2-stat-desc">
-            <strong>escolas</strong> em áreas de risco no Brasil
+            <strong>escolas</strong> estão em áreas de risco no Brasil
           </p>
           <small className="lp2-stat-source">fonte: Cemaden</small>
         </div>
@@ -536,7 +547,7 @@ export default function LPTeste2() {
         <div className="lp2-about-campaign-content">
           {/* Banner amarelo com estilo recortado */}
           <div className="lp2-campaign-banner-wrapper">
-            <div className="lp2-campaign-yellow-banner">
+          <div className="lp2-campaign-yellow-banner">
               <h2 className="lp2-campaign-banner-text">
                 Como participar da Campanha?
               </h2>
@@ -553,8 +564,8 @@ export default function LPTeste2() {
                 </svg>
               </div>
               <div className="lp2-step-content">
-                <h3 className="lp2-step-action">CONHECER</h3>
-                <p className="lp2-step-desc">os riscos da sua cidade, bairro, comunidade</p>
+              <h3 className="lp2-step-action">CONHECER</h3>
+              <p className="lp2-step-desc">os riscos da sua cidade, bairro, comunidade</p>
               </div>
             </div>
 
@@ -574,7 +585,7 @@ export default function LPTeste2() {
                 </svg>
               </div>
               <div className="lp2-step-content">
-                <h3 className="lp2-step-action">CRIAR</h3>
+              <h3 className="lp2-step-action">CRIAR</h3>
                 <p className="lp2-step-desc">a campanha para mobilizar e cuidar da sua comunidade</p>
               </div>
             </div>
@@ -597,8 +608,8 @@ export default function LPTeste2() {
                 </svg>
               </div>
               <div className="lp2-step-content">
-                <h3 className="lp2-step-action">COMUNICAR</h3>
-                <p className="lp2-step-desc">a mensagem e compartilhar o conhecimento</p>
+              <h3 className="lp2-step-action">COMUNICAR</h3>
+              <p className="lp2-step-desc">a mensagem e compartilhar o conhecimento</p>
               </div>
             </div>
 
@@ -620,7 +631,7 @@ export default function LPTeste2() {
               </div>
               <div className="lp2-step-content">
                 <h3 className="lp2-step-action">INSCREVER</h3>
-                <p className="lp2-step-desc">a Campanha local na Campanha nacional #AprenderParaPrevenir</p>
+              <p className="lp2-step-desc">a Campanha local na Campanha nacional #AprenderParaPrevenir</p>
               </div>
             </div>
           </div>
@@ -644,8 +655,8 @@ export default function LPTeste2() {
             <ul className="lp2-why-list">
               <li>Preparar pessoas para agir antes do risco virar perigo</li>
               <li>Fortalecer escolas, universidades e comunidades</li>
-              <li>Contribuir para a prevenção de desastres no território</li>
-              <li>Fazer parte de uma rede nacional de prevenção de riscos</li>
+              <li>Agir antes do desastre e proteger vidas no território</li>
+              <li>Integrar uma rede nacional que aprende e age frente às mudanças climáticas</li>
             </ul>
           </div>
         </div>
@@ -720,17 +731,24 @@ export default function LPTeste2() {
           <div className="lp2-logo-container">
             <img src={getImagePath('/img/logo.png')} alt="Cidades sem Risco" className="lp2-hero-logo" />
           </div>
-          <img
-            src={getImagePath('/img/rodape.png')}
-            alt="Parcerias e apoiadores da campanha"
-            className="lp2-hero-footer-img"
-          />
+          <div className="lp2-footer-images-row">
+              <img
+                src={getImagePath('/img/rodape_2.png')}
+                alt="Parcerias e apoiadores da campanha"
+                className="lp2-hero-footer-img2"
+              />
+              <img
+                src={getImagePath('/img/rodape_1.png')}
+                alt="Parcerias e apoiadores da campanha"
+                className="lp2-hero-footer-img"
+              />
+          </div>
         </div>
 
         {/* Lado direito: bloco amarelo com formulário */}
         <div className="lp2-hero-right">
           <div className="lp2-form-card">
-            <h2 className="lp2-form-title">Inscreva sua instituição</h2>
+            <h2 className="lp2-form-title">Participe da Campanha</h2>
             <form className="lp2-form" onSubmit={handleSubmit}>
               <div className="lp2-input">
                 <input
@@ -757,6 +775,15 @@ export default function LPTeste2() {
                   value={form.email}
                   onChange={handleChange}
                   placeholder="E-mail*"
+                  required
+                />
+              </div>
+              <div className="lp2-input">
+                <input
+                  name="municipio"
+                  value={form.municipio}
+                  onChange={handleChange}
+                  placeholder="Município*"
                   required
                 />
               </div>
@@ -788,7 +815,7 @@ export default function LPTeste2() {
                   <option value="Religiosa">Religiosa</option>
                   <option value="Sociedade Civil">Sociedade Civil</option>
                   <option value="Governamental">Governamental</option>
-                  <option value="Iniciativa Privada">Iniciativa Privada</option>
+                  
                 </select>
               </div>
               <label className="lp2-check">
@@ -800,18 +827,11 @@ export default function LPTeste2() {
                 />
                 <span>Autorizo o uso dos dados para contato</span>
               </label>
-              {submitted ? (
-                <div className="lp2-thank-you">
-                  <p className="lp2-thank-you-message">
-                    Obrigado pelo seu interesse!<br />
-                    Você será redirecionado em instantes...
-                  </p>
-                </div>
-              ) : (
-                <button className="lp2-button" type="submit">
-                  PARTICIPAR DA CAMPANHA!
+              <div className="lp2-buttons-container">
+                <button className="lp2-button lp2-button-sidebar" type="submit">
+                ENVIAR!
                 </button>
-              )}
+              </div>
             </form>
           </div>
         </div>
@@ -825,6 +845,30 @@ export default function LPTeste2() {
             <button className="lp2-alert-button" onClick={closeAlert}>
               Cancelar
             </button>
+          </div>
+        </div>
+      )}
+
+      {/* Sidebar lateral (Pop-up fixo à direita) */}
+      {showSidebar && (
+        <div className="lp2-sidebar-overlay">
+          <div className="lp2-sidebar-content">
+            <div className="lp2-sidebar-logo">
+              <img src={getImagePath('/img/logo.png')} alt="Logo Cemaden Educação" />
+            </div>
+            <p className="lp2-sidebar-text">
+              Fique por dentro de todas as novidades da campanha! Acesse nosso canal do WhatsApp onde você terá notícias em tempo real, alertas de novos conteúdos e muito mais.
+            </p>
+            <div className="lp2-sidebar-buttons">
+              <button className="lp2-sidebar-whatsapp-btn" onClick={handleWhatsAppClick}>
+                <span className="lp2-sidebar-whatsapp-text">
+                  Acesse aqui o canal do<br />WhatsApp
+                </span>
+              </button>
+              <button className="lp2-sidebar-sair-btn" onClick={handleSairClick}>
+                Sair
+              </button>
+            </div>
           </div>
         </div>
       )}
