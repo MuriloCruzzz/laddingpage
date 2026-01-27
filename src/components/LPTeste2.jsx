@@ -59,6 +59,7 @@ export default function LPTeste2() {
     email: '',
     municipio: '',
     cidadeEstado: '',
+    autorizacao: false,
   })
   const [showAlert, setShowAlert] = useState(false)
   const [alertMessage, setAlertMessage] = useState('')
@@ -66,6 +67,13 @@ export default function LPTeste2() {
   const statsSectionRef = useRef(null)
   const videoContainerRef = useRef(null)
   const recognitionSectionRef = useRef(null)
+  
+  // Estados para autocomplete de municípios
+  const [allMunicipios, setAllMunicipios] = useState([])
+  const [municipios, setMunicipios] = useState([])
+  const [municipioSearch, setMunicipioSearch] = useState('')
+  const [showMunicipioList, setShowMunicipioList] = useState(false)
+  const municipioInputRef = useRef(null)
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -272,10 +280,124 @@ export default function LPTeste2() {
     }
   }, [])
 
+  // Função para buscar municípios por estado usando API do IBGE
+  async function fetchMunicipios(estadoSigla) {
+    try {
+      const response = await fetch(`https://servicodados.ibge.gov.br/api/v1/localidades/estados/${estadoSigla}/municipios`)
+      const data = await response.json()
+      const municipiosList = data.map(m => ({ id: m.id, nome: m.nome }))
+      setAllMunicipios(municipiosList)
+      setMunicipios(municipiosList)
+    } catch (error) {
+      console.error('Erro ao buscar municípios:', error)
+      setAllMunicipios([])
+      setMunicipios([])
+    }
+  }
+  
+  // Função para buscar municípios quando o usuário digita (a partir de 3 caracteres)
+  function handleMunicipioSearch(e) {
+    const searchValue = e.target.value
+    
+    if (!form.cidadeEstado) {
+      setMunicipioSearch('')
+      setShowMunicipioList(false)
+      return
+    }
+    
+    // Permite apenas busca, não escrita livre
+    setMunicipioSearch(searchValue)
+    
+    if (searchValue.length >= 3) {
+      const filtered = allMunicipios.filter(m => 
+        m.nome.toLowerCase().includes(searchValue.toLowerCase())
+      )
+      setMunicipios(filtered)
+      setShowMunicipioList(filtered.length > 0)
+    } else {
+      setShowMunicipioList(false)
+      setMunicipios(allMunicipios)
+      // Limpa o campo de município se tiver menos de 3 caracteres
+      if (searchValue.length < 3) {
+        setForm(prev => ({ ...prev, municipio: '' }))
+      }
+    }
+  }
+  
+  // Valida se o município selecionado é válido ao perder o foco
+  function handleMunicipioBlur() {
+    // Adiciona um pequeno delay para permitir que o clique no item da lista seja processado primeiro
+    setTimeout(() => {
+      // Se já tem um município selecionado no form, mantém e fecha a lista
+      if (form.municipio && form.municipio.trim()) {
+        setMunicipioSearch(form.municipio)
+        setShowMunicipioList(false)
+        return
+      }
+      
+      // Se não tem município no form mas tem no search, verifica se é válido
+      if (municipioSearch && municipioSearch.trim()) {
+        const isValid = allMunicipios.some(m => m.nome === municipioSearch)
+        if (isValid) {
+          // Se for válido, atualiza o form
+          setForm(prev => ({ ...prev, municipio: municipioSearch }))
+        } else {
+          // Se não for válido, limpa
+          setMunicipioSearch('')
+          setForm(prev => ({ ...prev, municipio: '' }))
+        }
+      }
+      setShowMunicipioList(false)
+    }, 150)
+  }
+  
+  // Função para selecionar um município
+  function selectMunicipio(municipio) {
+    setForm(prev => ({ ...prev, municipio: municipio.nome }))
+    setMunicipioSearch(municipio.nome)
+    setShowMunicipioList(false)
+  }
+  
+  // Fechar lista ao clicar fora
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (municipioInputRef.current && !municipioInputRef.current.contains(event.target)) {
+        const municipioList = document.querySelector('.lp2-municipio-list')
+        if (municipioList && !municipioList.contains(event.target)) {
+          setShowMunicipioList(false)
+        }
+      }
+    }
+    
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
+  }, [])
+  
   function handleChange(e) {
     const { name, value, type, checked } = e.target
     setForm(prev => ({ ...prev, [name]: type === 'checkbox' ? checked : value }))
+    
+    // Quando o estado mudar, limpar município e buscar cidades
+    if (name === 'cidadeEstado') {
+      setForm(prev => ({ ...prev, municipio: '' }))
+      setMunicipioSearch('')
+      setAllMunicipios([])
+      setMunicipios([])
+      setShowMunicipioList(false)
+      if (value) {
+        fetchMunicipios(value)
+      }
+    }
   }
+  
+  // Carregar municípios quando o estado for selecionado
+  useEffect(() => {
+    if (form.cidadeEstado) {
+      fetchMunicipios(form.cidadeEstado)
+    }
+  }, [form.cidadeEstado])
 
   function handleSubmit(e) {
     e.preventDefault()
@@ -284,8 +406,28 @@ export default function LPTeste2() {
     trackButtonClick()
     
     // Validação dos campos obrigatórios
-    if (!form.nomeResponsavel || !form.email || !form.municipio || !form.cidadeEstado) {
+    const nomeCompleto = (form.nomeResponsavel || '').trim()
+    const emailValido = (form.email || '').trim()
+    const municipioValido = (form.municipio || '').trim()
+    const estadoValido = (form.cidadeEstado || '').trim()
+    
+    if (!nomeCompleto || !emailValido || !municipioValido || !estadoValido) {
       setAlertMessage('Por favor, preencha todos os campos obrigatórios.')
+      setShowAlert(true)
+      return
+    }
+
+    // Validação de autorização
+    if (!form.autorizacao) {
+      setAlertMessage('Por favor, aceite os termos de autorização para continuar.')
+      setShowAlert(true)
+      return
+    }
+
+    // Validação de nome completo (mínimo 2 nomes)
+    const nomes = nomeCompleto.split(/\s+/).filter(nome => nome.length > 0)
+    if (nomes.length < 2) {
+      setAlertMessage('Por favor, insira seu nome completo (nome e sobrenome).')
       setShowAlert(true)
       return
     }
@@ -350,7 +492,7 @@ export default function LPTeste2() {
                   name="nomeResponsavel"
                   value={form.nomeResponsavel}
                   onChange={handleChange}
-                  placeholder="Nome*"
+                  placeholder="Nome Completo*"
                   required
                 />
               </div>
@@ -361,15 +503,6 @@ export default function LPTeste2() {
                   value={form.email}
                   onChange={handleChange}
                   placeholder="E-mail*"
-                  required
-                />
-              </div>
-              <div className="lp2-input">
-                <input
-                  name="municipio"
-                  value={form.municipio}
-                  onChange={handleChange}
-                  placeholder="Cidade*"
                   required
                 />
               </div>
@@ -387,6 +520,58 @@ export default function LPTeste2() {
                     </option>
                   ))}
                 </select>
+              </div>
+              {form.cidadeEstado && (
+                <div className="lp2-input lp2-municipio-autocomplete">
+                  <input
+                    ref={municipioInputRef}
+                    name="municipio"
+                    value={municipioSearch || form.municipio}
+                    onChange={handleMunicipioSearch}
+                    onBlur={handleMunicipioBlur}
+                    onFocus={() => {
+                      if (municipioSearch.length >= 3 && municipios.length > 0) {
+                        setShowMunicipioList(true)
+                      }
+                    }}
+                    placeholder="Município*"
+                    required
+                    disabled={!form.cidadeEstado}
+                  />
+                  {showMunicipioList && municipios.filter(m => 
+                    m.nome.toLowerCase().includes(municipioSearch.toLowerCase())
+                  ).length > 0 && (
+                    <div className="lp2-municipio-list">
+                      {municipios
+                        .filter(m => m.nome.toLowerCase().includes(municipioSearch.toLowerCase()))
+                        .map((municipio) => (
+                          <div
+                            key={municipio.id}
+                            className="lp2-municipio-item"
+                            onMouseDown={(e) => {
+                              e.preventDefault() // Previne o blur do input
+                              selectMunicipio(municipio)
+                            }}
+                          >
+                            {municipio.nome}
+                          </div>
+                        ))}
+                    </div>
+                  )}
+                </div>
+              )}
+              <div className="lp2-check">
+                <input
+                  type="checkbox"
+                  name="autorizacao"
+                  id="autorizacao"
+                  checked={form.autorizacao}
+                  onChange={handleChange}
+                  required
+                />
+                <label htmlFor="autorizacao">
+                  Autorizo o uso dos meus dados para contato sobre a campanha*
+                </label>
               </div>
               <div className="lp2-buttons-container">
                 <button className="lp2-button lp2-button-sidebar" type="submit">
@@ -1088,7 +1273,7 @@ export default function LPTeste2() {
                   name="nomeResponsavel"
                   value={form.nomeResponsavel}
                   onChange={handleChange}
-                  placeholder="Nome*"
+                  placeholder="Nome Completo*"
                   required
                 />
               </div>
@@ -1099,15 +1284,6 @@ export default function LPTeste2() {
                   value={form.email}
                   onChange={handleChange}
                   placeholder="E-mail*"
-                  required
-                />
-              </div>
-              <div className="lp2-input">
-                <input
-                  name="municipio"
-                  value={form.municipio}
-                  onChange={handleChange}
-                  placeholder="Cidade*"
                   required
                 />
               </div>
@@ -1125,6 +1301,58 @@ export default function LPTeste2() {
                     </option>
                   ))}
                 </select>
+              </div>
+              {form.cidadeEstado && (
+                <div className="lp2-input lp2-municipio-autocomplete">
+                  <input
+                    ref={municipioInputRef}
+                    name="municipio"
+                    value={municipioSearch || form.municipio}
+                    onChange={handleMunicipioSearch}
+                    onBlur={handleMunicipioBlur}
+                    onFocus={() => {
+                      if (municipioSearch.length >= 3 && municipios.length > 0) {
+                        setShowMunicipioList(true)
+                      }
+                    }}
+                    placeholder="Município*"
+                    required
+                    disabled={!form.cidadeEstado}
+                  />
+                  {showMunicipioList && municipios.filter(m => 
+                    m.nome.toLowerCase().includes(municipioSearch.toLowerCase())
+                  ).length > 0 && (
+                    <div className="lp2-municipio-list">
+                      {municipios
+                        .filter(m => m.nome.toLowerCase().includes(municipioSearch.toLowerCase()))
+                        .map((municipio) => (
+                          <div
+                            key={municipio.id}
+                            className="lp2-municipio-item"
+                            onMouseDown={(e) => {
+                              e.preventDefault() // Previne o blur do input
+                              selectMunicipio(municipio)
+                            }}
+                          >
+                            {municipio.nome}
+                          </div>
+                        ))}
+                    </div>
+                  )}
+                </div>
+              )}
+              <div className="lp2-check">
+                <input
+                  type="checkbox"
+                  name="autorizacao"
+                  id="autorizacao2"
+                  checked={form.autorizacao}
+                  onChange={handleChange}
+                  required
+                />
+                <label htmlFor="autorizacao2">
+                  Autorizo o uso dos meus dados para contato sobre a campanha*
+                </label>
               </div>
               <div className="lp2-buttons-container">
                 <button className="lp2-button lp2-button-sidebar" type="submit">

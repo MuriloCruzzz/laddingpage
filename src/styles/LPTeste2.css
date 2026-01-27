@@ -236,6 +236,51 @@
   padding: 8px;
 }
 
+/* Autocomplete de municípios */
+.lp2-municipio-autocomplete {
+  position: relative;
+}
+
+.lp2-municipio-autocomplete input:disabled {
+  background-color: #f5f5f5;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.lp2-municipio-list {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: white;
+  border: 2px solid #000;
+  border-top: none;
+  border-radius: 0 0 20px 20px;
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 1000;
+  margin-top: -2px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.lp2-municipio-item {
+  padding: 10px 12px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #000;
+  border-bottom: 1px solid #e0e0e0;
+  transition: background-color 0.2s;
+}
+
+.lp2-municipio-item:hover {
+  background-color: #FFD000;
+}
+
+.lp2-municipio-item:last-child {
+  border-bottom: none;
+}
+
 .lp2-check {
   display: flex;
   align-items: center;
