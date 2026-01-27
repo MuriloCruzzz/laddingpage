@@ -55,13 +55,10 @@ const estadosBrasileiros = [
 
 export default function LPTeste2() {
   const [form, setForm] = useState({
-    nomeInstituicao: '',
     nomeResponsavel: '',
     email: '',
     municipio: '',
     cidadeEstado: '',
-    tipoInstituicao: '',
-    autorizo: false,
   })
   const [showAlert, setShowAlert] = useState(false)
   const [alertMessage, setAlertMessage] = useState('')
@@ -287,8 +284,8 @@ export default function LPTeste2() {
     trackButtonClick()
     
     // Validação dos campos obrigatórios
-    if (!form.nomeInstituicao || !form.nomeResponsavel || !form.email || !form.municipio || !form.cidadeEstado || !form.autorizo) {
-      setAlertMessage('Por favor, preencha todos os campos obrigatórios e autorize o uso dos dados.')
+    if (!form.nomeResponsavel || !form.email || !form.municipio || !form.cidadeEstado) {
+      setAlertMessage('Por favor, preencha todos os campos obrigatórios.')
       setShowAlert(true)
       return
     }
@@ -346,23 +343,14 @@ export default function LPTeste2() {
         {/* Lado direito: bloco amarelo com formulário */}
         <div className="lp2-hero-right">
           <div className="lp2-form-card">
-            <h2 className="lp2-form-title">Participe da Campanha</h2>
+            <h2 className="lp2-form-title">Organize uma Campanha com a sua comunidade</h2>
             <form className="lp2-form" onSubmit={handleSubmit}>
-              <div className="lp2-input">
-                <input
-                  name="nomeInstituicao"
-                  value={form.nomeInstituicao}
-                  onChange={handleChange}
-                  placeholder="Nome da instituição*"
-                  required
-                />
-              </div>
               <div className="lp2-input">
                 <input
                   name="nomeResponsavel"
                   value={form.nomeResponsavel}
                   onChange={handleChange}
-                  placeholder="Nome do responsável*"
+                  placeholder="Nome*"
                   required
                 />
               </div>
@@ -381,7 +369,7 @@ export default function LPTeste2() {
                   name="municipio"
                   value={form.municipio}
                   onChange={handleChange}
-                  placeholder="Município*"
+                  placeholder="Cidade*"
                   required
                 />
               </div>
@@ -400,33 +388,9 @@ export default function LPTeste2() {
                   ))}
                 </select>
               </div>
-              <div className="lp2-input">
-                <select
-                  name="tipoInstituicao"
-                  value={form.tipoInstituicao}
-                  onChange={handleChange}
-                  className="lp2-select"
-                >
-                  <option value="">Tipo de instituição</option>
-                  <option value="Educacional">Educacional</option>
-                  <option value="Defesa Civil">Defesa Civil</option>
-                  <option value="Religiosa">Religiosa</option>
-                  <option value="Sociedade Civil">Sociedade Civil</option>
-                  <option value="Governamental">Governamental</option>
-                </select>
-              </div>
-              <label className="lp2-check">
-                <input
-                  type="checkbox"
-                  name="autorizo"
-                  checked={form.autorizo}
-                  onChange={handleChange}
-                />
-                <span>Autorizo o uso dos dados para contato</span>
-              </label>
               <div className="lp2-buttons-container">
                 <button className="lp2-button lp2-button-sidebar" type="submit">
-                  ENVIAR!
+                  EU QUERO!
                 </button>
               </div>
             </form>
@@ -442,7 +406,7 @@ export default function LPTeste2() {
           <div className="lp2-what-is-banner-wrapper">
             <div className="lp2-what-is-yellow-banner">
               <h2 className="lp2-what-is-banner-text">
-              Organize uma Campanha com a sua comunidade
+              O que é a Campanha #AprenderParaPrevenir
               </h2>
             </div>
           </div>
@@ -451,34 +415,207 @@ export default function LPTeste2() {
             {/* Lado esquerdo: Texto */}
             <div className="lp2-what-is-text">
               <p className="lp2-what-is-intro">
-                A campanha <strong>#Aprender para Prevenir</strong> é uma iniciativa nacional de educação voltada à prevenção dos riscos de desastres socioambientais.
+                A 9ª Campanha Nacional <strong style={{ color: 'red' }}>#AprenderParaPrevenir</strong>: Cidades Sem Risco promove campanhas locais em todo o Brasil.
               </p>
-              <p className="lp2-what-is-description">
-                A campanha convida escolas, universidades e outras instituições a desenvolver ações educativas para preparar pessoas e comunidades, ajudando a reconhecer riscos e saber como agir diante de situações de risco, fortalecendo a atuação nos territórios e a cultura de proteção à vida.
-              </p>
+              <h3 className="lp2-what-is-subtitle" style={{ marginTop: '1rem', marginBottom: '0.5rem' }}>
+                É uma Campanha de Campanhas que:
+              </h3>
+              <ul className="lp2-what-is-intro-list" style={{ marginTop: '0.5rem', paddingLeft: '1.5rem' }}>
+                <li>Dialoga com ciência, Justiça climática, educomunicação</li>
+                <li>Fortalece educação, Prevenção de riscos e adaptação climática</li>
+                <li>Apoia e reconhece Comunidades para ação transformadora</li>
+              </ul>
 
-              <div className="lp2-what-is-divider"></div>
+              {/* Nova seção: vamos juntos transformar conhecimento em ação */}
+              <div className="lp2-transform-section" style={{ marginTop: '-20px' }}>
+                <h2 className="lp2-transform-title font-mighty-souly" style={{ 
+                  fontSize: '2.8rem', 
+                  fontWeight: 'normal', 
+                  color: '#435ba5',
+                  textAlign: 'center',
+                  marginBottom: '2rem',
+                  lineHeight: '1.1',
+                  letterSpacing: '-0.02em',
+                  textTransform: 'none'
+                }}>
+                  vamos juntos transformar<br />conhecimento em ação
+                </h2>
 
-              <h3 className="lp2-what-is-subtitle">O que são desastres socioambientais?</h3>
-              <p className="lp2-what-is-description">
-              Desastres socioambientais afetam vidas, cidades e territórios e são agravados pelas mudanças climáticas e pelas condições locais.
-              </p>
+                {/* Lista de grupos-alvo com destaque amarelo */}
+                <div className="lp2-target-groups font-chinese-rocks" style={{ marginBottom: '3rem', textAlign: 'center' }}>
+                  <div style={{ 
+                    display: 'inline-block', 
+                    backgroundColor: '#fdd40a', 
+                    padding: '0.8rem 1rem 0rem 1rem',
+                    margin: '0.5rem 0.3rem',
+                    fontWeight: 'bold',
+                    fontSize: '1.6rem',
+                    color: '#000',
+                    textTransform: 'uppercase',
+                    lineHeight: '1.3',
+                    position: 'relative',
+                    paddingBottom: '-3px',
+                    overflow: 'visible'
+                  }}>
+                    <span style={{ position: 'relative', top: '3px' }}>
+                      LIDERANÇAS COMUNITÁRIAS
+                    </span>
+                  </div>
+                  <br />
+                  <div style={{ 
+                    display: 'flex', 
+                    gap: '1rem',
+                    margin: '0.5rem 0',
+                    flexWrap: 'wrap',
+                    justifyContent: 'center'
+                  }}>
+                    <div style={{ 
+                      display: 'inline-block',
+                      backgroundColor: '#fdd40a', 
+                      padding: '0.8rem 1rem 0rem 1rem',
+                      fontWeight: 'bold',
+                      fontSize: '1.6rem',
+                      color: '#000',
+                      textTransform: 'uppercase',
+                      lineHeight: '1.3',
+                      position: 'relative',
+                      margin: '0 0.3rem',
+                      overflow: 'visible'
+                    }}>
+                      <span style={{ position: 'relative', top: '3px' }}>
+                        MOBILIZADORES SOCIAIS
+                      </span>
+                    </div>
+                    <div style={{ 
+                      display: 'inline-block',
+                      backgroundColor: '#fdd40a', 
+                      padding: '0.8rem 1rem 0rem 1rem',
+                      fontWeight: 'bold',
+                      fontSize: '1.6rem',
+                      color: '#000',
+                      textTransform: 'uppercase',
+                      lineHeight: '1.3',
+                      position: 'relative',
+                      margin: '0 0.3rem',
+                      overflow: 'visible'
+                    }}>
+                      <span style={{ position: 'relative', top: '3px' }}>
+                        EDUCADORES
+                      </span>
+                    </div>
+                  </div>
+                  <div style={{ 
+                    display: 'inline-block', 
+                    backgroundColor: '#fdd40a', 
+                    padding: '0.8rem 1rem 0rem 1rem',
+                    margin: '0.5rem 0.3rem',
+                    fontWeight: 'bold',
+                    fontSize: '1.6rem',
+                    color: '#000',
+                    textTransform: 'uppercase',
+                    lineHeight: '1.3',
+                    position: 'relative',
+                    overflow: 'visible'
+                  }}>
+                    <span style={{ position: 'relative', top: '3px' }}>
+                      GESTORES E FUNCIONÁRIOS PÚBLICOS
+                    </span>
+                  </div>
+                </div>
 
-              <div className="lp2-what-is-examples">
-                <h4 className="lp2-what-is-examples-title">Exemplos:</h4>
-                <ul className="lp2-what-is-examples-list">
-                  <li>Inundações e alagamentos</li>
-                  <li>Enchentes e transbordamento de rios</li>
-                  <li>Ondas de calor extremo</li>
-                  <li>Ventos muito fortes e queda de árvores</li>
-                  <li>Deslizamentos de encostas</li>
-                  <li>Incêndios florestais e queimadas</li>
-                </ul>
+                {/* Seção: você já reparou? */}
+                <div className="lp2-climate-question" style={{ marginBottom: '2rem' }}>
+                  <div style={{ display: 'flex', alignItems: 'flex-start', gap: '1rem', marginBottom: '1.5rem' }}>
+                    <div>
+                      <div className="font-mighty-souly" style={{ 
+                        fontSize: '3rem', 
+                        fontWeight: 'normal', 
+                        color: '#c02125',
+                        lineHeight: '1'
+                      }}>
+                        você já
+                      </div>
+                      <div className="font-mighty-souly" style={{ 
+                        fontSize: '2rem', 
+                        fontWeight: 'normal', 
+                        color: '#c02125',
+                        lineHeight: '1'
+                      }}>
+                        reparou?
+                      </div>
+                    </div>
+                    <div style={{ flex: 1 }}>
+                      <p style={{ 
+                        fontSize: '1.5rem', 
+                        color: '#000',
+                        margin: '0 0 1rem 0',
+                        textAlign: 'center'
+                      }}>
+                        O clima está mudando e traz mais
+                      </p>
+
+                      {/* Ícones de impactos climáticos */}
+                      <div className="lp2-climate-impacts" style={{ 
+                        display: 'grid', 
+                        gridTemplateColumns: 'repeat(4, 1fr)', 
+                        gap: '1rem',
+                        marginTop: '1rem'
+                      }}>
+                        <div style={{ textAlign: 'center' }}>
+                          <img 
+                            src={getImagePath('/img/inundacao.png')} 
+                            alt="Inundações" 
+                            style={{ width: '80px', height: '80px', objectFit: 'contain' }}
+                          />
+                        </div>
+                        <div style={{ textAlign: 'center' }}>
+                          <img 
+                            src={getImagePath('/img/deslizamento.png')} 
+                            alt="Deslizamentos" 
+                            style={{ width: '110px', height: '80px', objectFit: 'contain' }}
+                          />
+                        </div>
+                        <div style={{ textAlign: 'center' }}>
+                          <img 
+                            src={getImagePath('/img/onda calor.png')} 
+                            alt="Ondas de Calor" 
+                            style={{ width: '110px', height: '80px', objectFit: 'contain' }}
+                          />
+                        </div>
+                        <div style={{ textAlign: 'center' }}>
+                          <img 
+                            src={getImagePath('/img/secas.png')} 
+                            alt="Secas" 
+                            style={{ width: '65px', height: '80px', objectFit: 'contain' }}
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Call to Action: Participe! */}
+                <div className="lp2-participate-cta" style={{ 
+                  display: 'flex', 
+                  alignItems: 'center', 
+                  justifyContent: 'center',
+                  gap: '1rem',
+                  marginTop: 'calc(2rem + 10px)'
+                }}>
+                  <img 
+                    src={getImagePath('/img/megafone.png')} 
+                    alt="Megafone" 
+                    style={{ width: '50px', height: '50px' }}
+                  />
+                  <div className="font-mighty-souly" style={{ 
+                    fontSize: '3rem', 
+                    fontWeight: 'normal', 
+                    color: '#4ab848'
+                  }}>
+                    Participe!
+                  </div>
+                </div>
               </div>
-
-              <p className="lp2-what-is-question">
-                <strong>Sua instituição está preparada para lidar com situações como essas?</strong>
-              </p>
             </div>
 
             {/* Lado direito: Imagem (vídeo comentado para uso futuro) */}
@@ -502,7 +639,7 @@ export default function LPTeste2() {
       </section>
 
       {/* TERCEIRO BLOCO: estatísticas em 3 colunas */}
-      <section className="lp2-stats-new" ref={statsSectionRef}>
+      {/* <section className="lp2-stats-new" ref={statsSectionRef}>
         <div className="lp2-stat-item lp2-stat-item-1">
           <img 
             src={getImagePath('/img/globo_alerta.png')} 
@@ -540,99 +677,214 @@ export default function LPTeste2() {
           </p>
           <small className="lp2-stat-source">fonte: Unicef</small>
         </div>
-      </section>
+      </section> */}
 
       {/* BLOCO: A Campanha */}
       <section className="lp2-about-campaign">
-        <div className="lp2-about-campaign-content">
-          {/* Banner amarelo com estilo recortado */}
-          <div className="lp2-campaign-banner-wrapper">
-          <div className="lp2-campaign-yellow-banner">
-              <h2 className="lp2-campaign-banner-text">
-                Como participar da Campanha?
+        <div style={{ 
+          backgroundColor: '#f6cc18',
+          padding: '1.5rem 0',
+          position: 'relative',
+          width: '100%'
+        }}>
+          <div style={{ 
+            maxWidth: '1200px',
+            margin: '0 auto',
+            padding: '0 2rem'
+          }}>
+            {/* Título dentro do bloco amarelo */}
+            <div style={{ 
+              marginBottom: '1rem',
+              textAlign: 'center'
+            }}>
+              <h2 className="font-chinese-rocks" style={{ 
+                fontSize: '2.2rem',
+                fontWeight: 'bold',
+                color: '#000',
+                textTransform: 'uppercase',
+                marginBottom: '0.3rem',
+                lineHeight: '1.2'
+              }}>
+                ORGANIZE UMA CAMPANHA<br />
+                COM A SUA COMUNIDADE
               </h2>
+              <p className="font-chinese-rocks" style={{ 
+                fontSize: '1.4rem',
+                fontWeight: 'bold',
+                color: '#000',
+                textTransform: 'uppercase'
+              }}>
+                EM 4 PASSOS:
+              </p>
+            </div>
+            
+            {/* Lista numerada de passos */}
+            <div style={{ 
+              display: 'grid',
+              gridTemplateColumns: 'repeat(2, 1fr)',
+              gap: '1rem 2rem',
+              maxWidth: '1000px',
+              margin: '0 auto'
+            }}>
+            {/* Passo 1: CONHECER */}
+            <div style={{ 
+              display: 'flex',
+              alignItems: 'flex-start',
+              gap: '0.8rem'
+            }}>
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#000" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0, marginTop: '0.2rem' }}>
+                <circle cx="11" cy="11" r="8"/>
+                <path d="m21 21-4.35-4.35"/>
+              </svg>
+              <div style={{ flex: 1 }}>
+                <div style={{ 
+                  display: 'inline-block',
+                  backgroundColor: '#fff',
+                  padding: '0.4rem 0.8rem',
+                  marginBottom: '0.4rem'
+                }}>
+                  <span className="font-chinese-rocks" style={{ 
+                    fontWeight: 'bold',
+                    fontSize: '1.2rem',
+                    color: '#000',
+                    textTransform: 'uppercase'
+                  }}>1. CONHECER</span>
+                </div>
+                <p style={{ 
+                  fontSize: '1rem',
+                  color: '#000',
+                  margin: 0,
+                  lineHeight: '1.4'
+                }}>
+                  Identifique quais são os riscos da sua comunidade e onde eles estão.
+                </p>
+              </div>
+            </div>
+
+            {/* Passo 2: CRIAR */}
+            <div style={{ 
+              display: 'flex',
+              alignItems: 'flex-start',
+              gap: '0.8rem'
+            }}>
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#000" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0, marginTop: '0.2rem' }}>
+                <path d="M9 21h6M12 3v1M12 20v2"/>
+                <path d="M12 4a5 5 0 0 1 5 5c0 2-1.5 3.5-3 4.2L13 18h-2l-1-4.8C9.5 12.5 8 11 8 9a5 5 0 0 1 4-5z"/>
+              </svg>
+              <div style={{ flex: 1 }}>
+                <div style={{ 
+                  display: 'inline-block',
+                  backgroundColor: '#fff',
+                  padding: '0.4rem 0.8rem',
+                  marginBottom: '0.4rem'
+                }}>
+                  <span className="font-chinese-rocks" style={{ 
+                    fontWeight: 'bold',
+                    fontSize: '1.2rem',
+                    color: '#000',
+                    textTransform: 'uppercase'
+                  }}>2. CRIAR</span>
+                </div>
+                <p style={{ 
+                  fontSize: '1rem',
+                  color: '#000',
+                  margin: 0,
+                  lineHeight: '1.4'
+                }}>
+                  Faça uma campanha que engaje as pessoas para proteger a comunidade.
+                </p>
+              </div>
+            </div>
+
+            {/* Passo 3: COMUNICAR */}
+            <div style={{ 
+              display: 'flex',
+              alignItems: 'flex-start',
+              gap: '0.8rem'
+            }}>
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#000" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0, marginTop: '0.2rem' }}>
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                <circle cx="9" cy="12" r="1" fill="#000"/>
+                <circle cx="12" cy="12" r="1" fill="#000"/>
+                <circle cx="15" cy="12" r="1" fill="#000"/>
+              </svg>
+              <div style={{ flex: 1 }}>
+                <div style={{ 
+                  display: 'inline-block',
+                  backgroundColor: '#fff',
+                  padding: '0.4rem 0.8rem',
+                  marginBottom: '0.4rem'
+                }}>
+                  <span className="font-chinese-rocks" style={{ 
+                    fontWeight: 'bold',
+                    fontSize: '1.2rem',
+                    color: '#000',
+                    textTransform: 'uppercase'
+                  }}>3. COMUNICAR</span>
+                </div>
+                <p style={{ 
+                  fontSize: '1rem',
+                  color: '#000',
+                  margin: 0,
+                  lineHeight: '1.4'
+                }}>
+                  Divulgue sua campanha de diferentes formas e envolva o maior número de pessoas.
+                </p>
+              </div>
+            </div>
+
+            {/* Passo 4: INSCREVER */}
+            <div style={{ 
+              display: 'flex',
+              alignItems: 'flex-start',
+              gap: '0.8rem'
+            }}>
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#000" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0, marginTop: '0.2rem' }}>
+                <rect x="3" y="3" width="18" height="18" rx="2"/>
+                <path d="M9 9h6M9 12h6M9 15h4"/>
+                <circle cx="18" cy="6" r="1"/>
+              </svg>
+              <div style={{ flex: 1 }}>
+                <div style={{ 
+                  display: 'inline-block',
+                  backgroundColor: '#fff',
+                  padding: '0.4rem 0.8rem',
+                  marginBottom: '0.4rem'
+                }}>
+                  <span className="font-chinese-rocks" style={{ 
+                    fontWeight: 'bold',
+                    fontSize: '1.2rem',
+                    color: '#000',
+                    textTransform: 'uppercase'
+                  }}>4. INSCREVER</span>
+                </div>
+                <p style={{ 
+                  fontSize: '1rem',
+                  color: '#000',
+                  margin: 0,
+                  lineHeight: '1.4'
+                }}>
+                  Registre todas as ações e inscreva sua campanha no site da Campanha Nacional!
+                </p>
+              </div>
             </div>
           </div>
-          
-          {/* Passos conectados em linha */}
-          <div className="lp2-campaign-steps">
-            <div className="lp2-campaign-step lp2-step-1">
-              <div className="lp2-step-icon lp2-icon-know">
-                <svg viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                  <circle cx="11" cy="11" r="8"/>
-                  <path d="m21 21-4.35-4.35"/>
-                </svg>
-              </div>
-              <div className="lp2-step-content">
-              <h3 className="lp2-step-action">CONHECER</h3>
-              <p className="lp2-step-desc">os riscos da sua cidade, bairro, comunidade</p>
-              </div>
-            </div>
 
-            {/* Seta entre passo 1 e 2 */}
-            <div className="lp2-step-arrow lp2-arrow-1-2">
-              <svg viewBox="0 0 24 24" fill="none" stroke="#000" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M5 12h14M12 5l7 7-7 7"/>
-              </svg>
-            </div>
-
-            <div className="lp2-campaign-step lp2-step-2">
-              <div className="lp2-step-icon lp2-icon-create">
-                <svg viewBox="0 0 24 24" fill="white" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M9 21h6M12 3v1M12 20v2"/>
-                  <path d="M12 4a5 5 0 0 1 5 5c0 2-1.5 3.5-3 4.2L13 18h-2l-1-4.8C9.5 12.5 8 11 8 9a5 5 0 0 1 4-5z"/>
-                  <path d="M8 9h8M7 12h10M8 15h8"/>
-                </svg>
-              </div>
-              <div className="lp2-step-content">
-              <h3 className="lp2-step-action">CRIAR</h3>
-                <p className="lp2-step-desc">a campanha para mobilizar e cuidar da sua comunidade</p>
-              </div>
-            </div>
-
-            {/* Seta entre passo 2 e 3 */}
-            <div className="lp2-step-arrow lp2-arrow-2-3">
-              <svg viewBox="0 0 24 24" fill="none" stroke="#000" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M5 12h14M12 5l7 7-7 7"/>
-              </svg>
-            </div>
-
-            <div className="lp2-campaign-step lp2-step-3">
-              <div className="lp2-step-icon lp2-icon-communicate">
-                <svg viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/>
-                  <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
-                  <line x1="12" y1="19" x2="12" y2="23"/>
-                  <line x1="8" y1="23" x2="16" y2="23"/>
-                  <path d="M8 10c0-2 1-4 4-4s4 2 4 4"/>
-                </svg>
-              </div>
-              <div className="lp2-step-content">
-              <h3 className="lp2-step-action">COMUNICAR</h3>
-              <p className="lp2-step-desc">a mensagem e compartilhar o conhecimento</p>
-              </div>
-            </div>
-
-            {/* Seta entre passo 3 e 4 */}
-            <div className="lp2-step-arrow lp2-arrow-3-4">
-              <svg viewBox="0 0 24 24" fill="none" stroke="#000" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M5 12h14M12 5l7 7-7 7"/>
-              </svg>
-            </div>
-
-            <div className="lp2-campaign-step lp2-step-4">
-              <div className="lp2-step-icon lp2-icon-register">
-                <svg viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <rect x="2" y="6" width="20" height="12" rx="2"/>
-                  <path d="M6 10h12M6 14h12M6 18h8"/>
-                  <circle cx="18" cy="14" r="1"/>
-                  <path d="M8 10v-2M8 18v2M16 10v-2M16 18v2"/>
-                </svg>
-              </div>
-              <div className="lp2-step-content">
-                <h3 className="lp2-step-action">INSCREVER</h3>
-              <p className="lp2-step-desc">a Campanha local na Campanha nacional #AprenderParaPrevenir</p>
-              </div>
+            {/* Call to Action */}
+            <div style={{ 
+              marginTop: '1.5rem',
+              textAlign: 'center'
+            }}>
+              <p className="font-chinese-rocks" style={{ 
+                fontSize: '2rem',
+                fontWeight: 'bold',
+                color: '#183EFF',
+                textTransform: 'uppercase',
+                lineHeight: '1.2'
+              }}>
+                VAMOS JUNTOS TRANSFORMAR<br />
+                CONHECIMENTO EM AÇÃO!
+              </p>
             </div>
           </div>
         </div>
@@ -752,19 +1004,10 @@ export default function LPTeste2() {
             <form className="lp2-form" onSubmit={handleSubmit}>
               <div className="lp2-input">
                 <input
-                  name="nomeInstituicao"
-                  value={form.nomeInstituicao}
-                  onChange={handleChange}
-                  placeholder="Nome da instituição*"
-                  required
-                />
-              </div>
-              <div className="lp2-input">
-                <input
                   name="nomeResponsavel"
                   value={form.nomeResponsavel}
                   onChange={handleChange}
-                  placeholder="Nome do responsável*"
+                  placeholder="Nome*"
                   required
                 />
               </div>
@@ -783,7 +1026,7 @@ export default function LPTeste2() {
                   name="municipio"
                   value={form.municipio}
                   onChange={handleChange}
-                  placeholder="Município*"
+                  placeholder="Cidade*"
                   required
                 />
               </div>
@@ -802,34 +1045,9 @@ export default function LPTeste2() {
                   ))}
                 </select>
               </div>
-              <div className="lp2-input">
-                <select
-                  name="tipoInstituicao"
-                  value={form.tipoInstituicao}
-                  onChange={handleChange}
-                  className="lp2-select"
-                >
-                  <option value="">Tipo de instituição</option>
-                  <option value="Educacional">Educacional</option>
-                  <option value="Defesa Civil">Defesa Civil</option>
-                  <option value="Religiosa">Religiosa</option>
-                  <option value="Sociedade Civil">Sociedade Civil</option>
-                  <option value="Governamental">Governamental</option>
-                  
-                </select>
-              </div>
-              <label className="lp2-check">
-                <input
-                  type="checkbox"
-                  name="autorizo"
-                  checked={form.autorizo}
-                  onChange={handleChange}
-                />
-                <span>Autorizo o uso dos dados para contato</span>
-              </label>
               <div className="lp2-buttons-container">
                 <button className="lp2-button lp2-button-sidebar" type="submit">
-                ENVIAR!
+                EU QUERO!
                 </button>
               </div>
             </form>
