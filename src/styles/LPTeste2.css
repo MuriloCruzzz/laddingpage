@@ -941,7 +941,7 @@
    ABOUT CAMPAIGN SECTION
    ========================================= */
 .lp2-about-campaign {
-  background: #ffffff;
+  background: #fff;
   padding: 4rem 0;
   width: 100%;
 }
@@ -965,6 +965,28 @@
   
   .lp2-campaign-flex-container > div:last-child {
     min-width: 100%;
+  }
+  
+  /* Grid de passos em coluna única */
+  .lp2-campaign-steps-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem !important;
+    margin-left: 0 !important;
+    min-width: auto !important;
+  }
+}
+
+@media (max-width: 900px) {
+  .lp2-campaign-steps-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1.2rem !important;
+    margin-left: 0 !important;
+    padding: 0 1rem;
+    width: 100% !important;
+  }
+  
+  .lp2-campaign-flex-container {
+    gap: 2rem !important;
   }
 }
 
@@ -1343,7 +1365,8 @@
   padding: 0 2rem;
   display: flex;
   flex-direction: column;
-  gap: 1.2rem;
+  align-items: center;
+  gap: 0.8rem;
   position: relative;
   z-index: 1;
 }
@@ -1351,14 +1374,16 @@
 .lp2-why-benefit-item {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 1.5rem;
-  padding: 1.8rem 2rem;
+  padding: 1.8rem 3.5rem;
   background: #ffffff;
   border: 2px solid #e8e8e8;
   border-left: 5px solid #FFD000;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
   position: relative;
+  width: 100%;
 }
 
 .lp2-why-benefit-arrow {
@@ -1381,9 +1406,13 @@
 .lp2-why-benefit-content {
   flex: 1;
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   align-items: baseline;
   gap: 0.8rem;
+  text-align: left;
+  justify-content: flex-start;
+  min-width: 0;
+  overflow: hidden;
 }
 
 .lp2-why-benefit-label {
@@ -1394,13 +1423,32 @@
   text-transform: uppercase;
   letter-spacing: 0.8px;
   white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .lp2-why-benefit-text {
   font-size: 1.2rem;
-  line-height: 1.6;
+  line-height: 1.4;
   color: #444;
   font-weight: 500;
+  white-space: nowrap;
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Texto específico com quebra de linha */
+.lp2-why-benefit-text-break {
+  white-space: normal !important;
+  font-size: 1.2rem !important;
+}
+
+/* Responsividade - permite quebra de linha nos outros textos quando necessário */
+@media (max-width: 1200px) {
+  .lp2-why-benefit-text:not(.lp2-why-benefit-text-break) {
+    white-space: normal;
+  }
 }
 
 /* Call to Action */
@@ -2107,5 +2155,225 @@
   .lp2-sidebar-sair-btn {
     font-size: 0.95rem;
     padding: 8px 16px;
+  }
+  
+  /* Responsividade para bloco "você já reparou?" */
+  .lp2-climate-question-container {
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+    gap: 1.5rem !important;
+  }
+  
+  .lp2-climate-question-text {
+    margin-bottom: 1rem !important;
+    width: 100% !important;
+    order: 1 !important;
+  }
+  
+  /* Aumenta o texto "Você já reparou?" em telas menores */
+  .lp2-climate-question-text .font-mighty-souly {
+    font-size: 3.5rem !important;
+    display: block !important;
+  }
+  
+  .lp2-climate-question-text .font-mighty-souly:last-child {
+    font-size: 2.5rem !important;
+  }
+  
+  .lp2-climate-question-content {
+    width: 100% !important;
+    flex: none !important;
+    order: 2 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+  }
+  
+  .lp2-climate-question-content p {
+    font-size: 1.3rem !important;
+    margin-bottom: 1.5rem !important;
+    order: 1 !important;
+  }
+  
+  .lp2-climate-impacts {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 2rem !important;
+    width: 100% !important;
+    display: grid !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    margin-top: 0 !important;
+    order: 2 !important;
+  }
+  
+  .lp2-climate-impacts > div {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+  
+  /* Aumenta as imagens em telas menores */
+  .lp2-climate-impacts img {
+    width: 120px !important;
+    height: 120px !important;
+    max-width: 100% !important;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+  
+  /* Aumenta imagem onda calor em 10px na responsividade */
+  .lp2-climate-impact-onda-calor img {
+    width: 130px !important;
+    height: 130px !important;
+  }
+  
+  /* Aumenta imagem deslizamento em 10px na responsividade */
+  .lp2-climate-impact-deslizamento img {
+    width: 130px !important;
+    height: 130px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .lp2-climate-impacts {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 1.5rem !important;
+    display: grid !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+  
+  .lp2-climate-impacts > div {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+  
+  .lp2-climate-impacts img {
+    width: 110px !important;
+    height: 110px !important;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+  
+  /* Aumenta imagem onda calor em 10px */
+  .lp2-climate-impact-onda-calor img {
+    width: 120px !important;
+    height: 120px !important;
+  }
+  
+  /* Aumenta imagem deslizamento em 10px */
+  .lp2-climate-impact-deslizamento img {
+    width: 120px !important;
+    height: 120px !important;
+  }
+  
+  .lp2-climate-question-text .font-mighty-souly {
+    font-size: 3.2rem !important;
+  }
+  
+  .lp2-climate-question-text .font-mighty-souly:last-child {
+    font-size: 2.3rem !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .lp2-climate-question-container {
+    gap: 1.5rem !important;
+  }
+  
+  .lp2-climate-impacts {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 1.2rem !important;
+    display: grid !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+  
+  .lp2-climate-impacts > div {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+  
+  .lp2-climate-impacts img {
+    width: 100px !important;
+    height: 100px !important;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+  
+  /* Aumenta imagem onda calor em 10px */
+  .lp2-climate-impact-onda-calor img {
+    width: 110px !important;
+    height: 110px !important;
+  }
+  
+  /* Aumenta imagem deslizamento em 10px */
+  .lp2-climate-impact-deslizamento img {
+    width: 110px !important;
+    height: 110px !important;
+  }
+  
+  .lp2-climate-question-text .font-mighty-souly {
+    font-size: 3rem !important;
+  }
+  
+  .lp2-climate-question-text .font-mighty-souly:last-child {
+    font-size: 2rem !important;
+  }
+  
+  .lp2-climate-question-content p {
+    font-size: 1.2rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .lp2-climate-impacts {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 1rem !important;
+    display: grid !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+  
+  .lp2-climate-impacts > div {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+  
+  .lp2-climate-impacts img {
+    width: 90px !important;
+    height: 90px !important;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+  
+  /* Aumenta imagem onda calor em 10px */
+  .lp2-climate-impact-onda-calor img {
+    width: 100px !important;
+    height: 100px !important;
+  }
+  
+  /* Aumenta imagem deslizamento em 10px */
+  .lp2-climate-impact-deslizamento img {
+    width: 100px !important;
+    height: 100px !important;
+  }
+  
+  .lp2-climate-question-text .font-mighty-souly {
+    font-size: 2.5rem !important;
+  }
+  
+  .lp2-climate-question-text .font-mighty-souly:last-child {
+    font-size: 1.8rem !important;
   }
 }

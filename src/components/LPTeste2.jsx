@@ -525,8 +525,8 @@ export default function LPTeste2() {
 
                 {/* Seção: você já reparou? */}
                 <div className="lp2-climate-question" style={{ marginBottom: '2rem' }}>
-                  <div style={{ display: 'flex', alignItems: 'flex-start', gap: '1rem', marginBottom: '1.5rem' }}>
-                    <div>
+                  <div className="lp2-climate-question-container" style={{ display: 'flex', alignItems: 'flex-start', gap: '1rem', marginBottom: '1.5rem' }}>
+                    <div className="lp2-climate-question-text">
                       <div className="font-mighty-souly" style={{ 
                         fontSize: '3rem', 
                         fontWeight: 'normal', 
@@ -544,7 +544,7 @@ export default function LPTeste2() {
                         reparou?
                       </div>
                     </div>
-                    <div style={{ flex: 1 }}>
+                    <div className="lp2-climate-question-content" style={{ flex: 1 }}>
                       <p style={{ 
                         fontSize: '1.5rem', 
                         color: '#000',
@@ -568,14 +568,14 @@ export default function LPTeste2() {
                             style={{ width: '80px', height: '80px', objectFit: 'contain' }}
                           />
                         </div>
-                        <div style={{ textAlign: 'center' }}>
+                        <div className="lp2-climate-impact-deslizamento" style={{ textAlign: 'center' }}>
                           <img 
                             src={getImagePath('/img/deslizamento.png')} 
                             alt="Deslizamentos" 
                             style={{ width: '110px', height: '80px', objectFit: 'contain' }}
                           />
                         </div>
-                        <div style={{ textAlign: 'center' }}>
+                        <div className="lp2-climate-impact-onda-calor" style={{ textAlign: 'center' }}>
                           <img 
                             src={getImagePath('/img/onda calor.png')} 
                             alt="Ondas de Calor" 
@@ -712,24 +712,24 @@ export default function LPTeste2() {
                   textTransform: 'uppercase',
                   marginBottom: '0.3rem',
                   lineHeight: '1.2',
-                  textAlign: 'center'
+                  textAlign: 'center',
+                  letterSpacing: '2px'
                 }}>
                 COMO PARTICIPAR DA CAMPANHA NACIONAL?
                 </h2>
                 <div style={{ 
-                  textAlign: 'right',
+                  textAlign: 'center',
                   marginTop: '15px'
                 }}>
                   <p className="font-chinese-rocks" style={{ 
-                    fontSize: '1.4rem',
+                    fontSize: '1.8rem',
                     fontWeight: 'bold',
                     color: '#000',
                     textTransform: 'uppercase',
                     display: 'inline-block',
                     backgroundColor: '#fff',
                     padding: '0.4rem 0.8rem',
-                    margin: 0,
-                    marginRight: '129px'
+                    margin: 0
                   }}>
                     EM 4 PASSOS:
                   </p>
@@ -737,13 +737,13 @@ export default function LPTeste2() {
               </div>
               
               {/* Lista numerada de passos */}
-              <div style={{ 
+              <div className="lp2-campaign-steps-grid" style={{ 
                 display: 'grid',
                 gridTemplateColumns: 'repeat(2, 1fr)',
-                gap: '1rem 5rem',
+                gap: '1rem 18rem',
                 flex: '1 1 auto',
                 minWidth: '600px',
-                marginLeft: '20px'
+                marginLeft: '80px'
               }}>
             {/* Passo 1: MOBILIZAR */}
             <div style={{ 
@@ -839,8 +839,8 @@ export default function LPTeste2() {
                 src={getImagePath('/img/passos_3.png')} 
                 alt="Passo 3" 
                 style={{ 
-                  width: '48px', 
-                  height: '48px', 
+                  width: '63px', 
+                  height: '63px', 
                   flexShrink: 0, 
                   marginTop: '0.3rem',
                   objectFit: 'contain'
@@ -952,7 +952,7 @@ export default function LPTeste2() {
               </div>
               <div className="lp2-why-benefit-content">
                 <strong className="lp2-why-benefit-label">Fortalecimento:</strong>
-                <span className="lp2-why-benefit-text">Fortalecer escolas, universidades e comunidades</span>
+                <span className="lp2-why-benefit-text">Fortalecer escolas, comunidades e seu diálogo com as universidades</span>
               </div>
             </div>
 
@@ -988,7 +988,7 @@ export default function LPTeste2() {
               </div>
               <div className="lp2-why-benefit-content">
                 <strong className="lp2-why-benefit-label">Premiação e Reconhecimento:</strong>
-                <span className="lp2-why-benefit-text">Concorrer a prêmios educativos e serem reconhecidos pela Campanha realizada com a comunidade!</span>
+                <span className="lp2-why-benefit-text lp2-why-benefit-text-break">Concorrer a prêmios educativos e serem reconhecidos pela Campanha realizada com a comunidade!</span>
               </div>
             </div>
           </div>
@@ -1132,9 +1132,12 @@ export default function LPTeste2() {
                 </button>
               </div>
             </form>
+            
           </div>
+          
         </div>
-      </section>
+        </section>
+        
 
       {/* Alerta customizado */}
       {showAlert && (
