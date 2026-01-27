@@ -692,71 +692,97 @@ export default function LPTeste2() {
             margin: '0 auto',
             padding: '0 2rem'
           }}>
-            {/* Título dentro do bloco amarelo */}
-            <div style={{ 
-              marginBottom: '1rem',
-              textAlign: 'center'
+            {/* Container flex: título à esquerda, passos à direita */}
+            <div className="lp2-campaign-flex-container" style={{ 
+              display: 'flex',
+              alignItems: 'flex-start',
+              gap: '3rem',
+              flexWrap: 'wrap'
             }}>
-              <h2 className="font-chinese-rocks" style={{ 
-                fontSize: '2.2rem',
-                fontWeight: 'bold',
-                color: '#000',
-                textTransform: 'uppercase',
-                marginBottom: '0.3rem',
-                lineHeight: '1.2'
+              {/* Título dentro do bloco amarelo */}
+              <div style={{ 
+                flex: '0 0 auto',
+                minWidth: '300px',
+                width: '100%'
               }}>
-                ORGANIZE UMA CAMPANHA<br />
-                COM A SUA COMUNIDADE
-              </h2>
-              <p className="font-chinese-rocks" style={{ 
-                fontSize: '1.4rem',
-                fontWeight: 'bold',
-                color: '#000',
-                textTransform: 'uppercase'
+                <h2 className="font-chinese-rocks" style={{ 
+                  fontSize: '2.2rem',
+                  fontWeight: 'bold',
+                  color: '#000',
+                  textTransform: 'uppercase',
+                  marginBottom: '0.3rem',
+                  lineHeight: '1.2',
+                  textAlign: 'center'
+                }}>
+                COMO PARTICIPAR DA CAMPANHA NACIONAL?
+                </h2>
+                <div style={{ 
+                  textAlign: 'right',
+                  marginTop: '15px'
+                }}>
+                  <p className="font-chinese-rocks" style={{ 
+                    fontSize: '1.4rem',
+                    fontWeight: 'bold',
+                    color: '#000',
+                    textTransform: 'uppercase',
+                    display: 'inline-block',
+                    backgroundColor: '#fff',
+                    padding: '0.4rem 0.8rem',
+                    margin: 0,
+                    marginRight: '129px'
+                  }}>
+                    EM 4 PASSOS:
+                  </p>
+                </div>
+              </div>
+              
+              {/* Lista numerada de passos */}
+              <div style={{ 
+                display: 'grid',
+                gridTemplateColumns: 'repeat(2, 1fr)',
+                gap: '1rem 5rem',
+                flex: '1 1 auto',
+                minWidth: '600px',
+                marginLeft: '20px'
               }}>
-                EM 4 PASSOS:
-              </p>
-            </div>
-            
-            {/* Lista numerada de passos */}
-            <div style={{ 
-              display: 'grid',
-              gridTemplateColumns: 'repeat(2, 1fr)',
-              gap: '1rem 2rem',
-              maxWidth: '1000px',
-              margin: '0 auto'
-            }}>
-            {/* Passo 1: CONHECER */}
+            {/* Passo 1: MOBILIZAR */}
             <div style={{ 
               display: 'flex',
               alignItems: 'flex-start',
-              gap: '0.8rem'
+              gap: '1.5rem'
             }}>
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#000" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0, marginTop: '0.2rem' }}>
-                <circle cx="11" cy="11" r="8"/>
-                <path d="m21 21-4.35-4.35"/>
-              </svg>
+              <img 
+                src={getImagePath('/img/passos_1.png')} 
+                alt="Passo 1" 
+                style={{ 
+                  width: '68px', 
+                  height: '68px', 
+                  flexShrink: 0, 
+                  marginTop: '0.3rem',
+                  objectFit: 'contain'
+                }} 
+              />
               <div style={{ flex: 1 }}>
                 <div style={{ 
                   display: 'inline-block',
                   backgroundColor: '#fff',
-                  padding: '0.4rem 0.8rem',
-                  marginBottom: '0.4rem'
+                  padding: '0.6rem 1.2rem',
+                  marginBottom: '0.6rem'
                 }}>
                   <span className="font-chinese-rocks" style={{ 
                     fontWeight: 'bold',
-                    fontSize: '1.2rem',
+                    fontSize: '1.8rem',
                     color: '#000',
                     textTransform: 'uppercase'
-                  }}>1. CONHECER</span>
+                  }}>1. MOBILIZAR</span>
                 </div>
                 <p style={{ 
-                  fontSize: '1rem',
+                  fontSize: '1.4rem',
                   color: '#000',
                   margin: 0,
-                  lineHeight: '1.4'
+                  lineHeight: '1.5'
                 }}>
-                  Identifique quais são os riscos da sua comunidade e onde eles estão.
+                  pessoas e instituições da comunidade para fazer a campanha.
                 </p>
               </div>
             </div>
@@ -765,70 +791,82 @@ export default function LPTeste2() {
             <div style={{ 
               display: 'flex',
               alignItems: 'flex-start',
-              gap: '0.8rem'
+              gap: '1.5rem'
             }}>
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#000" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0, marginTop: '0.2rem' }}>
-                <path d="M9 21h6M12 3v1M12 20v2"/>
-                <path d="M12 4a5 5 0 0 1 5 5c0 2-1.5 3.5-3 4.2L13 18h-2l-1-4.8C9.5 12.5 8 11 8 9a5 5 0 0 1 4-5z"/>
-              </svg>
+              <img 
+                src={getImagePath('/img/passos_2.png')} 
+                alt="Passo 2" 
+                style={{ 
+                  width: '68px', 
+                  height: '68px', 
+                  flexShrink: 0, 
+                  marginTop: '0.3rem',
+                  objectFit: 'contain'
+                }} 
+              />
               <div style={{ flex: 1 }}>
                 <div style={{ 
                   display: 'inline-block',
                   backgroundColor: '#fff',
-                  padding: '0.4rem 0.8rem',
-                  marginBottom: '0.4rem'
+                  padding: '0.6rem 1.2rem',
+                  marginBottom: '0.6rem'
                 }}>
                   <span className="font-chinese-rocks" style={{ 
                     fontWeight: 'bold',
-                    fontSize: '1.2rem',
+                    fontSize: '1.8rem',
                     color: '#000',
                     textTransform: 'uppercase'
                   }}>2. CRIAR</span>
                 </div>
                 <p style={{ 
-                  fontSize: '1rem',
+                  fontSize: '1.4rem',
                   color: '#000',
                   margin: 0,
-                  lineHeight: '1.4'
+                  lineHeight: '1.5'
                 }}>
-                  Faça uma campanha que engaje as pessoas para proteger a comunidade.
+                  coletivamente o plano de ação da campanha da comunidade
                 </p>
               </div>
             </div>
 
-            {/* Passo 3: COMUNICAR */}
+            {/* Passo 3: REALIZAR */}
             <div style={{ 
               display: 'flex',
               alignItems: 'flex-start',
-              gap: '0.8rem'
+              gap: '1.5rem'
             }}>
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#000" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0, marginTop: '0.2rem' }}>
-                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-                <circle cx="9" cy="12" r="1" fill="#000"/>
-                <circle cx="12" cy="12" r="1" fill="#000"/>
-                <circle cx="15" cy="12" r="1" fill="#000"/>
-              </svg>
+              <img 
+                src={getImagePath('/img/passos_3.png')} 
+                alt="Passo 3" 
+                style={{ 
+                  width: '48px', 
+                  height: '48px', 
+                  flexShrink: 0, 
+                  marginTop: '0.3rem',
+                  objectFit: 'contain'
+                }} 
+              />
               <div style={{ flex: 1 }}>
                 <div style={{ 
                   display: 'inline-block',
                   backgroundColor: '#fff',
-                  padding: '0.4rem 0.8rem',
-                  marginBottom: '0.4rem'
+                  padding: '0.6rem 1.2rem',
+                  marginBottom: '0.6rem'
                 }}>
                   <span className="font-chinese-rocks" style={{ 
                     fontWeight: 'bold',
-                    fontSize: '1.2rem',
+                    fontSize: '1.8rem',
                     color: '#000',
                     textTransform: 'uppercase'
-                  }}>3. COMUNICAR</span>
+                  }}>3. REALIZAR</span>
                 </div>
                 <p style={{ 
-                  fontSize: '1rem',
+                  fontSize: '1.4rem',
                   color: '#000',
                   margin: 0,
-                  lineHeight: '1.4'
+                  lineHeight: '1.5'
                 }}>
-                  Divulgue sua campanha de diferentes formas e envolva o maior número de pessoas.
+                  atividades de mobilização e comunicação da campanha da comunidade
                 </p>
               </div>
             </div>
@@ -837,55 +875,45 @@ export default function LPTeste2() {
             <div style={{ 
               display: 'flex',
               alignItems: 'flex-start',
-              gap: '0.8rem'
+              gap: '1.5rem'
             }}>
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#000" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0, marginTop: '0.2rem' }}>
-                <rect x="3" y="3" width="18" height="18" rx="2"/>
-                <path d="M9 9h6M9 12h6M9 15h4"/>
-                <circle cx="18" cy="6" r="1"/>
-              </svg>
+              <img 
+                src={getImagePath('/img/passos_4.png')} 
+                alt="Passo 4" 
+                style={{ 
+                  width: '48px', 
+                  height: '48px', 
+                  flexShrink: 0, 
+                  marginTop: '0.3rem',
+                  objectFit: 'contain'
+                }} 
+              />
               <div style={{ flex: 1 }}>
                 <div style={{ 
                   display: 'inline-block',
                   backgroundColor: '#fff',
-                  padding: '0.4rem 0.8rem',
-                  marginBottom: '0.4rem'
+                  padding: '0.6rem 1.2rem',
+                  marginBottom: '0.6rem'
                 }}>
                   <span className="font-chinese-rocks" style={{ 
                     fontWeight: 'bold',
-                    fontSize: '1.2rem',
+                    fontSize: '1.8rem',
                     color: '#000',
                     textTransform: 'uppercase'
                   }}>4. INSCREVER</span>
                 </div>
                 <p style={{ 
-                  fontSize: '1rem',
+                  fontSize: '1.4rem',
                   color: '#000',
                   margin: 0,
-                  lineHeight: '1.4'
+                  lineHeight: '1.5'
                 }}>
-                  Registre todas as ações e inscreva sua campanha no site da Campanha Nacional!
+                  a campanha da comunidade no site da Campanha Nacional.
                 </p>
               </div>
             </div>
-          </div>
-
-            {/* Call to Action */}
-            <div style={{ 
-              marginTop: '1.5rem',
-              textAlign: 'center'
-            }}>
-              <p className="font-chinese-rocks" style={{ 
-                fontSize: '2rem',
-                fontWeight: 'bold',
-                color: '#183EFF',
-                textTransform: 'uppercase',
-                lineHeight: '1.2'
-              }}>
-                VAMOS JUNTOS TRANSFORMAR<br />
-                CONHECIMENTO EM AÇÃO!
-              </p>
             </div>
+          </div>
           </div>
         </div>
       </section>
@@ -897,30 +925,83 @@ export default function LPTeste2() {
           <div className="lp2-why-banner-wrapper">
             <div className="lp2-why-yellow-banner">
               <h2 className="lp2-why-banner-text">
-                Por que participar da campanha
+                POR QUE PARTICIPAR DA CAMPANHA
               </h2>
             </div>
           </div>
 
-          {/* Lista de pontos */}
-          <div className="lp2-why-points">
-            <ul className="lp2-why-list">
-              <li>Preparar pessoas para agir antes do risco virar perigo</li>
-              <li>Fortalecer escolas, universidades e comunidades</li>
-              <li>Agir antes do desastre e proteger vidas no território</li>
-              <li>Integrar uma rede nacional que aprende e age frente às mudanças climáticas</li>
-            </ul>
+          {/* Lista elaborada de benefícios */}
+          <div className="lp2-why-benefits-list">
+            <div className="lp2-why-benefit-item">
+              <div className="lp2-why-benefit-arrow">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+              </div>
+              <div className="lp2-why-benefit-content">
+                <strong className="lp2-why-benefit-label">Pessoas:</strong>
+                <span className="lp2-why-benefit-text">Preparar pessoas para agir antes do risco virar perigo</span>
+              </div>
+            </div>
+
+            <div className="lp2-why-benefit-item">
+              <div className="lp2-why-benefit-arrow">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+              </div>
+              <div className="lp2-why-benefit-content">
+                <strong className="lp2-why-benefit-label">Fortalecimento:</strong>
+                <span className="lp2-why-benefit-text">Fortalecer escolas, universidades e comunidades</span>
+              </div>
+            </div>
+
+            <div className="lp2-why-benefit-item">
+              <div className="lp2-why-benefit-arrow">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+              </div>
+              <div className="lp2-why-benefit-content">
+                <strong className="lp2-why-benefit-label">Prevenção Local:</strong>
+                <span className="lp2-why-benefit-text">Agir antes do desastre e proteger vidas no território</span>
+              </div>
+            </div>
+
+            <div className="lp2-why-benefit-item">
+              <div className="lp2-why-benefit-arrow">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+              </div>
+              <div className="lp2-why-benefit-content">
+                <strong className="lp2-why-benefit-label">Rede Nacional:</strong>
+                <span className="lp2-why-benefit-text">Integrar uma rede nacional que aprende e age frente às mudanças climáticas</span>
+              </div>
+            </div>
+
+            <div className="lp2-why-benefit-item">
+              <div className="lp2-why-benefit-arrow">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+              </div>
+              <div className="lp2-why-benefit-content">
+                <strong className="lp2-why-benefit-label">Premiação e Reconhecimento:</strong>
+                <span className="lp2-why-benefit-text">Concorrer a prêmios educativos e serem reconhecidos pela Campanha realizada com a comunidade!</span>
+              </div>
+            </div>
+          </div>
+          
+          {/* Call to Action */}
+          <div className="lp2-why-cta">
+            <p className="lp2-why-cta-text">VENHA FAZER PARTE DESSA CAMPANHA!</p>
           </div>
         </div>
-        <img 
-          src={getImagePath('/img/cinza_terra.png')} 
-          alt="Marca d'água" 
-          className="lp2-why-watermark"
-        />
       </section>
 
       {/* SEÇÃO: Reconhecimento e incentivos */}
-      <section className="lp2-recognition" ref={recognitionSectionRef}>
+      {/* <section className="lp2-recognition" ref={recognitionSectionRef}>
         <div className="lp2-recognition-content">
           <h2 className="lp2-recognition-title">Reconhecimento e incentivos</h2>
           
@@ -973,7 +1054,7 @@ export default function LPTeste2() {
           
           <p className="lp2-recognition-cta">Venha Fazer Parte Dessa Campanha!</p>
         </div>
-      </section>
+      </section> */}
 
       {/* BLOCO HERO DUPLICADO NO FINAL */}
       <section className="lp2-hero">
