@@ -296,9 +296,9 @@
 }
 
 .lp2-button {
-  background-color: #DD0000; 
+  background-color: rgb(192, 33, 37); 
   color: white;
-  border: 1px solid #b30000;
+  border: 1px solid rgb(192, 33, 37);
   padding: 10px; 
   border-radius: 44px;
   font-family: 'Chinese Rocks', 'Arial Black', sans-serif;
@@ -314,12 +314,12 @@
 }
 
 .lp2-button-modal {
-  background-color: #DD0000;
+  background-color: rgb(192, 33, 37);
 }
 
 .lp2-button-sidebar {
-  background-color: #FF0000; /* Vermelho-Urucum */
-  border: 1px solid #CC0000;
+  background-color: rgb(192, 33, 37); /* Vermelho-Urucum */
+  border: 1px solid rgb(192, 33, 37);
   box-shadow: 0 6px 10px rgba(255, 0, 0, 0.3);
 }
 
@@ -625,6 +625,106 @@
   font-weight: 900;
   text-transform: uppercase;
   letter-spacing: 0.5px;
+}
+
+/* =========================================
+   TARGET GROUPS - Yellow Blocks
+   ========================================= */
+.lp2-target-groups {
+  margin-bottom: 3rem;
+  text-align: center;
+}
+
+.lp2-target-yellow-block {
+  display: inline-block;
+  background-color: rgb(253, 212, 10);
+  padding: 0 1rem;
+  margin: 0.5rem 4.3rem;
+  font-weight: bold;
+  font-size: 1.6rem;
+  color: rgb(0, 0, 0);
+  text-transform: uppercase;
+  line-height: 0.9;
+  position: relative;
+  overflow: visible;
+}
+
+.lp2-target-yellow-block span {
+  position: relative;
+  top: 8px;
+}
+
+/* =========================================
+   CAMPAIGN STEPS - White Background Titles
+   ========================================= */
+.lp2-campaign-white-block {
+  display: inline-block;
+  background-color: #fff;
+  padding: 0 1rem;
+  margin: 0.5rem 0;
+  font-weight: bold;
+  font-size: 1.6rem;
+  color: rgb(0, 0, 0);
+  text-transform: uppercase;
+  line-height: 0.9;
+  position: relative;
+  overflow: visible;
+}
+
+.lp2-campaign-white-block span {
+  position: relative;
+  top: 8px;
+}
+
+.lp2-campaign-step-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0;
+  margin-bottom: 2rem;
+}
+
+.lp2-campaign-step-white-box {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: #fff;
+  padding: 0.5rem 1rem;
+  gap: 1rem;
+}
+
+.lp2-campaign-step-icon {
+  width: 38px;
+  height: 38px;
+  flex-shrink: 0;
+  object-fit: contain;
+}
+
+.lp2-campaign-step-title {
+  display: inline-block;
+  font-weight: bold;
+  font-size: 1.6rem;
+  color: rgb(0, 0, 0);
+  text-transform: uppercase;
+  line-height: 0.9;
+  position: relative;
+  overflow: visible;
+  background-color: transparent;
+  padding: 0;
+}
+
+.lp2-campaign-step-title span {
+  position: relative;
+  top: 8px;
+}
+
+.lp2-campaign-step-text {
+  font-size: 1.4rem;
+  color: #000;
+  margin: 0;
+  line-height: 1.5;
+  padding-left: 1rem;
+  flex: 1;
 }
 
 .lp2-what-is-image {

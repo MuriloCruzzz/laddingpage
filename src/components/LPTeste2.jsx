@@ -485,7 +485,7 @@ export default function LPTeste2() {
         {/* Lado direito: bloco amarelo com formulário */}
         <div className="lp2-hero-right">
           <div className="lp2-form-card">
-            <h2 className="lp2-form-title">Organize uma Campanha com a sua comunidade</h2>
+            <h2 className="lp2-form-title">Participe dessa campanha</h2>
             <form className="lp2-form" onSubmit={handleSubmit}>
               <div className="lp2-input">
                 <input
@@ -600,7 +600,7 @@ export default function LPTeste2() {
             {/* Lado esquerdo: Texto */}
             <div className="lp2-what-is-text">
               <p className="lp2-what-is-intro">
-                A 9ª Campanha Nacional <strong style={{ color: 'red' }}>#AprenderParaPrevenir</strong>: Cidades Sem Risco promove campanhas locais em todo o Brasil.
+                A 9ª Campanha Nacional <strong style={{ color: 'rgb(192, 33, 37)' }}>#AprenderParaPrevenir</strong>: Cidades Sem Risco promove campanhas locais em todo o Brasil.
               </p>
               <h3 className="lp2-what-is-subtitle" style={{ marginTop: '1rem', marginBottom: '0.5rem' }}>
                 É uma Campanha de Campanhas que:
@@ -627,24 +627,9 @@ export default function LPTeste2() {
                 </h2>
 
                 {/* Lista de grupos-alvo com destaque amarelo */}
-                <div className="lp2-target-groups font-chinese-rocks" style={{ marginBottom: '3rem', textAlign: 'center' }}>
-                  <div style={{ 
-                    display: 'inline-block', 
-                    backgroundColor: '#fdd40a', 
-                    padding: '0.8rem 1rem 0rem 1rem',
-                    margin: '0.5rem 0.3rem',
-                    fontWeight: 'bold',
-                    fontSize: '1.6rem',
-                    color: '#000',
-                    textTransform: 'uppercase',
-                    lineHeight: '1.3',
-                    position: 'relative',
-                    paddingBottom: '-3px',
-                    overflow: 'visible'
-                  }}>
-                    <span style={{ position: 'relative', top: '3px' }}>
-                      LIDERANÇAS COMUNITÁRIAS
-                    </span>
+                <div className="lp2-target-groups font-chinese-rocks">
+                  <div className="lp2-target-yellow-block">
+                    <span>LIDERANÇAS COMUNITÁRIAS</span>
                   </div>
                   <br />
                   <div style={{ 
@@ -654,57 +639,15 @@ export default function LPTeste2() {
                     flexWrap: 'wrap',
                     justifyContent: 'center'
                   }}>
-                    <div style={{ 
-                      display: 'inline-block',
-                      backgroundColor: '#fdd40a', 
-                      padding: '0.8rem 1rem 0rem 1rem',
-                      fontWeight: 'bold',
-                      fontSize: '1.6rem',
-                      color: '#000',
-                      textTransform: 'uppercase',
-                      lineHeight: '1.3',
-                      position: 'relative',
-                      margin: '0 0.3rem',
-                      overflow: 'visible'
-                    }}>
-                      <span style={{ position: 'relative', top: '3px' }}>
-                        MOBILIZADORES SOCIAIS
-                      </span>
+                    <div className="lp2-target-yellow-block" style={{ margin: '0.5rem 0.3rem' }}>
+                      <span>MOBILIZADORES SOCIAIS</span>
                     </div>
-                    <div style={{ 
-                      display: 'inline-block',
-                      backgroundColor: '#fdd40a', 
-                      padding: '0.8rem 1rem 0rem 1rem',
-                      fontWeight: 'bold',
-                      fontSize: '1.6rem',
-                      color: '#000',
-                      textTransform: 'uppercase',
-                      lineHeight: '1.3',
-                      position: 'relative',
-                      margin: '0 0.3rem',
-                      overflow: 'visible'
-                    }}>
-                      <span style={{ position: 'relative', top: '3px' }}>
-                        EDUCADORES
-                      </span>
+                    <div className="lp2-target-yellow-block" style={{ margin: '0.5rem 0.3rem' }}>
+                      <span>EDUCADORES</span>
                     </div>
                   </div>
-                  <div style={{ 
-                    display: 'inline-block', 
-                    backgroundColor: '#fdd40a', 
-                    padding: '0.8rem 1rem 0rem 1rem',
-                    margin: '0.5rem 0.3rem',
-                    fontWeight: 'bold',
-                    fontSize: '1.6rem',
-                    color: '#000',
-                    textTransform: 'uppercase',
-                    lineHeight: '1.3',
-                    position: 'relative',
-                    overflow: 'visible'
-                  }}>
-                    <span style={{ position: 'relative', top: '3px' }}>
-                      GESTORES E FUNCIONÁRIOS PÚBLICOS
-                    </span>
+                  <div className="lp2-target-yellow-block">
+                    <span>GESTORES E FUNCIONÁRIOS PÚBLICOS</span>
                   </div>
                 </div>
 
@@ -877,228 +820,111 @@ export default function LPTeste2() {
             margin: '0 auto',
             padding: '0 2rem'
           }}>
-            {/* Container flex: título à esquerda, passos à direita */}
-            <div className="lp2-campaign-flex-container" style={{ 
-              display: 'flex',
-              alignItems: 'flex-start',
-              gap: '3rem',
-              flexWrap: 'wrap'
+            {/* Título à esquerda */}
+            <div style={{ 
+              marginBottom: '2rem'
             }}>
-              {/* Título dentro do bloco amarelo */}
-              <div style={{ 
-                flex: '0 0 auto',
-                minWidth: '300px',
-                width: '100%'
+              <h2 className="font-mighty-souly" style={{ 
+                fontSize: '3rem',
+                fontWeight: 'bold',
+                color: '#000',
+                textTransform: 'uppercase',
+                marginBottom: '1rem',
+                lineHeight: '1.2',
+                textAlign: 'left',
+                letterSpacing: '2px'
               }}>
-                <h2 className="font-chinese-rocks" style={{ 
-                  fontSize: '2.2rem',
-                  fontWeight: 'bold',
-                  color: '#000',
-                  textTransform: 'uppercase',
-                  marginBottom: '0.3rem',
-                  lineHeight: '1.2',
-                  textAlign: 'center',
-                  letterSpacing: '2px'
-                }}>
-                COMO PARTICIPAR DA CAMPANHA NACIONAL?
-                </h2>
-                <div style={{ 
-                  textAlign: 'center',
-                  marginTop: '15px'
-                }}>
-                  <p className="font-chinese-rocks" style={{ 
-                    fontSize: '1.8rem',
-                    fontWeight: 'bold',
-                    color: '#000',
-                    textTransform: 'uppercase',
-                    display: 'inline-block',
-                    backgroundColor: '#fff',
-                    padding: '0.4rem 0.8rem',
-                    margin: 0
-                  }}>
-                    EM 4 PASSOS:
-                  </p>
+                ORGANIZE UMA CAMPANHA<br />COM A SUA COMUNIDADE
+              </h2>
+              
+              {/* "EM 4 PASSOS:" abaixo e à direita */}
+              <div style={{ 
+                textAlign: 'right',
+                marginTop: '1rem'
+              }}>
+                <div className="lp2-campaign-white-block font-chinese-rocks">
+                  <span>EM 4 PASSOS:</span>
                 </div>
               </div>
+            </div>
               
-              {/* Lista numerada de passos */}
-              <div className="lp2-campaign-steps-grid" style={{ 
-                display: 'grid',
-                gridTemplateColumns: 'repeat(2, 1fr)',
-                gap: '1rem 18rem',
-                flex: '1 1 auto',
-                minWidth: '600px',
-                marginLeft: '80px'
-              }}>
-            {/* Passo 1: MOBILIZAR */}
+            {/* Lista de passos em coluna vertical */}
             <div style={{ 
               display: 'flex',
-              alignItems: 'flex-start',
-              gap: '1.5rem'
+              flexDirection: 'column',
+              gap: '2rem',
+              maxWidth: '800px'
             }}>
-              <img 
-                src={getImagePath('/img/passos_1.png')} 
-                alt="Passo 1" 
-                style={{ 
-                  width: '68px', 
-                  height: '68px', 
-                  flexShrink: 0, 
-                  marginTop: '0.3rem',
-                  objectFit: 'contain'
-                }} 
-              />
-              <div style={{ flex: 1 }}>
-                <div style={{ 
-                  display: 'inline-block',
-                  backgroundColor: '#fff',
-                  padding: '0.6rem 1.2rem',
-                  marginBottom: '0.6rem'
-                }}>
-                  <span className="font-chinese-rocks" style={{ 
-                    fontWeight: 'bold',
-                    fontSize: '1.8rem',
-                    color: '#000',
-                    textTransform: 'uppercase'
-                  }}>1. MOBILIZAR</span>
+              {/* Passo 1: MOBILIZAR */}
+              <div className="lp2-campaign-step-item">
+                <div className="lp2-campaign-step-white-box">
+                  <img 
+                    src={getImagePath('/img/passos_1.png')} 
+                    alt="Passo 1" 
+                    className="lp2-campaign-step-icon"
+                  />
+                  <div className="lp2-campaign-step-title font-chinese-rocks">
+                    <span>1. MOBILIZAR</span>
+                  </div>
                 </div>
-                <p style={{ 
-                  fontSize: '1.4rem',
-                  color: '#000',
-                  margin: 0,
-                  lineHeight: '1.5'
-                }}>
+                <p className="lp2-campaign-step-text">
                   pessoas e instituições da comunidade para fazer a campanha.
                 </p>
               </div>
-            </div>
 
-            {/* Passo 2: CRIAR */}
-            <div style={{ 
-              display: 'flex',
-              alignItems: 'flex-start',
-              gap: '1.5rem'
-            }}>
-              <img 
-                src={getImagePath('/img/passos_2.png')} 
-                alt="Passo 2" 
-                style={{ 
-                  width: '68px', 
-                  height: '68px', 
-                  flexShrink: 0, 
-                  marginTop: '0.3rem',
-                  objectFit: 'contain'
-                }} 
-              />
-              <div style={{ flex: 1 }}>
-                <div style={{ 
-                  display: 'inline-block',
-                  backgroundColor: '#fff',
-                  padding: '0.6rem 1.2rem',
-                  marginBottom: '0.6rem'
-                }}>
-                  <span className="font-chinese-rocks" style={{ 
-                    fontWeight: 'bold',
-                    fontSize: '1.8rem',
-                    color: '#000',
-                    textTransform: 'uppercase'
-                  }}>2. CRIAR</span>
+              {/* Passo 2: CRIAR */}
+              <div className="lp2-campaign-step-item">
+                <div className="lp2-campaign-step-white-box">
+                  <img 
+                    src={getImagePath('/img/passos_2.png')} 
+                    alt="Passo 2" 
+                    className="lp2-campaign-step-icon"
+                  />
+                  <div className="lp2-campaign-step-title font-chinese-rocks">
+                    <span>2. CRIAR</span>
+                  </div>
                 </div>
-                <p style={{ 
-                  fontSize: '1.4rem',
-                  color: '#000',
-                  margin: 0,
-                  lineHeight: '1.5'
-                }}>
+                <p className="lp2-campaign-step-text">
                   coletivamente o plano de ação da campanha da comunidade
                 </p>
               </div>
-            </div>
 
-            {/* Passo 3: REALIZAR */}
-            <div style={{ 
-              display: 'flex',
-              alignItems: 'flex-start',
-              gap: '1.5rem'
-            }}>
-              <img 
-                src={getImagePath('/img/passos_3.png')} 
-                alt="Passo 3" 
-                style={{ 
-                  width: '63px', 
-                  height: '63px', 
-                  flexShrink: 0, 
-                  marginTop: '0.3rem',
-                  objectFit: 'contain'
-                }} 
-              />
-              <div style={{ flex: 1 }}>
-                <div style={{ 
-                  display: 'inline-block',
-                  backgroundColor: '#fff',
-                  padding: '0.6rem 1.2rem',
-                  marginBottom: '0.6rem'
-                }}>
-                  <span className="font-chinese-rocks" style={{ 
-                    fontWeight: 'bold',
-                    fontSize: '1.8rem',
-                    color: '#000',
-                    textTransform: 'uppercase'
-                  }}>3. REALIZAR</span>
+              {/* Passo 3: REALIZAR */}
+              <div className="lp2-campaign-step-item">
+                <div className="lp2-campaign-step-white-box">
+                  <img 
+                    src={getImagePath('/img/passos_3.png')} 
+                    alt="Passo 3" 
+                    className="lp2-campaign-step-icon"
+                    style={{ width: '33px', height: '33px' }}
+                  />
+                  <div className="lp2-campaign-step-title font-chinese-rocks">
+                    <span>3. REALIZAR</span>
+                  </div>
                 </div>
-                <p style={{ 
-                  fontSize: '1.4rem',
-                  color: '#000',
-                  margin: 0,
-                  lineHeight: '1.5'
-                }}>
+                <p className="lp2-campaign-step-text">
                   atividades de mobilização e comunicação da campanha da comunidade
                 </p>
               </div>
-            </div>
 
-            {/* Passo 4: INSCREVER */}
-            <div style={{ 
-              display: 'flex',
-              alignItems: 'flex-start',
-              gap: '1.5rem'
-            }}>
-              <img 
-                src={getImagePath('/img/passos_4.png')} 
-                alt="Passo 4" 
-                style={{ 
-                  width: '48px', 
-                  height: '48px', 
-                  flexShrink: 0, 
-                  marginTop: '0.3rem',
-                  objectFit: 'contain'
-                }} 
-              />
-              <div style={{ flex: 1 }}>
-                <div style={{ 
-                  display: 'inline-block',
-                  backgroundColor: '#fff',
-                  padding: '0.6rem 1.2rem',
-                  marginBottom: '0.6rem'
-                }}>
-                  <span className="font-chinese-rocks" style={{ 
-                    fontWeight: 'bold',
-                    fontSize: '1.8rem',
-                    color: '#000',
-                    textTransform: 'uppercase'
-                  }}>4. INSCREVER</span>
+              {/* Passo 4: INSCREVER */}
+              <div className="lp2-campaign-step-item">
+                <div className="lp2-campaign-step-white-box">
+                  <img 
+                    src={getImagePath('/img/passos_4.png')} 
+                    alt="Passo 4" 
+                    className="lp2-campaign-step-icon"
+                    style={{ width: '18px', height: '18px' }}
+                  />
+                  <div className="lp2-campaign-step-title font-chinese-rocks">
+                    <span>4. INSCREVER</span>
+                  </div>
                 </div>
-                <p style={{ 
-                  fontSize: '1.4rem',
-                  color: '#000',
-                  margin: 0,
-                  lineHeight: '1.5'
-                }}>
+                <p className="lp2-campaign-step-text">
                   a campanha da comunidade no site da Campanha Nacional.
                 </p>
               </div>
             </div>
-            </div>
-          </div>
           </div>
         </div>
       </section>
@@ -1266,7 +1092,7 @@ export default function LPTeste2() {
         {/* Lado direito: bloco amarelo com formulário */}
         <div className="lp2-hero-right">
           <div className="lp2-form-card">
-            <h2 className="lp2-form-title">Participe da Campanha</h2>
+            <h2 className="lp2-form-title">Participe dessa Campanha</h2>
             <form className="lp2-form" onSubmit={handleSubmit}>
               <div className="lp2-input">
                 <input
