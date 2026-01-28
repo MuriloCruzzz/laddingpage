@@ -818,11 +818,12 @@ export default function LPTeste2() {
           <div style={{ 
             maxWidth: '1200px',
             margin: '0 auto',
-            padding: '0 2rem'
+            padding: '0 2rem',
+            marginRight: '10px'
           }}>
             {/* Título à esquerda */}
             <div style={{ 
-              marginBottom: '2rem'
+              marginBottom: '3rem'
             }}>
               <h2 className="font-mighty-souly" style={{ 
                 fontSize: '3rem',
@@ -830,43 +831,36 @@ export default function LPTeste2() {
                 color: '#000',
                 textTransform: 'uppercase',
                 marginBottom: '1rem',
-                lineHeight: '1.2',
+                lineHeight: '0.9',
                 textAlign: 'left',
-                letterSpacing: '2px'
+                letterSpacing: '2px',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '1.5rem',
+                flexWrap: 'wrap'
               }}>
-                ORGANIZE UMA CAMPANHA<br />COM A SUA COMUNIDADE
-              </h2>
-              
-              {/* "EM 4 PASSOS:" abaixo e à direita */}
-              <div style={{ 
-                textAlign: 'right',
-                marginTop: '1rem'
-              }}>
-                <div className="lp2-campaign-white-block font-chinese-rocks">
+                <span>ORGANIZE UMA CAMPANHA<br />COM A SUA COMUNIDADE</span>
+                <div className="lp2-campaign-white-block font-chinese-rocks" style={{ fontSize: '2.5rem', marginTop: '2.5rem' }}>
                   <span>EM 4 PASSOS:</span>
                 </div>
-              </div>
+              </h2>
             </div>
               
             {/* Lista de passos em coluna vertical */}
             <div style={{ 
-              display: 'flex',
+            
               flexDirection: 'column',
               gap: '2rem',
               maxWidth: '800px'
             }}>
               {/* Passo 1: MOBILIZAR */}
               <div className="lp2-campaign-step-item">
-                <div className="lp2-campaign-step-white-box">
-                  <img 
-                    src={getImagePath('/img/passos_1.png')} 
-                    alt="Passo 1" 
-                    className="lp2-campaign-step-icon"
-                  />
-                  <div className="lp2-campaign-step-title font-chinese-rocks">
-                    <span>1. MOBILIZAR</span>
-                  </div>
+                
+                  <div className="lp2-campaign-white-block font-chinese-rocks" style={{ fontSize: '2.5rem', marginTop: '2.5rem' }}>
+                  
+                  <span>1. MOBILIZAR</span>
                 </div>
+                
                 <p className="lp2-campaign-step-text">
                   pessoas e instituições da comunidade para fazer a campanha.
                 </p>
@@ -874,16 +868,17 @@ export default function LPTeste2() {
 
               {/* Passo 2: CRIAR */}
               <div className="lp2-campaign-step-item">
-                <div className="lp2-campaign-step-white-box">
+                
+
+                  <div className="lp2-campaign-step-title font-chinese-rocks">
                   <img 
                     src={getImagePath('/img/passos_2.png')} 
                     alt="Passo 2" 
                     className="lp2-campaign-step-icon"
                   />
-                  <div className="lp2-campaign-step-title font-chinese-rocks">
                     <span>2. CRIAR</span>
                   </div>
-                </div>
+                
                 <p className="lp2-campaign-step-text">
                   coletivamente o plano de ação da campanha da comunidade
                 </p>
@@ -891,14 +886,15 @@ export default function LPTeste2() {
 
               {/* Passo 3: REALIZAR */}
               <div className="lp2-campaign-step-item">
-                <div className="lp2-campaign-step-white-box">
+                <div className="">
+                  
+                  <div className="lp2-campaign-step-title font-chinese-rocks">
                   <img 
                     src={getImagePath('/img/passos_3.png')} 
                     alt="Passo 3" 
                     className="lp2-campaign-step-icon"
-                    style={{ width: '33px', height: '33px' }}
+                    style={{ width: '43px', height: '43px' }}
                   />
-                  <div className="lp2-campaign-step-title font-chinese-rocks">
                     <span>3. REALIZAR</span>
                   </div>
                 </div>
@@ -909,17 +905,18 @@ export default function LPTeste2() {
 
               {/* Passo 4: INSCREVER */}
               <div className="lp2-campaign-step-item">
-                <div className="lp2-campaign-step-white-box">
+                
+                  
+                  <div className="lp2-campaign-step-title font-chinese-rocks">
                   <img 
                     src={getImagePath('/img/passos_4.png')} 
                     alt="Passo 4" 
                     className="lp2-campaign-step-icon"
-                    style={{ width: '18px', height: '18px' }}
+                    style={{ width: '35px', height: '35px' }}
                   />
-                  <div className="lp2-campaign-step-title font-chinese-rocks">
                     <span>4. INSCREVER</span>
                   </div>
-                </div>
+                
                 <p className="lp2-campaign-step-text">
                   a campanha da comunidade no site da Campanha Nacional.
                 </p>
