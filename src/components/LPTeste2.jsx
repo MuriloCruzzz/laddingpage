@@ -64,6 +64,7 @@ export default function LPTeste2() {
   const [showAlert, setShowAlert] = useState(false)
   const [alertMessage, setAlertMessage] = useState('')
   const [showSidebar, setShowSidebar] = useState(false)
+  const [submitting, setSubmitting] = useState(false)
   const statsSectionRef = useRef(null)
   const videoContainerRef = useRef(null)
   const recognitionSectionRef = useRef(null)
@@ -399,7 +400,7 @@ export default function LPTeste2() {
     }
   }, [form.cidadeEstado])
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault()
     
     // Rastreia clique no botão
@@ -440,9 +441,33 @@ export default function LPTeste2() {
       return
     }
 
-    // Rastreia registro completo antes de abrir o sidebar
-    trackCompleteRegistration(form)
-    setShowSidebar(true)
+    const apiBase = import.meta.env.VITE_API_BASE || ''
+    setSubmitting(true)
+    try {
+      const res = await fetch(`${apiBase}/api/submit-form`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          nomeCompleto: form.nomeResponsavel.trim(),
+          email: form.email.trim(),
+          estado: form.cidadeEstado.trim(),
+          municipio: form.municipio.trim(),
+        }),
+      })
+      const data = await res.json().catch(() => ({}))
+      if (!res.ok) {
+        setAlertMessage(data.error || 'Falha ao enviar. Tente novamente.')
+        setShowAlert(true)
+        return
+      }
+      trackCompleteRegistration(form)
+      setShowSidebar(true)
+    } catch (err) {
+      setAlertMessage('Erro de conexão. Verifique sua internet e tente novamente.')
+      setShowAlert(true)
+    } finally {
+      setSubmitting(false)
+    }
   }
 
   function handleWhatsAppClick() {
@@ -574,8 +599,8 @@ export default function LPTeste2() {
                 </label>
               </div>
               <div className="lp2-buttons-container">
-                <button className="lp2-button lp2-button-sidebar" type="submit">
-                  EU QUERO!
+                <button className="lp2-button lp2-button-sidebar" type="submit" disabled={submitting}>
+                  {submitting ? 'Enviando...' : 'EU QUERO!'}
                 </button>
               </div>
             </form>
@@ -1243,8 +1268,8 @@ export default function LPTeste2() {
                 </label>
               </div>
               <div className="lp2-buttons-container">
-                <button className="lp2-button lp2-button-sidebar" type="submit">
-                EU QUERO!
+                <button className="lp2-button lp2-button-sidebar" type="submit" disabled={submitting}>
+                  {submitting ? 'Enviando...' : 'EU QUERO!'}
                 </button>
               </div>
             </form>
