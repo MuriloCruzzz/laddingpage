@@ -1,8 +1,10 @@
-import { put } from '@vercel/blob';
+import { put, list } from '@vercel/blob';
+
+const INSCRICOES_PATH = 'campanha-inscricoes/inscricoes.json';
 
 /**
  * API serverless da Vercel: recebe dados do formulário da campanha e armazena
- * no Vercel Blob (um arquivo JSON por inscrição).
+ * no Vercel Blob em um único arquivo JSON (array), incrementando a cada inscrição.
  * Requer BLOB_READ_WRITE_TOKEN no projeto Vercel (criado ao adicionar um Blob store).
  */
 export default async function handler(req, res) {
@@ -39,10 +41,26 @@ export default async function handler(req, res) {
       submittedAt: new Date().toISOString(),
     };
 
-    const pathname = `campanha-inscricoes/${new Date().toISOString().slice(0, 10)}.json`;
-    await put(pathname, JSON.stringify(payload, null, 2), {
+    let inscricoes = [];
+    const { blobs } = await list({ prefix: INSCRICOES_PATH, limit: 1 });
+    if (blobs.length > 0 && blobs[0].url) {
+      const resp = await fetch(blobs[0].url);
+      const text = await resp.text();
+      if (text) {
+        try {
+          inscricoes = JSON.parse(text);
+        } catch (_) {
+          inscricoes = [];
+        }
+      }
+    }
+    if (!Array.isArray(inscricoes)) inscricoes = [];
+    inscricoes.push(payload);
+
+    await put(INSCRICOES_PATH, JSON.stringify(inscricoes, null, 2), {
       access: 'public',
-      addRandomSuffix: true,
+      addRandomSuffix: false,
+      allowOverwrite: true,
       contentType: 'application/json',
     });
 

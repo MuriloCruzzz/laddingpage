@@ -1,10 +1,10 @@
 # Armazenamento das inscrições do formulário (Vercel Blob)
 
-O formulário da campanha envia os dados (Nome Completo, e-mail, estado, município) para a API `/api/submit-form`, que grava cada inscrição no **Vercel Blob** como um arquivo JSON.
+O formulário da campanha envia os dados (Nome Completo, e-mail, estado, município) para a API `/api/submit-form`, que grava no **Vercel Blob** em um **único arquivo** (`campanha-inscricoes/inscricoes.json`): a API lê o array atual, adiciona a nova inscrição e reescreve o arquivo (incremento em um só lugar).
 
 ## O que foi implementado
 
-1. **API serverless** (`api/submit-form.js`): recebe POST com JSON e salva no Blob com `@vercel/blob` (um arquivo por inscrição, na pasta `campanha-inscricoes/`).
+1. **API serverless** (`api/submit-form.js`): recebe POST com JSON, lê o arquivo `campanha-inscricoes/inscricoes.json` (se existir), adiciona a inscrição ao array e reescreve o mesmo arquivo com `@vercel/blob` (um único arquivo, mais econômico em operações).
 2. **Frontend** (`LPTeste2.jsx`): após validar o formulário, faz POST para `/api/submit-form`, trata sucesso/erro e mostra "Enviando..." no botão durante o envio.
 3. **vercel.json**: rewrite para SPA (todas as rotas que não são `/api/*` vão para `index.html`).
 
@@ -37,7 +37,7 @@ Se o projeto Vercel tiver outro URL, altere em `.env.production` e faça um novo
 
 ## Formato dos dados armazenados
 
-Cada inscrição vira um arquivo JSON no Blob, por exemplo:
+Um único arquivo **`campanha-inscricoes/inscricoes.json`** contém um array de inscrições. Cada item tem o formato:
 
 ```json
 {
@@ -49,7 +49,9 @@ Cada inscrição vira um arquivo JSON no Blob, por exemplo:
 }
 ```
 
-Os arquivos ficam em `campanha-inscricoes/` com nome no formato `YYYY-MM-DD.json` + sufixo aleatório (evita colisão).
+A cada nova inscrição a API lê o array, adiciona o objeto e reescreve o arquivo (sem criar vários arquivos).
+
+**Concorrência:** se duas inscrições forem enviadas ao mesmo tempo, em teoria uma pode sobrescrever a outra (read-modify-write não é atômico). Para o volume típico de uma campanha isso costuma ser aceitável; se precisar de garantia forte, dá para voltar ao modelo de um arquivo por inscrição.
 
 ## Alternativa: exportar como .txt
 
