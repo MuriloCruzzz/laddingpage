@@ -508,6 +508,231 @@
   letter-spacing: 2px;
 }
 
+/* =========================================
+   EIXOS TEMÁTICOS SECTION
+   ========================================= */
+.lp2-thematic-axes {
+  background: #e4f1fa;
+  padding: 3rem 0 2rem 0;
+  width: 100%;
+  position: relative;
+  z-index: 1;
+  overflow: visible;
+}
+
+.lp2-thematic-axes-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem 2rem 2rem;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  gap: 2rem;
+}
+
+.lp2-thematic-axes-content {
+  flex: 1;
+  min-width: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.lp2-thematic-axes-image-wrap {
+  position: absolute;
+  right: 0;
+  bottom: 0px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  max-width: 85%;
+  pointer-events: none;
+}
+
+.lp2-thematic-axes-image {
+  max-width: 380px;
+  width: 100%;
+  height: auto;
+  max-height: 380px;
+  object-fit: contain;
+  object-position: bottom right;
+  display: block;
+}
+
+.lp2-thematic-axes-title {
+  font-family: var(--font-mighty-souly);
+  font-size: 3rem;
+  font-weight: bold;
+  color: #000;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin: 0 0 3rem 0;
+  line-height: 1.2;
+}
+
+.lp2-thematic-axes-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-left: 50px;
+}
+
+.lp2-thematic-axes-item {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 1.25rem;
+}
+
+.lp2-thematic-axes-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  min-width: 52px;
+  border-radius: 50%;
+  background-color: #41b843;
+  color: #fff;
+  font-size: 1.5rem;
+  font-weight: bold;
+  flex-shrink: 0;
+}
+
+.lp2-thematic-axes-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.lp2-thematic-axes-label {
+  font-family: var(--font-mighty-souly);
+  font-size: 1.65rem;
+  font-weight: bold;
+  color: #000;
+  line-height: 1.3;
+}
+
+.lp2-thematic-axes-desc {
+  font-size: 1.25rem;
+  color: #333;
+  line-height: 1.5;
+}
+
+/* Eixos Temáticos: full screen — imagem e conteúdo em tamanho maior */
+@media (min-width: 1200px) {
+  .lp2-thematic-axes {
+    padding: 4rem 0 2rem 0;
+  }
+  .lp2-thematic-axes-title {
+    font-size: 3.25rem;
+    margin-bottom: 3rem;
+  }
+  .lp2-thematic-axes-image {
+    max-width: 501px;
+    max-height: 520px;
+  }
+}
+
+@media (min-width: 1540px) {
+  .lp2-thematic-axes-image {
+    max-width: 303px;
+    max-height: 400px;
+  }
+}
+
+/* Eixos Temáticos: tablet — layout em coluna, imagem proporcional */
+@media (max-width: 900px) {
+  .lp2-thematic-axes {
+    padding: 5rem 0;
+  }
+  .lp2-thematic-axes-wrapper {
+    flex-direction: column;
+    gap: 2rem;
+    padding: 0 1.5rem 2rem;
+    padding-right: 0;
+    align-items: stretch;
+  }
+  .lp2-thematic-axes-image-wrap {
+    position: absolute;
+    right: 0;
+    bottom: 0px;
+    margin-right: 0;
+    margin-bottom: 0;
+    justify-content: flex-end;
+    align-items: flex-end;
+    max-width: 50%;
+  }
+  .lp2-thematic-axes-image {
+    max-width: 280px;
+    max-height: 240px;
+  }
+}
+
+@media (max-width: 768px) {
+  .lp2-thematic-axes-title {
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+  }
+  .lp2-thematic-axes-wrapper {
+    padding: 0 1rem;
+  }
+  .lp2-thematic-axes-num {
+    width: 36px;
+    height: 36px;
+    min-width: 36px;
+    font-size: 1.1rem;
+  }
+  .lp2-thematic-axes-label {
+    font-size: 1.2rem;
+  }
+  .lp2-thematic-axes-desc {
+    font-size: 1rem;
+  }
+  .lp2-thematic-axes-image-wrap {
+    max-width: 50%;
+  }
+  .lp2-thematic-axes-image {
+    max-width: 240px;
+    max-height: 200px;
+  }
+}
+
+@media (max-width: 640px) {
+  .lp2-thematic-axes-image-wrap {
+    max-width: 48%;
+  }
+  .lp2-thematic-axes-image {
+    max-width: 220px;
+    max-height: 190px;
+  }
+}
+
+@media (max-width: 480px) {
+  .lp2-thematic-axes-image-wrap {
+    max-width: 46%;
+  }
+  .lp2-thematic-axes-image {
+    max-width: 200px;
+    max-height: 170px;
+  }
+}
+
+@media (max-width: 360px) {
+  .lp2-thematic-axes-image-wrap {
+    max-width: 44%;
+    margin-bottom: 0px;
+    bottom: 0;
+  }
+  .lp2-thematic-axes-image {
+    max-width: 180px;
+    max-height: 150px;
+  }
+}
+
 .lp2-what-is-main {
   display: flex;
   gap: 3rem;
@@ -676,14 +901,75 @@
   top: 8px;
 }
 
-.lp2-campaign-step-item {
+/* Linha do passo: ícone à esquerda + quadrante branco só atrás do texto (igual "EM 4 PASSOS:") */
+.lp2-campaign-step-title-row {
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 0;
+  gap: 1rem;
+}
+
+.lp2-campaign-step-item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
   margin-bottom: 2rem;
 }
 
+/* Apenas primeiro item: uma linha — ícone (preto) à esquerda | número+título | texto à direita */
+.lp2-campaign-step-item-oneline {
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: nowrap;
+}
+
+/* Wrapper ícone + título: largura fixa (bloco maior como referência) para alinhar faixas e textos */
+.lp2-campaign-step-oneline-head {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+  flex-shrink: 0;
+  isolation: isolate;
+  width: 260px;
+  min-width: 260px;
+  box-sizing: border-box;
+}
+
+/* Faixa branca: 2px para fora à esquerda e à direita; mesma largura em todos os passos */
+.lp2-campaign-step-oneline-head::before {
+  content: '';
+  position: absolute;
+  left: -10px;
+  right: 28px;
+  top: 42%;
+  transform: translateY(-50%);
+  height: 24px;
+  max-height: 5.75em;
+  background-color: #ffffff;
+  opacity: 1;
+  z-index: -1;
+}
+
+.lp2-campaign-step-item-oneline .lp2-campaign-step-icon {
+  filter: brightness(0);
+}
+
+.lp2-campaign-step-item-oneline .lp2-campaign-step-label {
+  flex-shrink: 0;
+  margin-top: 10px;
+  margin-left: -10px;
+}
+
+.lp2-campaign-step-item-oneline .lp2-campaign-step-text {
+  flex: 1;
+  margin: 0;
+  min-width: 0;
+  padding-left: 0;
+}
 
 .lp2-campaign-step-icon {
   width: 48px;
@@ -692,37 +978,101 @@
   object-fit: contain;
 }
 
-.lp2-campaign-step-title {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  background-color: #fff;
-  padding: 0.1rem 1rem;
-  margin: 0.5rem 0;
-  gap: 1rem;
-  font-weight: bold;
-  font-size: 1.9rem;
-  color: rgb(0, 0, 0);
-  text-transform: uppercase;
-  line-height: 0.9;
-  position: relative;
-  overflow: visible;
-  min-width: 280px;
-  width: 280px;
+.lp2-campaign-step-icon-sm {
+  width: 43px;
+  height: 43px;
 }
 
-.lp2-campaign-step-title span {
-  position: relative;
-  top: 2px;
+.lp2-campaign-step-icon-xs {
+  width: 35px;
+  height: 35px;
+}
+
+/* Quadrante branco do passo = mesmo estilo que .lp2-campaign-white-block (EM 4 PASSOS:) */
+.lp2-campaign-step-label {
+  /* herda .lp2-campaign-white-block; ajuste opcional de tamanho no passo */
+  font-size: 1.8rem;
 }
 
 .lp2-campaign-step-text {
   font-size: 1.4rem;
-  color: #000;
   margin: 0;
   line-height: 1.5;
-  padding-left: 1rem;
-  flex: 1;
+  padding-left: 35px;
+}
+
+/* =========================================
+   lp2-about-campaign — Responsivo (mobile only)
+   ========================================= */
+@media (max-width: 768px) {
+  .lp2-about-campaign-yellow {
+    padding: 1rem 0 !important;
+  }
+  .lp2-about-campaign-inner {
+    padding: 0 1rem !important;
+  }
+  .lp2-about-campaign-title-wrap {
+    margin-bottom: 1.5rem !important;
+  }
+  .lp2-about-campaign-heading {
+    font-size: 1.75rem !important;
+    gap: 1rem !important;
+    line-height: 1.1 !important;
+  }
+  .lp2-about-campaign-4passos {
+    font-size: 2.2rem !important;
+    margin-top: 1rem !important;
+  }
+  .lp2-about-campaign-steps-wrap {
+    gap: 1.25rem !important;
+    max-width: 100% !important;
+  }
+  .lp2-about-campaign .lp2-campaign-step-item-oneline {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+    margin-bottom: 1.25rem;
+  }
+  .lp2-about-campaign .lp2-campaign-step-oneline-head {
+    width: 100%;
+    max-width: 280px;
+    min-width: 0;
+  }
+  .lp2-about-campaign .lp2-campaign-step-oneline-head::before {
+    left: -8px;
+    right: 20px;
+    height: 26px;
+  }
+  .lp2-about-campaign .lp2-campaign-step-label {
+    font-size: 1.35rem;
+  }
+  .lp2-about-campaign .lp2-campaign-step-text {
+    font-size: 1.15rem;
+    padding-left: 0;
+  }
+  .lp2-about-campaign .lp2-campaign-step-icon {
+    width: 40px;
+    height: 40px;
+  }
+  .lp2-about-campaign .lp2-campaign-step-icon-sm {
+    width: 36px;
+    height: 36px;
+  }
+  .lp2-about-campaign .lp2-campaign-step-icon-xs {
+    width: 30px;
+    height: 30px;
+  }
+  .lp2-about-campaign .lp2-why-cta-white-block {
+    padding: 15px 1.5rem;
+  }
+  .lp2-about-campaign .lp2-why-cta-text {
+    font-size: 1.15rem !important;
+    letter-spacing: 1px;
+    max-width: 100%;
+  }
+  .lp2-about-campaign .lp2-why-cta-br {
+    display: block;
+  }
 }
 
 .lp2-what-is-image {
@@ -1084,8 +1434,8 @@
    ABOUT CAMPAIGN SECTION
    ========================================= */
 .lp2-about-campaign {
-  background: #fff;
-  padding: 4rem 0;
+  background: transparent;
+  padding: 0;
   width: 100%;
 }
 
@@ -1594,28 +1944,42 @@
   }
 }
 
-/* Call to Action */
+/* Call to Action — bloco branco da lateral esquerda à direita; 15px em cima e embaixo do texto */
 .lp2-why-cta {
-  max-width: 1200px;
-  margin: 3rem auto 0;
-  padding: 0 2rem;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.lp2-why-cta-white-block {
+  width: 100%;
+  padding: 15px 2rem;
   text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .lp2-why-cta-text {
   font-family: 'Chinese Rocks', 'Arial Black', sans-serif;
-  font-size: 2rem;
+  font-size: 1.6rem;
   font-weight: 900;
   color: #183EFF;
   text-transform: uppercase;
   letter-spacing: 2px;
-  margin: -20px;
-  margin-top: 10px;
-  line-height: 1.3;
+  margin: 0 auto;
+  line-height: 1.4;
   text-align: center;
   display: block;
-  position: relative;
-  top: 20px;
+  max-width: 420px;
+  margin-right: 620px;
+}
+
+.lp2-why-cta-br {
+  display: none;
 }
 
 .lp2-why-watermark {
@@ -1690,7 +2054,10 @@
   
   .lp2-why-cta-text {
     font-size: 1.4rem;
-    letter-spacing: 1px;
+    letter-spacing: 1.5px;
+  }
+  .lp2-why-cta-br {
+    display: block;
   }
   
   .lp2-why-watermark {

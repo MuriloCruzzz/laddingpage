@@ -591,7 +591,7 @@ export default function LPTeste2() {
           <div className="lp2-what-is-banner-wrapper">
             <div className="lp2-what-is-yellow-banner">
               <h2 className="lp2-what-is-banner-text">
-              O que é a Campanha #AprenderParaPrevenir
+              ORGANIZE UMA CAMPANHA NA SUA COMUNIDADE
               </h2>
             </div>
           </div>
@@ -600,15 +600,19 @@ export default function LPTeste2() {
             {/* Lado esquerdo: Texto */}
             <div className="lp2-what-is-text">
               <p className="lp2-what-is-intro">
-                A 9ª Campanha Nacional <strong style={{ color: 'rgb(192, 33, 37)' }}>#AprenderParaPrevenir</strong>: Cidades Sem Risco promove campanhas locais em todo o Brasil.
+              A Campanha Nacional <strong style={{ color: 'rgb(192, 33, 37)' }}>#AprenderParaPrevenir</strong> Cidades Sem Risco é um chamado para prevenção de risco e adaptação climática. 
               </p>
+              <p className="lp2-what-is-intro">
+              Busca mobilizar e engajar pessoas e instituições para organizarem uma campanha na sua comunidade.
+              </p>
+
               <h3 className="lp2-what-is-subtitle" style={{ marginTop: '1rem', marginBottom: '0.5rem' }}>
                 É uma Campanha de Campanhas que:
               </h3>
               <ul className="lp2-what-is-intro-list" style={{ marginTop: '0.5rem', paddingLeft: '1.5rem' }}>
-                <li>Dialoga com ciência, Justiça climática, educomunicação</li>
-                <li>Fortalece educação, Prevenção de riscos e adaptação climática</li>
-                <li>Apoia e reconhece Comunidades para ação transformadora</li>
+                <li>Dialoga com ciência, justiça climática, educação e comunicação.</li>
+                <li>Fortalece educação, prevenção de riscos e adaptação climática.</li>
+                <li>Apoia e reconhece comunidades para ação transformadora.</li>
               </ul>
 
               {/* Nova seção: vamos juntos transformar conhecimento em ação */}
@@ -766,6 +770,10 @@ export default function LPTeste2() {
         </div>
       </section>
 
+      
+
+      
+
       {/* TERCEIRO BLOCO: estatísticas em 3 colunas */}
       {/* <section className="lp2-stats-new" ref={statsSectionRef}>
         <div className="lp2-stat-item lp2-stat-item-1">
@@ -808,24 +816,21 @@ export default function LPTeste2() {
       </section> */}
 
       {/* BLOCO: A Campanha */}
-      <section className="lp2-about-campaign">
-        <div style={{ 
+      <section className="lp2-about-campaign" aria-labelledby="lp2-about-campaign-heading">
+        <div className="lp2-about-campaign-yellow" style={{ 
           backgroundColor: '#f6cc18',
           padding: '1.5rem 0',
           position: 'relative',
           width: '100%'
         }}>
-          <div style={{ 
+          <div className="lp2-about-campaign-inner" style={{ 
             maxWidth: '1200px',
             margin: '0 auto',
-            padding: '0 2rem',
-            marginRight: '10px'
+            padding: '0 2rem'
           }}>
             {/* Título à esquerda */}
-            <div style={{ 
-              marginBottom: '3rem'
-            }}>
-              <h2 className="font-mighty-souly" style={{ 
+            <div className="lp2-about-campaign-title-wrap" style={{ marginBottom: '3rem' }}>
+              <h2 id="lp2-about-campaign-heading" className="lp2-about-campaign-heading font-mighty-souly" style={{ 
                 fontSize: '3rem',
                 fontWeight: 'bold',
                 color: '#000',
@@ -840,61 +845,61 @@ export default function LPTeste2() {
                 flexWrap: 'wrap'
               }}>
                 <span>ORGANIZE UMA CAMPANHA<br />COM A SUA COMUNIDADE</span>
-                <div className="lp2-campaign-white-block font-chinese-rocks" style={{ fontSize: '2.5rem', marginTop: '2.5rem' }}>
+                <div className="lp2-campaign-white-block font-chinese-rocks lp2-about-campaign-4passos" style={{ fontSize: '2.5rem', marginTop: '2.5rem' }}>
                   <span>EM 4 PASSOS:</span>
                 </div>
               </h2>
             </div>
               
             {/* Lista de passos em coluna vertical */}
-            <div style={{ 
-            
+            <div className="lp2-about-campaign-steps-wrap" style={{ 
               flexDirection: 'column',
               gap: '2rem',
               maxWidth: '800px'
             }}>
-              {/* Passo 1: MOBILIZAR */}
-              <div className="lp2-campaign-step-item">
-                
-                  <div className="lp2-campaign-white-block font-chinese-rocks" style={{ fontSize: '2.5rem', marginTop: '2.5rem' }}>
-                  
-                  <span>1. MOBILIZAR</span>
+              {/* Passo 1: MOBILIZAR - uma linha: ícone | número+título | texto + faixa branca atrás */}
+              <div className="lp2-campaign-step-item lp2-campaign-step-item-oneline">
+                <div className="lp2-campaign-step-oneline-head">
+                  <img
+                    src={getImagePath('/img/passos_1.png')}
+                    alt="Passo 1"
+                    className="lp2-campaign-step-icon"
+                  />
+                  <div className="lp2-campaign-step-label font-chinese-rocks">
+                    <span>1. MOBILIZAR</span>
+                  </div>
                 </div>
-                
                 <p className="lp2-campaign-step-text">
                   pessoas e instituições da comunidade para fazer a campanha.
                 </p>
               </div>
 
-              {/* Passo 2: CRIAR */}
-              <div className="lp2-campaign-step-item">
-                
-
-                  <div className="lp2-campaign-step-title font-chinese-rocks">
-                  <img 
-                    src={getImagePath('/img/passos_2.png')} 
-                    alt="Passo 2" 
+              {/* Passo 2: CRIAR - mesma estilização: uma linha | ícone | título | texto + faixa branca */}
+              <div className="lp2-campaign-step-item lp2-campaign-step-item-oneline">
+                <div className="lp2-campaign-step-oneline-head">
+                  <img
+                    src={getImagePath('/img/passos_2.png')}
+                    alt="Passo 2"
                     className="lp2-campaign-step-icon"
                   />
+                  <div className="lp2-campaign-step-label font-chinese-rocks">
                     <span>2. CRIAR</span>
                   </div>
-                
+                </div>
                 <p className="lp2-campaign-step-text">
                   coletivamente o plano de ação da campanha da comunidade
                 </p>
               </div>
 
-              {/* Passo 3: REALIZAR */}
-              <div className="lp2-campaign-step-item">
-                <div className="">
-                  
-                  <div className="lp2-campaign-step-title font-chinese-rocks">
-                  <img 
-                    src={getImagePath('/img/passos_3.png')} 
-                    alt="Passo 3" 
-                    className="lp2-campaign-step-icon"
-                    style={{ width: '43px', height: '43px' }}
+              {/* Passo 3: REALIZAR - mesma estilização */}
+              <div className="lp2-campaign-step-item lp2-campaign-step-item-oneline">
+                <div className="lp2-campaign-step-oneline-head">
+                  <img
+                    src={getImagePath('/img/passos_3.png')}
+                    alt="Passo 3"
+                    className="lp2-campaign-step-icon lp2-campaign-step-icon-sm"
                   />
+                  <div className="lp2-campaign-step-label font-chinese-rocks">
                     <span>3. REALIZAR</span>
                   </div>
                 </div>
@@ -903,33 +908,93 @@ export default function LPTeste2() {
                 </p>
               </div>
 
-              {/* Passo 4: INSCREVER */}
-              <div className="lp2-campaign-step-item">
-                
-                  
-                  <div className="lp2-campaign-step-title font-chinese-rocks">
-                  <img 
-                    src={getImagePath('/img/passos_4.png')} 
-                    alt="Passo 4" 
-                    className="lp2-campaign-step-icon"
-                    style={{ width: '35px', height: '35px' }}
+              {/* Passo 4: INSCREVER - mesma estilização */}
+              <div className="lp2-campaign-step-item lp2-campaign-step-item-oneline">
+                <div className="lp2-campaign-step-oneline-head">
+                  <img
+                    src={getImagePath('/img/passos_4.png')}
+                    alt="Passo 4"
+                    className="lp2-campaign-step-icon lp2-campaign-step-icon-xs"
                   />
+                  <div className="lp2-campaign-step-label font-chinese-rocks">
                     <span>4. INSCREVER</span>
                   </div>
-                
+                </div>
                 <p className="lp2-campaign-step-text">
                   a campanha da comunidade no site da Campanha Nacional.
                 </p>
               </div>
             </div>
           </div>
+          
         </div>
+      </section>
+      {/* SEÇÃO: Eixos Temáticos — conteúdo à esquerda, imagem à direita */}
+      <section className="lp2-thematic-axes" aria-labelledby="lp2-thematic-axes-heading">
+        <div className="lp2-thematic-axes-wrapper">
+          <div className="lp2-thematic-axes-content">
+            <h2 id="lp2-thematic-axes-heading" className="lp2-thematic-axes-title font-mighty-souly">
+              EIXOS TEMÁTICOS
+            </h2>
+            <ul className="lp2-thematic-axes-list">
+              <li className="lp2-thematic-axes-item">
+                <span className="lp2-thematic-axes-num" aria-hidden="true">1</span>
+                <div className="lp2-thematic-axes-text">
+                  <span className="lp2-thematic-axes-label font-mighty-souly">Prevenção começa antes:</span>
+                  <span className="lp2-thematic-axes-desc">conhecer o risco para proteger a vida</span>
+                </div>
+              </li>
+              <li className="lp2-thematic-axes-item">
+                <span className="lp2-thematic-axes-num" aria-hidden="true">2</span>
+                <div className="lp2-thematic-axes-text">
+                  <span className="lp2-thematic-axes-label font-mighty-souly">Desastres não são naturais:</span>
+                  <span className="lp2-thematic-axes-desc">justiça climática e direito à vida</span>
+                </div>
+              </li>
+              <li className="lp2-thematic-axes-item">
+                <span className="lp2-thematic-axes-num" aria-hidden="true">3</span>
+                <div className="lp2-thematic-axes-text">
+                  <span className="lp2-thematic-axes-label font-mighty-souly">Comunidade no centro:</span>
+                  <span className="lp2-thematic-axes-desc">mobilização e ação coletiva</span>
+                </div>
+              </li>
+              <li className="lp2-thematic-axes-item">
+                <span className="lp2-thematic-axes-num" aria-hidden="true">4</span>
+                <div className="lp2-thematic-axes-text">
+                  <span className="lp2-thematic-axes-label font-mighty-souly">Educação que protege:</span>
+                  <span className="lp2-thematic-axes-desc">escolas e territórios seguros</span>
+                </div>
+              </li>
+              <li className="lp2-thematic-axes-item">
+                <span className="lp2-thematic-axes-num" aria-hidden="true">5</span>
+                <div className="lp2-thematic-axes-text">
+                  <span className="lp2-thematic-axes-label font-mighty-souly">Ciência e alerta:</span>
+                  <span className="lp2-thematic-axes-desc">monitoramento e prevenção</span>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div className="lp2-thematic-axes-image-wrap">
+            <img
+              src={getImagePath('/img/Pessoas_participe.png')}
+              alt="Pessoas participando da campanha"
+              className="lp2-thematic-axes-image"
+              loading="lazy"
+            />
+          </div>
+          
+        </div>
+        <div className="lp2-why-cta">
+            <div className="lp2-why-cta-white-block">
+              <p className="lp2-why-cta-text">VENHA FAZER PARTE <br className="lp2-why-cta-br" />DESSA CAMPANHA!</p>
+            </div>
+          </div>
       </section>
 
       {/* SEÇÃO: Por que participar da campanha */}
-      <section className="lp2-why-participate">
-        <div className="lp2-why-participate-content">
-          {/* Banner amarelo com estilo recortado */}
+      {/*<section className="lp2-why-participate">
+         <div className="lp2-why-participate-content">
+          {/* Banner amarelo com estilo recortado 
           <div className="lp2-why-banner-wrapper">
             <div className="lp2-why-yellow-banner">
               <h2 className="lp2-why-banner-text">
@@ -938,7 +1003,7 @@ export default function LPTeste2() {
             </div>
           </div>
 
-          {/* Lista elaborada de benefícios */}
+          {/* Lista elaborada de benefícios 
           <div className="lp2-why-benefits-list">
             <div className="lp2-why-benefit-item">
               <div className="lp2-why-benefit-arrow">
@@ -996,17 +1061,17 @@ export default function LPTeste2() {
               </div>
               <div className="lp2-why-benefit-content">
                 <strong className="lp2-why-benefit-label">Premiação e Reconhecimento:</strong>
-                <span className="lp2-why-benefit-text lp2-why-benefit-text-break">Concorrer a prêmios educativos e serem reconhecidos pela Campanha realizada com a comunidade!</span>
+                <span className="lp2-why-benefit-text lp2-why-benefit-text-break">Concorrer a prêmios educativos e ser reconhecido pela Campanha realizada com a comunidade!</span>
               </div>
             </div>
           </div>
           
-          {/* Call to Action */}
-          <div className="lp2-why-cta">
-            <p className="lp2-why-cta-text">VENHA FAZER PARTE DESSA CAMPANHA!</p>
-          </div>
+          {/* Call to Action 
+          
         </div>
-      </section>
+        
+        
+      </section>*/}
 
       {/* SEÇÃO: Reconhecimento e incentivos */}
       {/* <section className="lp2-recognition" ref={recognitionSectionRef}>

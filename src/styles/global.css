@@ -1,5 +1,5 @@
 @font-face{font-family:'Chinese Rocks';src:url('./fonts/chinese-rocks-regular.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap}
-:root{--bg:#f8f9ff;--primary:#5a63ff;--accent:#00c2a8;--pink:#ff6ec7;--yellow:#9466ff;--purple:#8b5cf6;--text:#1f2937;--brand-black:#000000;--brand-green:#00DD0D;--brand-yellow:#FFD000;--brand-blue:#1F6BFF;--brand-red:#FF0000;--brand-gray:#3C3C3C}
+:root{--bg:#f8f9ff;--primary:#5a63ff;--accent:#00c2a8;--pink:#ff6ec7;--yellow:#9466ff;--purple:#8b5cf6;--text:#000000;--brand-black:#000000;--brand-green:#00DD0D;--brand-yellow:#FFD000;--brand-blue:#1F6BFF;--brand-red:#FF0000;--brand-gray:#3C3C3C}
 *{box-sizing:border-box}
 html,body,#root{height:100%}
 body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,'Helvetica Neue',Arial,'Noto Sans',sans-serif}
