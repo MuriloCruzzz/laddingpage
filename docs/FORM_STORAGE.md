@@ -17,12 +17,23 @@ O formulário da campanha envia os dados (Nome Completo, e-mail, estado, municí
 
 Não é necessário configurar nada no código: a API usa `process.env.BLOB_READ_WRITE_TOKEN` automaticamente quando o projeto está ligado ao Blob.
 
+## Domínio privado (proxy nginx)
+
+Se o site é acessado por um domínio privado (ex.: `https://educacao.cemaden.gov.br/campanhacidadeslp/`) e o nginx redireciona ou faz proxy para a Vercel, o navegador continua no domínio privado. Nesse caso `fetch('/api/submit-form')` iria para `https://educacao.cemaden.gov.br/api/submit-form`, que não é a API na Vercel.
+
+Para forçar a API a bater sempre na Vercel, use **`VITE_API_BASE`** no build de produção:
+
+- **`.env.production`** (já configurado neste projeto): `VITE_API_BASE=https://laddingpage-ten.vercel.app`  
+  Assim, em produção o formulário sempre envia para `https://laddingpage-ten.vercel.app/api/submit-form`, independente do domínio em que o usuário abriu a página.
+
+Se o projeto Vercel tiver outro URL, altere em `.env.production` e faça um novo deploy.
+
 ## Desenvolvimento local
 
-- **Produção (deploy na Vercel):** o front e a API rodam no mesmo domínio; `fetch('/api/submit-form')` funciona.
+- **Produção (deploy na Vercel):** com `.env.production`, a API é sempre a URL da Vercel; funciona tanto acessando pelo domínio privado quanto pelo domínio da Vercel.
 - **Local com Vite (`npm run dev`):** não existe `/api` no servidor do Vite. Opções:
   - Usar **`vercel dev`** (recomendado): sobe o app e as serverless functions; `/api/submit-form` funciona em `http://localhost:3000`.
-  - Ou definir **`VITE_API_BASE`** no `.env` apontando para a URL do deploy (ex.: `https://seu-projeto.vercel.app`) para o formulário enviar para a API em produção.
+  - Ou definir **`VITE_API_BASE`** no `.env` apontando para a URL do deploy (ex.: `https://laddingpage-ten.vercel.app`) para o formulário enviar para a API em produção.
 
 ## Formato dos dados armazenados
 
