@@ -33,12 +33,23 @@ export default async function handler(req, res) {
       });
     }
 
+    const now = new Date();
+    const submittedAt = [
+      now.getFullYear(),
+      String(now.getMonth() + 1).padStart(2, '0'),
+      String(now.getDate()).padStart(2, '0'),
+    ].join('-') + ' ' + [
+      String(now.getHours()).padStart(2, '0'),
+      String(now.getMinutes()).padStart(2, '0'),
+      String(now.getSeconds()).padStart(2, '0'),
+    ].join(':');
+
     const payload = {
       nomeCompleto,
       email,
       estado,
       municipio,
-      submittedAt: new Date().toISOString(),
+      submittedAt,
     };
 
     let inscricoes = [];

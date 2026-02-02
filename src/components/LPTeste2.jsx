@@ -1021,22 +1021,22 @@ export default function LPTeste2() {
               <li className="lp2-thematic-axes-item">
                 <span className="lp2-thematic-axes-num" aria-hidden="true">3</span>
                 <div className="lp2-thematic-axes-text">
-                  <span className="lp2-thematic-axes-label font-mighty-souly">Comunidade no centro:</span>
-                  <span className="lp2-thematic-axes-desc">mobilização e ação coletiva</span>
+                  <span className="lp2-thematic-axes-label font-mighty-souly">Quando à agua invade:</span>
+                  <span className="lp2-thematic-axes-desc">inundações, alagamentos e o cotidiano do risco</span>
                 </div>
               </li>
               <li className="lp2-thematic-axes-item">
                 <span className="lp2-thematic-axes-num" aria-hidden="true">4</span>
                 <div className="lp2-thematic-axes-text">
-                  <span className="lp2-thematic-axes-label font-git mighty-souly">Educação que protege:</span>
-                  <span className="lp2-thematic-axes-desc">escolas e territórios seguros</span>
+                  <span className="lp2-thematic-axes-label font-git mighty-souly">Morar no morro:</span>
+                  <span className="lp2-thematic-axes-desc">deslizamentos, chuvas intensas e proteção do território</span>
                 </div>
               </li>
               <li className="lp2-thematic-axes-item">
                 <span className="lp2-thematic-axes-num" aria-hidden="true">5</span>
                 <div className="lp2-thematic-axes-text">
-                  <span className="lp2-thematic-axes-label font-mighty-souly">Ciência e alerta:</span>
-                  <span className="lp2-thematic-axes-desc">monitoramento e prevenção</span>
+                  <span className="lp2-thematic-axes-label font-mighty-souly">Calor extremo e seca:</span>
+                  <span className="lp2-thematic-axes-desc">quando o clima afeta o corpo e a cidade</span>
                 </div>
               </li>
             </ul>
