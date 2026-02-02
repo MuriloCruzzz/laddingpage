@@ -21,6 +21,9 @@ const getImagePath = (path) => {
   return `${baseUrl}${cleanPath}`
 }
 
+const CAMPANHA_HOME_URL = 'https://educacao.cemaden.gov.br/campanhacidades/'
+const COUNTDOWN_SECONDS = 8
+
 // Lista de estados brasileiros
 const estadosBrasileiros = [
   { value: '', label: 'Selecione o Estado' },
@@ -65,6 +68,8 @@ export default function LPTeste2() {
   const [alertMessage, setAlertMessage] = useState('')
   const [showSidebar, setShowSidebar] = useState(false)
   const [submitting, setSubmitting] = useState(false)
+  const [submitted, setSubmitted] = useState(false)
+  const [countdown, setCountdown] = useState(COUNTDOWN_SECONDS)
   const statsSectionRef = useRef(null)
   const videoContainerRef = useRef(null)
   const recognitionSectionRef = useRef(null)
@@ -400,6 +405,22 @@ export default function LPTeste2() {
     }
   }, [form.cidadeEstado])
 
+  // Contador e redirecionamento após envio do formulário (8, 7, 6... 1 depois redireciona)
+  useEffect(() => {
+    if (!submitted) return
+    const t = setInterval(() => {
+      setCountdown((c) => {
+        if (c <= 1) {
+          clearInterval(t)
+          window.location.href = CAMPANHA_HOME_URL
+          return 0
+        }
+        return c - 1
+      })
+    }, 1000)
+    return () => clearInterval(t)
+  }, [submitted])
+
   async function handleSubmit(e) {
     e.preventDefault()
     
@@ -464,7 +485,8 @@ export default function LPTeste2() {
       try {
         localStorage.setItem('passou_lp', 'sim')
       } catch (_) {}
-      setShowSidebar(true)
+      setSubmitted(true)
+      setCountdown(COUNTDOWN_SECONDS)
     } catch (err) {
       setAlertMessage('Erro de conexão. Verifique sua internet e tente novamente.')
       setShowAlert(true)
@@ -510,9 +532,24 @@ export default function LPTeste2() {
           </div>
         </div>
 
-        {/* Lado direito: bloco amarelo com formulário */}
+        {/* Lado direito: bloco amarelo com formulário ou card de agradecimento */}
         <div className="lp2-hero-right">
           <div className="lp2-form-card">
+            {submitted ? (
+              <>
+                <div className="lp2-thank-you-card">
+                  <img src={getImagePath('/img/logo.png')} alt="Cidades sem Risco" className="lp2-thank-you-logo" />
+                  <p className="lp2-thank-you-text">
+                    Obrigado pelo interesse em nossa Campanha, dentro de alguns dias você receberá um email com mais informações.
+                  </p>
+                </div>
+                <div className="lp2-countdown-wrap">
+                  <p className="lp2-countdown-text">Redirecionando para Home da campanha em {countdown} segundo{countdown !== 1 ? 's' : ''}...</p>
+                  <p className="lp2-countdown-number" aria-live="polite">{countdown}</p>
+                </div>
+              </>
+            ) : (
+            <>
             <h2 className="lp2-form-title">Participe dessa campanha</h2>
             <form className="lp2-form" onSubmit={handleSubmit}>
               <div className="lp2-input">
@@ -607,6 +644,8 @@ export default function LPTeste2() {
                 </button>
               </div>
             </form>
+            </>
+            )}
           </div>
 
         </div>
@@ -1179,9 +1218,24 @@ export default function LPTeste2() {
           </div>
         </div>
 
-        {/* Lado direito: bloco amarelo com formulário */}
+        {/* Lado direito: bloco amarelo com formulário ou card de agradecimento */}
         <div className="lp2-hero-right">
           <div className="lp2-form-card">
+            {submitted ? (
+              <>
+                <div className="lp2-thank-you-card">
+                  <img src={getImagePath('/img/logo.png')} alt="Cidades sem Risco" className="lp2-thank-you-logo" />
+                  <p className="lp2-thank-you-text">
+                    Obrigado pelo interesse em nossa Campanha, dentro de alguns dias você receberá um email com mais informações.
+                  </p>
+                </div>
+                <div className="lp2-countdown-wrap">
+                  <p className="lp2-countdown-text">Redirecionando para Home da campanha em {countdown} segundo{countdown !== 1 ? 's' : ''}...</p>
+                  <p className="lp2-countdown-number" aria-live="polite">{countdown}</p>
+                </div>
+              </>
+            ) : (
+            <>
             <h2 className="lp2-form-title">Participe dessa Campanha</h2>
             <form className="lp2-form" onSubmit={handleSubmit}>
               <div className="lp2-input">
@@ -1276,7 +1330,8 @@ export default function LPTeste2() {
                 </button>
               </div>
             </form>
-            
+            </>
+            )}
           </div>
           
         </div>
@@ -1295,8 +1350,8 @@ export default function LPTeste2() {
         </div>
       )}
 
-      {/* Sidebar lateral (Pop-up fixo à direita) */}
-      {showSidebar && (
+      {/* Sidebar lateral (Pop-up fixo à direita) - comentado: fluxo agora mostra card de agradecimento no lugar do formulário */}
+      {/* {showSidebar && (
         <div className="lp2-sidebar-overlay">
           <div className="lp2-sidebar-content">
             <div className="lp2-sidebar-logo">
@@ -1317,7 +1372,7 @@ export default function LPTeste2() {
             </div>
           </div>
         </div>
-      )}
+      )} */}
     </div>
   )
 }
