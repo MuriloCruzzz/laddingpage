@@ -692,39 +692,26 @@
   .lp2-thematic-axes-desc {
     font-size: 1rem;
   }
+  /* Remove a imagem Pessoas_participe.png em telas menores */
   .lp2-thematic-axes-image-wrap {
-    max-width: 50%;
+    display: none !important;
   }
   .lp2-thematic-axes-image {
-    max-width: 240px;
-    max-height: 200px;
+    display: none !important;
   }
 }
 
 @media (max-width: 640px) {
-  .lp2-thematic-axes-image-wrap {
-    max-width: 48%;
-  }
-  .lp2-thematic-axes-image {
-    max-width: 220px;
-    max-height: 190px;
-  }
+  /* imagem já oculta em 768px */
 }
 
 @media (max-width: 480px) {
-  .lp2-thematic-axes-image-wrap {
-    max-width: 46%;
-  }
-  .lp2-thematic-axes-image {
-    max-width: 200px;
-    max-height: 170px;
-  }
+  /* imagem já oculta em 768px */
 }
 
 @media (max-width: 360px) {
   .lp2-thematic-axes-image-wrap {
-    max-width: 44%;
-    margin-bottom: 0px;
+    display: none !important;
     bottom: 0;
   }
   .lp2-thematic-axes-image {
@@ -2055,6 +2042,10 @@
   .lp2-why-cta-text {
     font-size: 1.4rem;
     letter-spacing: 1.5px;
+    margin-right: 0;
+    margin-left: auto;
+    max-width: 100%;
+    text-align: center;
   }
   .lp2-why-cta-br {
     display: block;
@@ -2081,6 +2072,14 @@
   
   .lp2-why-banner-text {
     font-size: 0.9rem;
+  }
+  
+  .lp2-why-cta-text {
+    margin-right: 0;
+    margin-left: auto;
+    max-width: 100%;
+    text-align: center;
+    font-size: 1.2rem;
   }
   
   .lp2-why-list {

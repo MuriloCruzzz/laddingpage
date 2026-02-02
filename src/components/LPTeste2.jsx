@@ -461,6 +461,9 @@ export default function LPTeste2() {
         return
       }
       trackCompleteRegistration(form)
+      try {
+        localStorage.setItem('passou_lp', 'sim')
+      } catch (_) {}
       setShowSidebar(true)
     } catch (err) {
       setAlertMessage('Erro de conexão. Verifique sua internet e tente novamente.')
@@ -986,7 +989,7 @@ export default function LPTeste2() {
               <li className="lp2-thematic-axes-item">
                 <span className="lp2-thematic-axes-num" aria-hidden="true">4</span>
                 <div className="lp2-thematic-axes-text">
-                  <span className="lp2-thematic-axes-label font-mighty-souly">Educação que protege:</span>
+                  <span className="lp2-thematic-axes-label font-git mighty-souly">Educação que protege:</span>
                   <span className="lp2-thematic-axes-desc">escolas e territórios seguros</span>
                 </div>
               </li>
