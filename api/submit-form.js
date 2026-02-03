@@ -24,17 +24,22 @@ export default async function handler(req, res) {
   }
 
   try {
+    console.log('[submit-form] POST received');
     const body = typeof req.body === 'string' ? JSON.parse(req.body) : req.body || {};
     const nomeCompleto = (body.nomeCompleto || '').trim();
     const email = (body.email || '').trim();
     const estado = (body.estado || '').trim();
     const municipio = (body.municipio || '').trim();
 
+    console.log('[submit-form] body:', { nomeCompleto, email: email ? `${email.slice(0, 3)}***@***` : '', estado, municipio });
+
     if (!nomeCompleto || !email || !estado || !municipio) {
+      console.log('[submit-form] validation failed: missing fields');
       return res.status(400).json({
         error: 'Campos obrigatórios: nomeCompleto, email, estado, municipio',
       });
     }
+    console.log('[submit-form] validation ok');
 
     const now = new Date();
     const submittedAt = [
@@ -77,10 +82,12 @@ export default async function handler(req, res) {
       allowOverwrite: true,
       contentType: 'application/json',
     });
+    console.log('[submit-form] Blob saved, total inscricoes:', inscricoes.length);
 
     // Mailchimp: apenas dados do formulário (campos do público: FNAME, LNAME, MERGE7, MERGE8)
     const apiKey = process.env.MAILCHIMP_API_KEY;
     const listId = process.env.MAILCHIMP_LIST_ID;
+    console.log('[submit-form] Mailchimp env: apiKey present=', !!apiKey, ', listId=', listId || '(empty)');
     if (apiKey && listId) {
       const [fname = '', ...rest] = nomeCompleto.split(/\s+/);
       const lname = rest.join(' ').trim();
@@ -95,28 +102,32 @@ export default async function handler(req, res) {
           MERGE8: estado,
         },
       };
+      const mailchimpUrl = `${MAILCHIMP_API_BASE}/lists/${listId}/members/${subscriberHash}`;
+      console.log('[submit-form] Mailchimp PUT:', mailchimpUrl);
       const auth = Buffer.from(`apikey:${apiKey}`).toString('base64');
-      const mailchimpRes = await fetch(
-        `${MAILCHIMP_API_BASE}/lists/${listId}/members/${subscriberHash}`,
-        {
-          method: 'PUT',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Basic ${auth}`,
-          },
-          body: JSON.stringify(mailchimpBody),
-        }
-      );
-      if (!mailchimpRes.ok) {
-        const errBody = await mailchimpRes.text();
-        console.error('Mailchimp error:', mailchimpRes.status, errBody);
+      const mailchimpRes = await fetch(mailchimpUrl, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Basic ${auth}`,
+        },
+        body: JSON.stringify(mailchimpBody),
+      });
+      const errBody = await mailchimpRes.text();
+      if (mailchimpRes.ok) {
+        console.log('[submit-form] Mailchimp ok', mailchimpRes.status, errBody.slice(0, 200));
+      } else {
+        console.error('[submit-form] Mailchimp error:', mailchimpRes.status, errBody);
       }
       // Não falha a resposta ao usuário: inscrição já foi salva no Blob
+    } else {
+      console.log('[submit-form] Mailchimp skipped (missing MAILCHIMP_API_KEY or MAILCHIMP_LIST_ID)');
     }
 
+    console.log('[submit-form] done, returning 200');
     return res.status(200).json({ ok: true });
   } catch (err) {
-    console.error('submit-form error:', err);
+    console.error('[submit-form] error:', err.message, err.stack);
     return res.status(500).json({
       error: 'Falha ao salvar inscrição. Tente novamente.',
     });
