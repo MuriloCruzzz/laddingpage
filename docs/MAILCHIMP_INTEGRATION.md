@@ -36,14 +36,14 @@ Para este projeto, o **datacenter** da sua API Key é **`us22`** (sufixo da chav
 |------|------------|-----|
 | **API Key** | Mailchimp: Perfil → Extras → Chaves de API (ou [API Keys](https://us22.admin.mailchimp.com/account/api/)) | Autenticar chamadas à API. **Use só em variável de ambiente (ex.: Vercel), nunca no código.** |
 | **Server prefix (datacenter)** | Sufixo da API Key (no seu caso: **`us22`**) | Base URL: `https://us22.api.mailchimp.com/3.0`. |
-| **Audience (List) ID** | Mailchimp: Audiência → Configurações → Chaves e códigos → ID da audiência. **Neste projeto:** `d74ca22b8f`. | Identificar em qual lista incluir o contato. |
+| **Audience (List) ID** | Mailchimp: Audiência → Configurações → Chaves e códigos → ID da audiência. **Neste projeto:** `b400aad84f`. | Identificar em qual lista incluir o contato. |
 
 Nenhuma alteração no código é necessária para “ter” isso — só para **usar** esses valores (por exemplo em variáveis de ambiente).
 
 ### 2.3 Variáveis de ambiente (recomendado)
 
 - **`MAILCHIMP_API_KEY`** — Sua API Key completa (formato: `xxxxxxxx-us22`). Configure na Vercel em **Settings → Environment Variables**; não commite no repositório.
-- **`MAILCHIMP_LIST_ID`** ou **`MAILCHIMP_AUDIENCE_ID`** — ID da audiência onde os inscritos serão adicionados. **Neste projeto:** `d74ca22b8f`.
+- **`MAILCHIMP_LIST_ID`** ou **`MAILCHIMP_AUDIENCE_ID`** — ID da audiência onde os inscritos serão adicionados. **Neste projeto:** `b400aad84f`.
 
 Configurar no projeto na Vercel: **Project → Settings → Environment Variables**. Não coloque a API Key no código.
 
@@ -93,7 +93,7 @@ Ou seja: **um único POST** do formulário; a API continua salvando em JSON e **
 2. **Settings → Environment Variables**.
 3. Crie:
    - **`MAILCHIMP_API_KEY`** = sua API Key completa (formato `xxxxxxxx-us22`).
-   - **`MAILCHIMP_LIST_ID`** = ID da audiência (neste projeto: `d74ca22b8f`).
+   - **`MAILCHIMP_LIST_ID`** = ID da audiência (neste projeto: `b400aad84f`).
 
 Use o mesmo ambiente (Production/Preview) em que a API `submit-form` roda.
 
@@ -129,7 +129,7 @@ Na função `api/submit-form.js`, **depois** de gravar no Blob com sucesso (para
 1. Ler `process.env.MAILCHIMP_API_KEY` e `process.env.MAILCHIMP_LIST_ID`.
 2. Montar o corpo do POST para a API do Mailchimp (endpoint de “add or update list member”).
    - Documentação: [Mailchimp API – Add or update list member](https://mailchimp.com/developer/marketing/api/list-members/add-or-update-list-member/).
-   - URL: `POST https://us22.api.mailchimp.com/3.0/lists/d74ca22b8f/members`
+   - URL: `POST https://us22.api.mailchimp.com/3.0/lists/b400aad84f/members`
    - Body (exemplo em inglês, você pode manter os nomes dos campos):
      - `email_address`
      - `status: "subscribed"` (ou `"pending"` se quiser double opt-in)
@@ -157,8 +157,8 @@ Depois que a API adicionar o contato na audiência (quando você implementar o P
 1. No Mailchimp: **Audiência** (menu principal).
 2. Se ainda não tiver uma audiência para a campanha: **Criar audiência** → preencha nome, e-mail do remetente etc. → salvar.
 3. Abra a audiência → **Configurações** (engrenagem) → **Chaves e códigos**.
-4. Copie o **ID da audiência** (List ID). **Neste projeto:** `2659c1c46d`.
-5. Na **Vercel**: **Settings → Environment Variables** → crie **`MAILCHIMP_LIST_ID`** = `2659c1c46d`. Assim a API sabe em qual lista incluir o contato.
+4. Copie o **ID da audiência** (List ID). **Neste projeto:** `b400aad84f`.
+5. Na **Vercel**: **Settings → Environment Variables** → crie **`MAILCHIMP_LIST_ID`** = `b400aad84f`. Assim a API sabe em qual lista incluir o contato.
 
 ### 2. (Opcional) Campos da audiência para personalizar o e-mail
 
@@ -218,7 +218,7 @@ Se a API ainda não estiver adicionando o contato ao Mailchimp, o próximo passo
 ## 5. Checklist rápido
 
 - [ ] Conta Mailchimp ativa.
-- [ ] Audiência criada; ID da audiência anotado (neste projeto: `d74ca22b8f`).
+- [ ] Audiência criada; ID da audiência anotado (neste projeto: `b400aad84f`).
 - [ ] API Key criada; datacenter **us22** (sufixo da key).
 - [ ] Variáveis `MAILCHIMP_API_KEY` e `MAILCHIMP_LIST_ID` configuradas na Vercel.
 - [ ] Merge fields na audiência (FNAME, ESTADO, MUNICIPIO ou os que quiser).
