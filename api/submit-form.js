@@ -2,7 +2,7 @@ import { put, list } from '@vercel/blob';
 import { createHash } from 'crypto';
 
 const INSCRICOES_PATH = 'campanha-inscricoes/inscricoes.json';
-const MAILCHIMP_DC = 'us20';
+const MAILCHIMP_DC = 'us22';
 const MAILCHIMP_API_BASE = `https://${MAILCHIMP_DC}.api.mailchimp.com/3.0`;
 
 /**
@@ -100,8 +100,8 @@ export default async function handler(req, res) {
         merge_fields: {
           FNAME: fname || nomeCompleto,
           LNAME: lname,
-          MMERGE7: municipio,
-          MMERGE8: estado,
+          MMERGE5: municipio,
+          MMERGE6: estado,
           ADDRESS: {
             addr1,
             addr2: '',
