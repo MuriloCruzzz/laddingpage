@@ -891,14 +891,14 @@ export default function LPTeste2() {
           width: '100%'
         }}>
           <div className="lp2-about-campaign-inner" style={{ 
-            maxWidth: '1200px',
+            maxWidth: '1300px',
             margin: '0 auto',
             padding: '0 2rem'
           }}>
             {/* Título à esquerda */}
             <div className="lp2-about-campaign-title-wrap" style={{ marginBottom: '3rem' }}>
               <h2 id="lp2-about-campaign-heading" className="lp2-about-campaign-heading font-mighty-souly" style={{ 
-                fontSize: '3rem',
+                fontSize: '2rem',
                 fontWeight: 'bold',
                 color: '#000',
                 textTransform: 'uppercase',
@@ -909,12 +909,11 @@ export default function LPTeste2() {
                 display: 'flex',
                 alignItems: 'center',
                 gap: '1.5rem',
+                marginLeft: '180px',
                 flexWrap: 'wrap'
               }}>
-                <span>ORGANIZE UMA CAMPANHA<br />COM A SUA COMUNIDADE</span>
-                <div className="lp2-campaign-white-block font-chinese-rocks lp2-about-campaign-4passos" style={{ fontSize: '2.5rem', marginTop: '2.5rem' }}>
-                  <span>EM 4 PASSOS:</span>
-                </div>
+                <span>ORGANIZE UMA CAMPANHA COM A SUA COMUNIDADE EM 4 PASSOS:</span>
+                
               </h2>
             </div>
               
@@ -937,7 +936,7 @@ export default function LPTeste2() {
                   </div>
                 </div>
                 <p className="lp2-campaign-step-text">
-                  pessoas e instituições da comunidade para fazer a campanha.
+                Convide pessoas da comunidade e instituições para conversar sobre a Campanha
                 </p>
               </div>
 
@@ -954,7 +953,7 @@ export default function LPTeste2() {
                   </div>
                 </div>
                 <p className="lp2-campaign-step-text">
-                  coletivamente o plano de ação da campanha da comunidade
+                Elabore coletivamente o plano de ação da campanha da sua comunidade
                 </p>
               </div>
 
@@ -971,7 +970,7 @@ export default function LPTeste2() {
                   </div>
                 </div>
                 <p className="lp2-campaign-step-text">
-                  atividades de mobilização e comunicação da campanha da comunidade
+                Ponha em prática as atividades de mobilização e comunicação da campanha da sua comunidade
                 </p>
               </div>
 
@@ -988,7 +987,7 @@ export default function LPTeste2() {
                   </div>
                 </div>
                 <p className="lp2-campaign-step-text">
-                  a campanha da comunidade no site da Campanha Nacional.
+                Inscreva a campanha da sua comunidade no site da Campanha Nacional
                 </p>
               </div>
             </div>

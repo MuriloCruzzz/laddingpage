@@ -925,7 +925,22 @@
   }
 }
 
-/* ≤360px: oculta imagem para priorizar texto */
+/* ≤768px: oculta imagem das pessoas e centraliza o CTA "VENHA FAZER PARTE..." */
+@media (max-width: 768px) {
+  .lp2-thematic-axes-image-wrap {
+    display: none !important;
+  }
+  .lp2-thematic-axes-image {
+    display: none !important;
+  }
+  .lp2-why-cta-text {
+    margin-left: auto !important;
+    margin-right: auto !important;
+    text-align: center;
+  }
+}
+
+/* ≤360px: imagem já oculta em 768px */
 @media (max-width: 360px) {
   .lp2-thematic-axes-image-wrap {
     display: none !important;
@@ -1123,11 +1138,10 @@
 .lp2-campaign-step-item-oneline {
   flex-direction: row;
   align-items: center;
-  gap: 1rem;
   flex-wrap: nowrap;
 }
 
-/* Wrapper ícone + título: largura fixa (bloco maior como referência) para alinhar faixas e textos */
+/* Wrapper ícone + título: largura fixa para deixar mais espaço à direita ao texto */
 .lp2-campaign-step-oneline-head {
   position: relative;
   display: flex;
@@ -1136,8 +1150,8 @@
   gap: 1rem;
   flex-shrink: 0;
   isolation: isolate;
-  width: 260px;
-  min-width: 260px;
+  width: 220px;
+  min-width: 220px;
   box-sizing: border-box;
 }
 
@@ -1167,10 +1181,14 @@
 }
 
 .lp2-campaign-step-item-oneline .lp2-campaign-step-text {
-  flex: 1;
+  flex: 1 1 auto;
   margin: 0;
-  min-width: 0;
-  padding-left: 0;
+  min-width: 420px;
+  padding-left: 20px;
+  max-width: 100%;
+  white-space: nowrap;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .lp2-campaign-step-icon {
@@ -1197,10 +1215,76 @@
 }
 
 .lp2-campaign-step-text {
-  font-size: 1.4rem;
+  font-size: 1.6rem;
   margin: 0;
   line-height: 1.5;
-  padding-left: 35px;
+  padding-left: 55px;
+  min-width: 280px;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+/* ========== Campaign step text — quebra conforme a tela diminui ========== */
+@media (max-width: 1200px) {
+  .lp2-campaign-step-item-oneline .lp2-campaign-step-text {
+    white-space: normal;
+    min-width: 360px;
+  }
+  .lp2-campaign-step-text {
+    min-width: 260px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .lp2-campaign-step-item-oneline .lp2-campaign-step-text {
+    min-width: 300px;
+    padding-left: 16px;
+  }
+  .lp2-campaign-step-oneline-head {
+    width: 200px;
+    min-width: 200px;
+  }
+  .lp2-campaign-step-text {
+    min-width: 220px;
+    padding-left: 40px;
+  }
+}
+
+@media (max-width: 900px) {
+  .lp2-campaign-step-item-oneline .lp2-campaign-step-text {
+    white-space: normal;
+    min-width: 240px;
+    padding-left: 12px;
+  }
+  .lp2-campaign-step-oneline-head {
+    width: 180px;
+    min-width: 180px;
+  }
+  .lp2-campaign-step-text {
+    min-width: 180px;
+    padding-left: 28px;
+    font-size: 1.45rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .lp2-campaign-step-item-oneline .lp2-campaign-step-text {
+    white-space: normal;
+    min-width: 0;
+    padding-left: 0;
+  }
+  .lp2-campaign-step-text {
+    min-width: 0;
+    padding-left: 20px;
+    font-size: 1.35rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .lp2-campaign-step-text {
+    padding-left: 12px;
+    font-size: 1.2rem;
+  }
 }
 
 /* =========================================
@@ -1212,33 +1296,42 @@
   }
   .lp2-about-campaign-inner {
     padding: 0 1rem !important;
+    text-align: center;
+    margin-left: 0px;
   }
   .lp2-about-campaign-title-wrap {
     margin-bottom: 1.5rem !important;
+    text-align: center;
   }
   .lp2-about-campaign-heading {
-    font-size: 1.75rem !important;
-    gap: 1rem !important;
-    line-height: 1.1 !important;
+    font-size: 1.5rem !important;
+    gap: 0.75rem !important;
+    line-height: 1.15 !important;
+    text-align: center !important;
+    margin-left: 0 !important;
   }
   .lp2-about-campaign-4passos {
-    font-size: 2.2rem !important;
-    margin-top: 1rem !important;
+    font-size: 1.75rem !important;
+    margin-top: 0.75rem !important;
   }
   .lp2-about-campaign-steps-wrap {
     gap: 1.25rem !important;
     max-width: 100% !important;
+    align-items: center;
   }
   .lp2-about-campaign .lp2-campaign-step-item-oneline {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     gap: 0.5rem;
     margin-bottom: 1.25rem;
+    text-align: center;
   }
   .lp2-about-campaign .lp2-campaign-step-oneline-head {
     width: 100%;
     max-width: 280px;
     min-width: 0;
+    margin: 0 auto;
+    justify-content: center;
   }
   .lp2-about-campaign .lp2-campaign-step-oneline-head::before {
     left: -8px;
@@ -1246,11 +1339,14 @@
     height: 26px;
   }
   .lp2-about-campaign .lp2-campaign-step-label {
-    font-size: 1.35rem;
+    font-size: 1.2rem;
   }
   .lp2-about-campaign .lp2-campaign-step-text {
-    font-size: 1.15rem;
+    font-size: 1.2rem;
     padding-left: 0;
+    min-width: 0;
+    white-space: normal;
+    text-align: center;
   }
   .lp2-about-campaign .lp2-campaign-step-icon {
     width: 40px;
@@ -1274,6 +1370,27 @@
   }
   .lp2-about-campaign .lp2-why-cta-br {
     display: block;
+  }
+}
+
+/* Mobile estreito (ex.: iPhone 393px): fontes ainda menores, tudo centralizado */
+@media (max-width: 480px) {
+  .lp2-about-campaign-heading {
+    font-size: 1.25rem !important;
+    gap: 0.5rem !important;
+  }
+  .lp2-about-campaign-4passos {
+    font-size: 1.45rem !important;
+    margin-top: 0.5rem !important;
+  }
+  .lp2-about-campaign .lp2-campaign-step-label {
+    font-size: 1.05rem;
+  }
+  .lp2-about-campaign .lp2-campaign-step-text {
+    font-size: 1.05rem;
+  }
+  .lp2-about-campaign .lp2-campaign-step-oneline-head {
+    max-width: 260px;
   }
 }
 
@@ -2258,8 +2375,8 @@
   .lp2-why-cta-text {
     font-size: calc(1.4rem + 10px);
     letter-spacing: 1.5px;
-    margin-right: 0;
-    margin-left: 0;
+    margin-left: auto;
+    margin-right: auto;
     max-width: 100%;
     text-align: center;
   }
@@ -2295,8 +2412,8 @@
   }
   
   .lp2-why-cta-text {
-    margin-right: 0;
-    margin-left: 0;
+    margin-left: auto;
+    margin-right: auto;
     max-width: 100%;
     text-align: center;
     font-size: calc(1.2rem + 10px);
@@ -2323,7 +2440,7 @@
   }
 }
 
-/* Escala 430x932: quebrar texto do CTA, imagem 50px menor, texto 50px à esquerda */
+/* Escala 430x932: texto centralizado, quebra permitida */
 @media (max-width: 432px) {
   .lp2-why-cta-text {
     font-size: calc(1.05rem + 10px);
@@ -2331,7 +2448,9 @@
     word-wrap: break-word;
     white-space: normal;
     max-width: 100%;
-    transform: translateX(-50px);
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
   }
   .lp2-why-cta-br {
     display: block;
