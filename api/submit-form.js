@@ -100,8 +100,8 @@ export default async function handler(req, res) {
         merge_fields: {
           FNAME: fname || nomeCompleto,
           LNAME: lname,
-          MERGE7: municipio,
-          MERGE8: estado,
+          MMERGE7: municipio,
+          MMERGE8: estado,
           ADDRESS: {
             addr1,
             addr2: '',
