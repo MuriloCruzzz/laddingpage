@@ -92,7 +92,8 @@ export default async function handler(req, res) {
       const [fname = '', ...rest] = nomeCompleto.split(/\s+/);
       const lname = rest.join(' ').trim();
       const subscriberHash = createHash('md5').update(email.toLowerCase()).digest('hex');
-      // ADDRESS é obrigatório no público; enviamos mínimo para o Mailchimp aceitar (formulário não coleta endereço)
+      // ADDRESS é obrigatório no público; enviamos endereço completo com dados do formulário (formulário não coleta endereço)
+      const addr1 = [municipio, estado].filter(Boolean).join(', ') || 'Não informado';
       const mailchimpBody = {
         email_address: email,
         status: 'subscribed',
@@ -102,11 +103,12 @@ export default async function handler(req, res) {
           MERGE7: municipio,
           MERGE8: estado,
           ADDRESS: {
-            addr1: municipio ? `${municipio}, ${estado}` : 'Não informado',
-            city: municipio || '',
-            state: estado || '',
-            zip: '',
-            country: 'BR',
+            addr1,
+            addr2: '',
+            city: municipio || 'Não informado',
+            state: estado || 'Não informado',
+            zip: '00000-000',
+            country: 'Brazil',
           },
         },
       };
