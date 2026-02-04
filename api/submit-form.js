@@ -9,7 +9,22 @@ const MAILCHIMP_API_BASE = `https://${MAILCHIMP_DC}.api.mailchimp.com/3.0`;
  * API serverless da Vercel: recebe dados do formulário da campanha, armazena
  * no Vercel Blob e adiciona/atualiza o contato no Mailchimp (apenas campos do formulário).
  * Requer: BLOB_READ_WRITE_TOKEN, MAILCHIMP_API_KEY, MAILCHIMP_LIST_ID.
+ *
+ * Desativar apenas o Blob (só Mailchimp):
+ * - Opção 1: na URL use ?noBlob=x (ex.: /api/submit-form?noBlob=x)
+ * - Opção 2: na Vercel, variável SKIP_BLOB=x (ou 1, true); remova para voltar a gravar no Blob.
  */
+function shouldSkipBlob(req) {
+  const env = String(process.env.SKIP_BLOB || '').trim();
+  if (/^(x|1|true)$/i.test(env)) return true;
+  try {
+    const url = new URL(req.url || '/', 'https://vercel.app');
+    const param = url.searchParams.get('noBlob') || url.searchParams.get('skipBlob') || '';
+    if (/^(x|1|true)$/i.test(String(param).trim())) return true;
+  } catch (_) {}
+  return false;
+}
+
 export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
@@ -23,8 +38,10 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
+  const skipBlob = shouldSkipBlob(req);
+
   try {
-    console.log('[submit-form] POST received');
+    console.log('[submit-form] POST received', skipBlob ? '(Blob desativado)' : '');
     const body = typeof req.body === 'string' ? JSON.parse(req.body) : req.body || {};
     const nomeCompleto = (body.nomeCompleto || '').trim();
     const email = (body.email || '').trim();
@@ -60,29 +77,32 @@ export default async function handler(req, res) {
       submittedAt,
     };
 
-    let inscricoes = [];
-    const { blobs } = await list({ prefix: INSCRICOES_PATH, limit: 1 });
-    if (blobs.length > 0 && blobs[0].url) {
-      const resp = await fetch(blobs[0].url);
-      const text = await resp.text();
-      if (text) {
-        try {
-          inscricoes = JSON.parse(text);
-        } catch (_) {
-          inscricoes = [];
+    if (!skipBlob) {
+      let inscricoes = [];
+      const { blobs } = await list({ prefix: INSCRICOES_PATH, limit: 1 });
+      if (blobs.length > 0 && blobs[0].url) {
+        const resp = await fetch(blobs[0].url);
+        const text = await resp.text();
+        if (text) {
+          try {
+            inscricoes = JSON.parse(text);
+          } catch (_) {
+            inscricoes = [];
+          }
         }
       }
+      if (!Array.isArray(inscricoes)) inscricoes = [];
+      inscricoes.push(payload);
+      await put(INSCRICOES_PATH, JSON.stringify(inscricoes, null, 2), {
+        access: 'public',
+        addRandomSuffix: false,
+        allowOverwrite: true,
+        contentType: 'application/json',
+      });
+      console.log('[submit-form] Blob saved, total inscricoes:', inscricoes.length);
+    } else {
+      console.log('[submit-form] Blob skipped (noBlob/skipBlob ou SKIP_BLOB)');
     }
-    if (!Array.isArray(inscricoes)) inscricoes = [];
-    inscricoes.push(payload);
-
-    await put(INSCRICOES_PATH, JSON.stringify(inscricoes, null, 2), {
-      access: 'public',
-      addRandomSuffix: false,
-      allowOverwrite: true,
-      contentType: 'application/json',
-    });
-    console.log('[submit-form] Blob saved, total inscricoes:', inscricoes.length);
 
     // Mailchimp: apenas dados do formulário (campos do público: FNAME, LNAME, MERGE7, MERGE8)
     const apiKey = process.env.MAILCHIMP_API_KEY;
