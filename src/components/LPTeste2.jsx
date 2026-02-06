@@ -540,7 +540,7 @@ export default function LPTeste2() {
                 <div className="lp2-thank-you-card">
                   <img src={getImagePath('/img/logo.png')} alt="Cidades sem Risco" className="lp2-thank-you-logo" />
                   <p className="lp2-thank-you-text">
-                    Obrigado pelo interesse em nossa Campanha, dentro de alguns instantes você receberá um email com mais informações.
+                  Obrigado pelo interesse! Em instantes, você receberá um e-mail com todos os detalhes.
                   </p>
                 </div>
                 <div className="lp2-countdown-wrap">
@@ -1225,8 +1225,7 @@ export default function LPTeste2() {
                 <div className="lp2-thank-you-card">
                   <img src={getImagePath('/img/logo.png')} alt="Cidades sem Risco" className="lp2-thank-you-logo" />
                   <p className="lp2-thank-you-text">
-                    Obrigado pelo interesse em nossa Campanha, dentro de alguns instantes você receberá um email com mais informações.
-                  </p>
+                  Obrigado pelo interesse! Em instantes, você receberá um e-mail com todos os detalhes.                  </p>
                 </div>
                 <div className="lp2-countdown-wrap">
                   <p className="lp2-countdown-text">Redirecionando para Home da campanha em {countdown} segundo{countdown !== 1 ? 's' : ''}...</p>
