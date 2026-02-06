@@ -22,7 +22,7 @@ const getImagePath = (path) => {
 }
 
 const CAMPANHA_HOME_URL = 'https://educacao.cemaden.gov.br/campanhacidades/'
-const COUNTDOWN_SECONDS = 8
+const COUNTDOWN_SECONDS = 6
 
 // Lista de estados brasileiros
 const estadosBrasileiros = [
@@ -540,7 +540,7 @@ export default function LPTeste2() {
                 <div className="lp2-thank-you-card">
                   <img src={getImagePath('/img/logo.png')} alt="Cidades sem Risco" className="lp2-thank-you-logo" />
                   <p className="lp2-thank-you-text">
-                    Obrigado pelo interesse em nossa Campanha, dentro de alguns dias você receberá um email com mais informações.
+                    Obrigado pelo interesse em nossa Campanha, dentro de alguns instantes você receberá um email com mais informações.
                   </p>
                 </div>
                 <div className="lp2-countdown-wrap">
@@ -1225,7 +1225,7 @@ export default function LPTeste2() {
                 <div className="lp2-thank-you-card">
                   <img src={getImagePath('/img/logo.png')} alt="Cidades sem Risco" className="lp2-thank-you-logo" />
                   <p className="lp2-thank-you-text">
-                    Obrigado pelo interesse em nossa Campanha, dentro de alguns dias você receberá um email com mais informações.
+                    Obrigado pelo interesse em nossa Campanha, dentro de alguns instantes você receberá um email com mais informações.
                   </p>
                 </div>
                 <div className="lp2-countdown-wrap">
