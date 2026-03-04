@@ -2,13 +2,44 @@ import React, { useState } from 'react'
 
 export default function Banner({ submitted, onSubmit }) {
   const [form, setForm] = useState({ nome: '', instituicao: '', email: '' })
+  const [submitting, setSubmitting] = useState(false)
+  const [error, setError] = useState('')
+
   function handleChange(e) {
     setForm({ ...form, [e.target.name]: e.target.value })
+    setError('')
   }
-  function handleSubmit(e) {
+
+  async function handleSubmit(e) {
     e.preventDefault()
     if (!form.nome || !form.instituicao || !form.email) return
-    onSubmit?.()
+    const apiBase = import.meta.env.VITE_API_BASE || ''
+    setSubmitting(true)
+    setError('')
+    try {
+      const res = await fetch(`${apiBase}/api/submit-form`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          nomeCompleto: form.nome.trim(),
+          email: form.email.trim(),
+          estado: 'Não informado',
+          municipio: 'Não informado',
+          instituicao: form.instituicao.trim(),
+        }),
+      })
+      const data = await res.json().catch(() => ({}))
+      if (!res.ok) {
+        setError(data.error || 'Falha ao enviar. Tente novamente.')
+        return
+      }
+      try { localStorage.setItem('passou_lp', 'sim') } catch (_) {}
+      onSubmit?.()
+    } catch (err) {
+      setError('Erro de conexão. Verifique sua internet e tente novamente.')
+    } finally {
+      setSubmitting(false)
+    }
   }
   return (
     <section className="section banner">
@@ -23,10 +54,13 @@ export default function Banner({ submitted, onSubmit }) {
               <h3 className="form-title">🚀 Participe da Campanha #AprenderParaPrevenir 2026</h3>
               <p className="form-subtitle">Inscreva sua instituição e faça parte desta iniciativa!</p>
               <form onSubmit={handleSubmit} className="form form-pill">
-                <input name="instituicao" placeholder="🏫 Nome da Instituição" value={form.instituicao} onChange={handleChange} required />
-                <input name="nome" placeholder="👤 Seu nome" value={form.nome} onChange={handleChange} required />
-                <input name="email" type="tel" placeholder="📩 E-mail para contato" value={form.email} onChange={handleChange} required />
-                <button type="submit" className="cta-button">✨ Queremos participar</button>
+                <input name="instituicao" placeholder="🏫 Nome da Instituição" value={form.instituicao} onChange={handleChange} required disabled={submitting} />
+                <input name="nome" placeholder="👤 Seu nome" value={form.nome} onChange={handleChange} required disabled={submitting} />
+                <input name="email" type="email" placeholder="📩 E-mail para contato" value={form.email} onChange={handleChange} required disabled={submitting} />
+                {error && <p className="form-error" style={{ color: '#c00', marginTop: '0.5rem', fontSize: '0.9rem' }}>{error}</p>}
+                <button type="submit" className="cta-button" disabled={submitting}>
+                  {submitting ? 'Enviando...' : '✨ Queremos participar'}
+                </button>
               </form>
             </>
           ) : (

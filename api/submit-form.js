@@ -47,13 +47,14 @@ export default async function handler(req, res) {
     const email = (body.email || '').trim();
     const estado = (body.estado || '').trim();
     const municipio = (body.municipio || '').trim();
+    const instituicao = (body.instituicao || '').trim();
 
-    console.log('[submit-form] body:', { nomeCompleto, email: email ? `${email.slice(0, 3)}***@***` : '', estado, municipio });
+    console.log('[submit-form] body:', { nomeCompleto, email: email ? `${email.slice(0, 3)}***@***` : '', estado, municipio, instituicao: instituicao ? '***' : '' });
 
-    if (!nomeCompleto || !email || !estado || !municipio) {
+    if (!nomeCompleto || !email) {
       console.log('[submit-form] validation failed: missing fields');
       return res.status(400).json({
-        error: 'Campos obrigatórios: nomeCompleto, email, estado, municipio',
+        error: 'Campos obrigatórios: nomeCompleto e email',
       });
     }
     console.log('[submit-form] validation ok');
@@ -72,10 +73,11 @@ export default async function handler(req, res) {
     const payload = {
       nomeCompleto,
       email,
-      estado,
-      municipio,
+      estado: estado || 'Não informado',
+      municipio: municipio || 'Não informado',
       submittedAt,
     };
+    if (instituicao) payload.instituicao = instituicao;
 
     if (!skipBlob) {
       let inscricoes = [];

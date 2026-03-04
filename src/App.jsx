@@ -1,12 +1,24 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import ParallaxBackground from './components/ParallaxBackground.jsx'
 import Banner from './components/Banner.jsx'
 import InfoBlocks from './components/InfoBlocks.jsx'
 import TimelinePage from './components/TimelinePage.jsx'
 import LPTeste2 from './components/LPTeste2.jsx'
 
+const CAMPANHA_HOME_URL = 'https://educacao.cemaden.gov.br/campanhacidades/'
+
 export default function App() {
   const [leadSubmitted, setLeadSubmitted] = useState(false)
+  const [redirecting, setRedirecting] = useState(false)
+
+  useEffect(() => {
+    try {
+      if (localStorage.getItem('passou_lp') === 'sim') {
+        setRedirecting(true)
+        window.location.href = CAMPANHA_HOME_URL
+      }
+    } catch (_) {}
+  }, [])
   
   // Remove o base path para verificar rotas corretamente
   const basePath = import.meta.env.BASE_URL || '/'
@@ -17,6 +29,8 @@ export default function App() {
 
   // Rota raiz (/) agora mostra LPTeste2
   const isRoot = pathname === '/' || pathname === ''
+
+  if (redirecting) return null
 
   if (isTimelinePage) {
     return <TimelinePage />
