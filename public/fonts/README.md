@@ -12,7 +12,7 @@
 - **Como instalar:**
   1. Acesse: https://www.creativefabrica.com/product/mighty-souly/
   2. Faça login e baixe a fonte
-  3. Crie a pasta: `public/fonts/mighty-souly/`
+  3. Crie a pasta: `public/fonts/mighty-souly/` novo
   4. Coloque o arquivo `.ttf` ou `.otf` na pasta
   5. Descomente e ajuste o caminho no arquivo `src/styles/fonts.css`
 

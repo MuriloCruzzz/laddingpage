@@ -290,6 +290,9 @@ export default function LPTeste2() {
   async function fetchMunicipios(estadoSigla) {
     try {
       const response = await fetch(`https://servicodados.ibge.gov.br/api/v1/localidades/estados/${estadoSigla}/municipios`)
+      if (!response.ok) {
+        throw new Error(`IBGE error ${response.status}`)
+      }
       const data = await response.json()
       const municipiosList = data.map(m => ({ id: m.id, nome: m.nome }))
       setAllMunicipios(municipiosList)
@@ -329,6 +332,18 @@ export default function LPTeste2() {
       }
     }
   }
+  
+  // Se o usuário digitou antes do IBGE carregar, re-filtro quando `allMunicipios` chegar.
+  useEffect(() => {
+    if (!municipioSearch || municipioSearch.length < 3) return
+    if (!allMunicipios || allMunicipios.length === 0) return
+
+    const filtered = allMunicipios.filter(m =>
+      m.nome.toLowerCase().includes(municipioSearch.toLowerCase())
+    )
+    setMunicipios(filtered)
+    setShowMunicipioList(filtered.length > 0)
+  }, [allMunicipios, municipioSearch])
   
   // Valida se o município selecionado é válido ao perder o foco
   function handleMunicipioBlur() {
