@@ -318,23 +318,21 @@ export default function LPTeste2() {
       setShowMunicipioList(false)
       return
     }
-    
-    // Permite apenas busca, não escrita livre
+
+    // Permite escrita livre: sempre salva o que o usuário digitou.
     setMunicipioSearch(searchValue)
-    
-    if (searchValue.length >= 3) {
-      const filtered = allMunicipios.filter(m => 
+    setForm(prev => ({ ...prev, municipio: searchValue }))
+
+    // Sugestões só aparecem se houver dados do IBGE e o usuário tiver digitado >= 3 chars.
+    if (searchValue.length >= 3 && allMunicipios && allMunicipios.length > 0) {
+      const filtered = allMunicipios.filter(m =>
         m.nome.toLowerCase().includes(searchValue.toLowerCase())
       )
       setMunicipios(filtered)
       setShowMunicipioList(filtered.length > 0)
     } else {
       setShowMunicipioList(false)
-      setMunicipios(allMunicipios)
-      // Limpa o campo de município se tiver menos de 3 caracteres
-      if (searchValue.length < 3) {
-        setForm(prev => ({ ...prev, municipio: '' }))
-      }
+      setMunicipios(allMunicipios || [])
     }
   }
   
@@ -351,28 +349,15 @@ export default function LPTeste2() {
   }, [allMunicipios, municipioSearch])
   
   // Valida se o município selecionado é válido ao perder o foco
-  function handleMunicipioBlur() {
-    // Adiciona um pequeno delay para permitir que o clique no item da lista seja processado primeiro
+  function handleMunicipioBlur(e) {
+    // Não apaga o que o usuário digitou.
+    // Usa o valor do próprio input no blur para evitar race condition
+    // (principalmente quando o fetch de municípios falha).
+    const currentValue = (e?.target?.value ?? municipioSearch ?? form.municipio ?? '').toString()
+    setMunicipioSearch(currentValue)
+    setForm(prev => ({ ...prev, municipio: currentValue }))
+
     setTimeout(() => {
-      // Se já tem um município selecionado no form, mantém e fecha a lista
-      if (form.municipio && form.municipio.trim()) {
-        setMunicipioSearch(form.municipio)
-        setShowMunicipioList(false)
-        return
-      }
-      
-      // Se não tem município no form mas tem no search, verifica se é válido
-      if (municipioSearch && municipioSearch.trim()) {
-        const isValid = allMunicipios.some(m => m.nome === municipioSearch)
-        if (isValid) {
-          // Se for válido, atualiza o form
-          setForm(prev => ({ ...prev, municipio: municipioSearch }))
-        } else {
-          // Se não for válido, limpa
-          setMunicipioSearch('')
-          setForm(prev => ({ ...prev, municipio: '' }))
-        }
-      }
       setShowMunicipioList(false)
     }, 150)
   }
@@ -450,11 +435,10 @@ export default function LPTeste2() {
     // Validação dos campos obrigatórios
     const nomeCompleto = (form.nomeResponsavel || '').trim()
     const emailValido = (form.email || '').trim()
-    const municipioValido = (form.municipio || '').trim()
     const estadoValido = (form.cidadeEstado || '').trim()
     
-    if (!nomeCompleto || !emailValido || !municipioValido || !estadoValido) {
-      setAlertMessage('Por favor, preencha todos os campos obrigatórios.')
+    if (!nomeCompleto || !emailValido || !estadoValido) {
+      setAlertMessage('Por favor, preencha nome completo, e-mail e estado.')
       setShowAlert(true)
       return
     }
@@ -611,7 +595,7 @@ export default function LPTeste2() {
                   <input
                     ref={municipioInputRef}
                     name="municipio"
-                    value={municipioSearch || form.municipio}
+                    value={form.municipio}
                     onChange={handleMunicipioSearch}
                     onBlur={handleMunicipioBlur}
                     onFocus={() => {
@@ -619,8 +603,7 @@ export default function LPTeste2() {
                         setShowMunicipioList(true)
                       }
                     }}
-                    placeholder="Município*"
-                    required
+                    placeholder="Município"
                     disabled={!form.cidadeEstado}
                   />
                   {showMunicipioList && municipios.filter(m => 
@@ -1295,7 +1278,7 @@ export default function LPTeste2() {
                   <input
                     ref={municipioInputRef}
                     name="municipio"
-                    value={municipioSearch || form.municipio}
+                    value={form.municipio}
                     onChange={handleMunicipioSearch}
                     onBlur={handleMunicipioBlur}
                     onFocus={() => {
@@ -1303,8 +1286,7 @@ export default function LPTeste2() {
                         setShowMunicipioList(true)
                       }
                     }}
-                    placeholder="Município*"
-                    required
+                    placeholder="Município"
                     disabled={!form.cidadeEstado}
                   />
                   {showMunicipioList && municipios.filter(m => 
