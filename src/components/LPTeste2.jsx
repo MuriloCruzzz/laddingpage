@@ -289,12 +289,17 @@ export default function LPTeste2() {
   // Função para buscar municípios por estado usando API do IBGE
   async function fetchMunicipios(estadoSigla) {
     try {
-      const response = await fetch(`https://servicodados.ibge.gov.br/api/v1/localidades/estados/${estadoSigla}/municipios`)
+      const apiBase = import.meta.env.VITE_API_BASE || ''
+      const url = apiBase
+        ? `${apiBase}/api/ibge-municipios?estado=${encodeURIComponent(estadoSigla)}`
+        : `/api/ibge-municipios?estado=${encodeURIComponent(estadoSigla)}`
+
+      const response = await fetch(url)
       if (!response.ok) {
         throw new Error(`IBGE error ${response.status}`)
       }
       const data = await response.json()
-      const municipiosList = data.map(m => ({ id: m.id, nome: m.nome }))
+      const municipiosList = Array.isArray(data) ? data.map(m => ({ id: m.id, nome: m.nome })) : []
       setAllMunicipios(municipiosList)
       setMunicipios(municipiosList)
     } catch (error) {
